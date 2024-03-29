@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SM_Detect : MonoBehaviour
+{
+    [SerializeField] private LayerMask layer;
+    [SerializeField] private bool Player;
+    [HideInInspector] public Transform MobMvt;
+    public Transform right;
+    public Transform left;
+    public Transform current;
+    // Start is called before the first frame update
+    void Start()
+    {
+        MobMvt = GetComponentInParent<Transform>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 10f, layer);
+
+        if (hit.collider != null)
+        {
+            Debug.DrawRay(transform.position, transform.right * hit.distance, Color.yellow);
+            Player = true;
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.right * 10, Color.red);
+            Player = false;
+        }
+    }
+    public bool Hit()
+    {
+        return Player;
+    }
+}
