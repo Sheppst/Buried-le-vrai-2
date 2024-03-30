@@ -7,15 +7,18 @@ public class CircleDetect : MonoBehaviour
     [SerializeField] private LayerMask layer;
     [SerializeField] private Collider2D Bited;
 
-    private void OnEnable()
+    private void OnEnable() // A chaque réactivation ...
     {
-        StopAllCoroutines();
-        Bited.enabled = false;
-        StartCoroutine(ReactionTime());
+        StartCoroutine(ReactionTime()); // Démarre une coroutine qui va regarder si le joueur est encore à porté
+    }
+    private void OnDisable()// A chaque désactivation ....
+    {
+        Bited.enabled = false; // ... Désactive le collider 
+        StopAllCoroutines(); //... Stop toutes  coroutine 
     }
     private IEnumerator ReactionTime() 
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f); // Temps d'attente
         bool Lock = GameObject.Find("DetectRay").GetComponent<DetectBite>().Lock;
         if (Lock)
         {

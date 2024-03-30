@@ -170,16 +170,16 @@ public class Phase01 : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Damageable")
+        if (collision.tag == "Damageable") // Prend effet si le boss rentre au collision avec un objet pouvant l'endomager 
         {
-            print("touché");
+            print("touché"); // Pour les tests futures
         }
-        if (Prog.CurrentState == ProcessState.Charge)
+        if (Prog.CurrentState == ProcessState.Charge) // Si durant la phase de Charge ...
         {
-            if (collision != null )
+            if (collision != null ) // /... Le boss rencotre n'importe quel obstacle, alors ...
             {
-                rigid.velocity = Vector2.zero;
-                Prog.MoveNext(Command.CutPhase);
+                rigid.velocity = Vector2.zero; // ... Le boss arrête de bouger
+                Prog.MoveNext(Command.CutPhase); // ... Effectue une transition d'état de Charge -> Inactive
             }
         }
     }
