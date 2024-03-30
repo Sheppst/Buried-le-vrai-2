@@ -669,6 +669,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 751029765103673301, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1653442927081087136, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
       propertyPath: m_Icon
       value: 
@@ -932,7 +936,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   Bite: {fileID: 2290248253225801421}
-  Lock: 0
+  Detect: 0
 --- !u!4 &6804013228377345120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 32664789232197564, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}

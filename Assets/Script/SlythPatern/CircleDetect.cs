@@ -9,21 +9,16 @@ public class CircleDetect : MonoBehaviour
 
     private void OnEnable() // A chaque réactivation ...
     {
-        StartCoroutine(ReactionTime()); // Démarre une coroutine qui va regarder si le joueur est encore à porté
-    }
-    private void OnDisable()// A chaque désactivation ....
-    {
-        Bited.enabled = false; // ... Désactive le collider 
-        StopAllCoroutines(); //... Stop toutes  coroutine 
-    }
-    private IEnumerator ReactionTime() 
-    {
-        yield return new WaitForSeconds(0.5f); // Temps d'attente
         Collider2D collision = Physics2D.OverlapCircle(transform.position, 0.5f, layer); // Lance le cercle de détection de portée de la morsure                                                                       // autrement il sera "false"
         if (collision != null) //Si oui...
         {
             Bited.enabled = true; // ... Active le collider d'attaque (Equivalent de la morsure
         }
         gameObject.SetActive(false); // Désactive l'objet
+        GameObject.Find("DetectRay").GetComponent<DetectBite>().Pass = true;
+    }
+    private void OnDisable()// A chaque désactivation ....
+    {
+        Bited.enabled = false; // ... Désactive le collider
     }
 }

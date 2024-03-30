@@ -10,7 +10,7 @@ public class Phase01 : MonoBehaviour
     [SerializeField] private string NomDuJoueur;
     [SerializeField] private LayerMask layer;
     [SerializeField] private GameObject Ray;
-    private Vector3 Newpos;
+    public Vector3 Newpos;
     private Rigidbody2D rigid;
     private float Life;
     private float speed = 5f;
@@ -98,7 +98,8 @@ public class Phase01 : MonoBehaviour
                                  // avec le joueur malgré le fait qu'elle divisé par deux 
             {
                 Prog.MoveNext(Command.Bit); // Changement d'état de ChoisingPhase -> Bited
-                Newpos =  new Vector3(Player.position.x, transform.position.y, transform.position.z); // Dernier endroit que le boss à vu le joueur 
+                Newpos =  new Vector3(Player.position.x, transform.position.y, transform.position.z); // Dernier endroit que le boss à vu le joueur
+                Ray.SetActive(true); // L'objet tenant la détection s'active                                                            
             }
             else if (distC/2 < distP) // ...si le joueur est trop loin
             {
@@ -107,15 +108,14 @@ public class Phase01 : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.Bited) // Quand le boss cherche à mordre le joueur 
         {
-            Ray.SetActive(true); // L'objet tenant la détection s'active 
-            transform.position = Vector3.MoveTowards(transform.position, Newpos, speed * Time.deltaTime); // Déplace le boss vers la dernière position du joueur connu
-            if (transform.position.x == Newpos.x) // Si cette position est atteinte...
-            {
-                Ray.SetActive(false); //... Désactive l'objet de détection
-            }
+             
             if (Ray.activeSelf == false) // Si l'objet de détection n'est pas actif...
             {
                 Prog.MoveNext(Command.CutPhase); // ... Changement d'état de Bited -> Inactive 
+            }
+            else if (!GetComponentInChildren<DetectBite>().Detect )
+            {
+                transform.position = Vector3.MoveTowards(transform.position, Newpos, speed * Time.deltaTime); // Déplace le boss vers la dernière position du joueur connu
             }
 
         }
