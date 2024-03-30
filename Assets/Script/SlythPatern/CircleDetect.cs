@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CircleDetect : MonoBehaviour
 {
-    [SerializeField] private LayerMask layer;
-    [SerializeField] private Collider2D Bited;
+    [SerializeField] private LayerMask layer; //Layer de détectection
+    [SerializeField] private Collider2D Bited; // Collider de l'objet
 
     private void OnEnable() // A chaque réactivation ...
     {
@@ -19,23 +19,11 @@ public class CircleDetect : MonoBehaviour
     private IEnumerator ReactionTime() 
     {
         yield return new WaitForSeconds(0.5f); // Temps d'attente
-        bool Lock = GameObject.Find("DetectRay").GetComponent<DetectBite>().Lock;
-        if (Lock)
+        Collider2D collision = Physics2D.OverlapCircle(transform.position, 0.5f, layer); // Lance le cercle de détection de portée de la morsure                                                                       // autrement il sera "false"
+        if (collision != null) //Si oui...
         {
-            Collider2D collision = Physics2D.OverlapCircle(transform.position, 0.5f, layer);
-            if (IsBited(collision))
-            {
-                Bited.enabled = true;
-            }
+            Bited.enabled = true; // ... Active le collider d'attaque (Equivalent de la morsure
         }
-        gameObject.SetActive(false);
-    }
-    private bool IsBited(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            return true;
-        }
-        return false;
+        gameObject.SetActive(false); // Désactive l'objet
     }
 }
