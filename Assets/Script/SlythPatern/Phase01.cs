@@ -15,6 +15,7 @@ public class Phase01 : MonoBehaviour
     private float Life;
     private float speed = 5f;
     private bool Flip;
+    private bool FrameWait;
     private Transform Player;
     private PolygonCollider2D colid;
     public Transform Current;
@@ -72,6 +73,7 @@ public class Phase01 : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.Inactive) //Etat de reset du boss 
         {
+            FrameWait = false;
             if (transform.position.x > Player.position.x) // Si le joueur se trouve à gauche ...
             {
                 Current = Left; // ... L'objectif de déplacement devient la quache
@@ -108,15 +110,18 @@ public class Phase01 : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.Bited) // Quand le boss cherche à mordre le joueur 
         {
-             
-            if (Ray.activeSelf == false) // Si l'objet de détection n'est pas actif...
+            if (FrameWait)
             {
-                Prog.MoveNext(Command.CutPhase); // ... Changement d'état de Bited -> Inactive 
+                if (Ray.activeSelf == false) // Si l'objet de détection n'est pas actif...
+                {
+                    Prog.MoveNext(Command.CutPhase); // ... Changement d'état de Bited -> Inactive 
+                }
+                else if (!Ray.GetComponentInChildren<DetectBite>().Detect)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, Newpos, speed * Time.deltaTime); // Déplace le boss vers la dernière position du joueur connu
+                }
             }
-            else if (!GetComponentInChildren<DetectBite>().Detect )
-            {
-                transform.position = Vector3.MoveTowards(transform.position, Newpos, speed * Time.deltaTime); // Déplace le boss vers la dernière position du joueur connu
-            }
+            FrameWait = true;
 
         }
         if (Prog.CurrentState == ProcessState.Charge) // Quand le boss cherche à chager le joueur 
