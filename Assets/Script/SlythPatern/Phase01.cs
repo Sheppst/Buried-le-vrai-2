@@ -108,9 +108,9 @@ public class Phase01 : MonoBehaviour
                 Prog.MoveNext(Command.CutPhase); // Changement spécial pour rendre dans les temps, ChoisingPhase -> Charge
             }
         }
-        if (Prog.CurrentState == ProcessState.Bited) // Quand le boss cherche à mordre le joueur 
+        if (Prog.CurrentState == ProcessState.Bited) // Quand le boss cherche à mordre le joueur // Priorite 2
         {
-            if (FrameWait)
+            if (FrameWait) // Priorite 3
             {
                 if (Ray.activeSelf == false) // Si l'objet de détection n'est pas actif...
                 {
