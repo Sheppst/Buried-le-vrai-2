@@ -6,21 +6,21 @@ public class DetectBite : MonoBehaviour
 {
     [SerializeField] private LayerMask layer; // Layers de détection
     [SerializeField] private GameObject Bite; // Objet lançant la morsure
-    private Vector3 current;
+    private Transform current;
     public bool Detect;
     public bool Pass;
 
     // Update is called once per frame
     private void OnEnable() // A l'activation de l'objet
     {
-        current = GetComponentInParent<Phase01>().Newpos; // Recupère l'objet servant d'objectif au boss
+        current = GetComponentInParent<Phase01>().Current; // Recupère l'objet servant d'objectif au boss
         Bite.SetActive(false); //Désactive l'objet de morsure
     }
     void Update()
     {
-        current = GetComponentInParent<Phase01>().Newpos;
+        current = GetComponentInParent<Phase01>().Current;
         RaycastHit2D AttackRange = Physics2D.Raycast(transform.position, transform.right, 2, layer); // Crée un raycast allant d'un point A à un point B sur 2 pixels dans layer déclarer
-        if (AttackRange.collider != null) // Si le raycast détecte qlq chose
+        if (AttackRange.collider != null || !Pass) // Si le raycast détecte qlq chose
         {
             Bite.SetActive(true); // Active l'objet de morsure 
             Debug.DrawLine(transform.position, AttackRange.point, Color.yellow); //Dessine un trait jaune en fonction du point A et du point de collision
@@ -28,9 +28,9 @@ public class DetectBite : MonoBehaviour
         }
         else
         {
-            Debug.DrawLine(transform.position, new Vector3 (current.x,transform.position.y,transform.position.z) , Color.red); //Dessine le raycast en rouge
+            Debug.DrawLine(transform.position, new Vector3 (current.position.x,transform.position.y,transform.position.z) , Color.red); //Dessine le raycast en rouge
         }
-        if (current.x == transform.position.x || Pass)
+        if (current.position.x == transform.position.x || Pass) // Si l'objet est à la même position que la dernière position du joueur ou que la morsure à été effectuer
         {
             gameObject.SetActive(false);
         }
@@ -39,6 +39,7 @@ public class DetectBite : MonoBehaviour
     {
         Bite.SetActive(false); //Désactive l'objet de morsure
         Detect = false;
+        Pass = false;
     }
     
 }

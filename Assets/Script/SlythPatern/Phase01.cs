@@ -162,7 +162,7 @@ public class Phase01 : MonoBehaviour
     }
     private IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         if (Prog.CurrentState == ProcessState.Inactive) // Temps d'attente pour le cooldown en Inactive
         {
             Prog.MoveNext(Command.Begin); // Changement d'état entre Inactive -> ChoicePhase
