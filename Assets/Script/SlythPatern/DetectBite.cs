@@ -31,6 +31,7 @@ public class DetectBite : MonoBehaviour
     void Update() // Priorite 4
     {
         current = GetComponentInParent<Phase01>().Current;
+        Vector3 lastpos = GetComponentInParent<Phase01>().PositionJoueur();
         RaycastHit2D AttackRange = Physics2D.Raycast(transform.position, transform.right, 2, layer); // Crée un raycast allant d'un point A à un point B sur 2 pixels dans layer déclarer
         if (AttackRange.collider != null && !Desactivate) // Si le raycast détecte qlq chose
         {
@@ -42,7 +43,7 @@ public class DetectBite : MonoBehaviour
         {
             Debug.DrawLine(transform.position, new Vector3 (current.position.x,transform.position.y,transform.position.z) , Color.red); //Dessine le raycast en rouge
         }
-        if (current.position.x == transform.position.x || Desactivate) // Si l'objet est à la même position que la dernière position du joueur ou que la morsure à été effectuer
+        if (lastpos.x == transform.position.x || Desactivate) // Si l'objet est à la même position que la dernière position du joueur ou que la morsure à été effectuer
         {
             gameObject.SetActive(false);
         }

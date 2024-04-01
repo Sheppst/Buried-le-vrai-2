@@ -10,7 +10,7 @@ public class Phase01 : MonoBehaviour
     [SerializeField] private string NomDuJoueur;
     [SerializeField] private LayerMask layer;
     [SerializeField] private GameObject Ray;
-    public Vector3 Newpos;
+    private Vector3 Newpos;
     private Rigidbody2D rigid;
     private float Life;
     private float speed = 5f;
@@ -110,19 +110,14 @@ public class Phase01 : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.Bited) // Quand le boss cherche à mordre le joueur // Priorite 2
         {
-            if (FrameWait) // Priorite 3
+            if (Ray.activeSelf == false) // Si l'objet de détection n'est pas actif...
             {
-                if (Ray.activeSelf == false) // Si l'objet de détection n'est pas actif...
-                {
-                    Prog.MoveNext(Command.CutPhase); // ... Changement d'état de Bited -> Inactive 
-                }
-                else if (!Ray.GetComponentInChildren<DetectBite>().Detect)
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, Newpos, speed * Time.deltaTime); // Déplace le boss vers la dernière position du joueur connu
-                }
+                Prog.MoveNext(Command.CutPhase); // ... Changement d'état de Bited -> Inactive 
             }
-            FrameWait = true;
-
+            else if (!Ray.GetComponentInChildren<DetectBite>().Detect || Ray.activeSelf == false)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, Newpos, speed * Time.deltaTime); // Déplace le boss vers la dernière position du joueur connu
+            }
         }
         if (Prog.CurrentState == ProcessState.Charge) // Quand le boss cherche à chager le joueur 
         {
@@ -187,5 +182,13 @@ public class Phase01 : MonoBehaviour
                 Prog.MoveNext(Command.CutPhase); // ... Effectue une transition d'état de Charge -> Inactive
             }
         }
+    }
+    public Vector3 PositionJoueur ()
+    {
+        return Newpos;
+    }
+    public bool Finis()
+    {
+        return true;
     }
 }
