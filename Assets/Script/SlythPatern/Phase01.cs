@@ -97,7 +97,7 @@ public class Phase01 : MonoBehaviour
             float distP = Vector3.Distance(Player.position, transform.position); // Distance entre la position du boss et le joueur 
             if (distC/2 > distP) // ... si le joueur est proche,
                                  // car la distance entre la position entre le boss et son objectif reste supérieur à la distance
-                                 // avec le joueur malgré le fait qu'elle divisé par deux 
+                                 // avec le joueur malgré le fait qu'elle soit divisé par deux 
             {
                 Prog.MoveNext(Command.Bit); // Changement d'état de ChoisingPhase -> Bited
                 Newpos =  new Vector3(Player.position.x, transform.position.y, transform.position.z); // Dernier endroit que le boss à vu le joueur
