@@ -12,6 +12,7 @@ TagManager:
   - ExploStatTrue
   - ExploThrTrue
   - Mob
+  - Morsure
   layers:
   - Default
   - TransparentFX

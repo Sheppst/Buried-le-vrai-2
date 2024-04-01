@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 	public Animator animator;
 	public GameObject TBombs;
 	public GameObject SBombs;
+	[SerializeField] private GameObject Boss;
 
 	public float runSpeed = 40f;
 
@@ -68,5 +69,18 @@ public class PlayerMovement : MonoBehaviour {
 		controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash);
 		jump = false;
 		dash = false;
+	}
+
+	public void BiteByBoss ()
+	{
+		print("Touché");
+		if (Boss.GetComponent<Phase01>().transform.localScale.x < 0 )
+		{
+			// pousse le joueur sur la gauche légerement
+		}
+		else if (Boss.GetComponent<Phase01>().transform.localScale.x > 0)
+		{
+			// pousse le joueur sur la droite légerement
+		}
 	}
 }

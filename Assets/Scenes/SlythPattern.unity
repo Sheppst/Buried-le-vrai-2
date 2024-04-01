@@ -744,6 +744,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &2024850353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4011709351639346340, guid: 78b516b9699a2664b9bb9d312fdaceca, type: 3}
+  m_PrefabInstance: {fileID: 4444622863189144657}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2122888635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -758,11 +763,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 891451245635644946, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.86
+      value: -6.22
       objectReference: {fileID: 0}
     - target: {fileID: 891451245635644946, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.48
+      value: -3.38
       objectReference: {fileID: 0}
     - target: {fileID: 891451245635644946, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -796,6 +801,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5094202164152442199, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
+      propertyPath: Boss
+      value: 
+      objectReference: {fileID: 2024850353}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -809,6 +818,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2290248253225801421, guid: 78b516b9699a2664b9bb9d312fdaceca, type: 3}
+      propertyPath: m_TagString
+      value: Morsure
+      objectReference: {fileID: 0}
     - target: {fileID: 4867870049956530008, guid: 78b516b9699a2664b9bb9d312fdaceca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.45
@@ -852,6 +865,10 @@ PrefabInstance:
     - target: {fileID: 5398676384797800123, guid: 78b516b9699a2664b9bb9d312fdaceca, type: 3}
       propertyPath: m_Name
       value: FinalBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6085638663714851849, guid: 78b516b9699a2664b9bb9d312fdaceca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
