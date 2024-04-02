@@ -10,6 +10,8 @@ public class Phase01 : MonoBehaviour
     [SerializeField] private string NomDuJoueur;
     [SerializeField] private LayerMask layer;
     [SerializeField] private GameObject Ray;
+    [SerializeField] private GameObject Block;
+    private GameObject Bl;
     private Vector3 Newpos;
     private Rigidbody2D rigid;
     private float Life;
@@ -24,6 +26,7 @@ public class Phase01 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Bl = null;
         Life = transform.parent.gameObject.GetComponent<AllMovement>().Life;
         colid = GetComponent<PolygonCollider2D>();
         rigid = GetComponentInParent<Rigidbody2D>();
@@ -73,7 +76,7 @@ public class Phase01 : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.Inactive) //Etat de reset du boss 
         {
-            FrameWait = false;
+
             if (transform.position.x > Player.position.x) // Si le joueur se trouve à gauche ...
             {
                 Current = Left; // ... L'objectif de déplacement devient la quache
@@ -101,6 +104,7 @@ public class Phase01 : MonoBehaviour
             {
                 Prog.MoveNext(Command.Bit); // Changement d'état de ChoisingPhase -> Bited
                 Newpos =  new Vector3(Player.position.x, transform.position.y, transform.position.z); // Dernier endroit que le boss à vu le joueur
+                Bl = Instantiate(Block,Newpos,Quaternion.identity);
                 Ray.SetActive(true); // L'objet tenant la détection s'active                                                            
             }
             else if (distC/2 < distP) // ...si le joueur est trop loin
@@ -112,6 +116,11 @@ public class Phase01 : MonoBehaviour
         {
             if (Ray.activeSelf == false) // Si l'objet de détection n'est pas actif...
             {
+                if (Bl != null)
+                {
+                    Bl.GetComponent<BlockBit>().After();
+                    Bl = null;
+                }
                 Prog.MoveNext(Command.CutPhase); // ... Changement d'état de Bited -> Inactive 
             }
             else if (!Ray.GetComponentInChildren<DetectBite>().Detect || Ray.activeSelf == false)
@@ -176,11 +185,15 @@ public class Phase01 : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.Charge) // Si durant la phase de Charge ...
         {
-            if (collision != null ) // /... Le boss rencotre n'importe quel obstacle, alors ...
+            if (collision != null ) // /... Le boss rencontre n'importe quel obstacle, alors ...
             {
                 rigid.velocity = Vector2.zero; // ... Le boss arrête de bouger
                 Prog.MoveNext(Command.CutPhase); // ... Effectue une transition d'état de Charge -> Inactive
             }
+        }
+        else if (collision.tag == "BossObject" && Prog.CurrentState == ProcessState.Bited)
+        {
+            Ray.SetActive(false);
         }
     }
     public Vector3 PositionJoueur ()

@@ -110,7 +110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Left: {fileID: 60197094951730733}
   Right: {fileID: 431992709303648566}
-  Center: {fileID: 0}
   Life: 100
 --- !u!1 &8865011901355654262
 GameObject:
@@ -693,6 +692,10 @@ PrefabInstance:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 4742326890925065489, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
+      propertyPath: m_TagString
+      value: Morsure
+      objectReference: {fileID: 0}
     - target: {fileID: 5796891877986340590, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6666666
@@ -893,6 +896,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   Ray: {fileID: 5254165969175606140}
+  Block: {fileID: 3394808368603911026, guid: 26786dafd378a5845844e2e74f51d827, type: 3}
   Current: {fileID: 0}
 --- !u!95 &8543092868321333532
 Animator:

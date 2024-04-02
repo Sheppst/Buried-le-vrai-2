@@ -13,6 +13,7 @@ TagManager:
   - ExploThrTrue
   - Mob
   - Morsure
+  - BossObject
   layers:
   - Default
   - TransparentFX
