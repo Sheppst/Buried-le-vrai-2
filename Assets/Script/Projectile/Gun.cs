@@ -21,6 +21,7 @@ public class Gun : MonoBehaviour
             projectile.GetComponent<AttackObject>().Target = target;
             projectile.GetComponent<AttackObject>().Speed = 20;
             projectile.GetComponent<AttackObject>().Thrower = tag;
+            projectile.GetComponent<AttackObject>().tag = "ProjPlayer";
             Instantiate(projectile,transform.position,Quaternion.identity);
         }
     }

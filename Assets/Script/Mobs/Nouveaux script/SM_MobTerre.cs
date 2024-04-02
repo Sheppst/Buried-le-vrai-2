@@ -14,7 +14,7 @@ public class SM_MobTerre : MonoBehaviour
     [SerializeField] private GameObject Ray;
     [SerializeField] float PatrolDistance;
     //static List<Transform> list;
-    private float Life = 100;
+    private float Life = 10;
     private Transform Player;
     private Transform Direction;
     public float speed;

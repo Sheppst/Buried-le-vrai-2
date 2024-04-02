@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class AttackObject : MonoBehaviour
 {
-    public Vector3 Target;
     [HideInInspector]public string TargetObject;
     [HideInInspector]public string Thrower;
     [SerializeField] private Rigidbody2D rigid;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    
+    public Vector3 Target;
     public float Speed = 1;
+    public Sprite ObjSprite;
     // Start is called before the first frame update
     void Start()
     {
