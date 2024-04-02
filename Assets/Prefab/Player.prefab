@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 94224232254088543}
   - component: {fileID: 6604839700419214205}
   - component: {fileID: 6792598577008105159}
+  - component: {fileID: 1846598769511320904}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -343,6 +344,7 @@ MonoBehaviour:
   animator: {fileID: 3124836745566226866}
   TBombs: {fileID: 9217862181697387115, guid: 650e5186d17a7194596eeefbf4d2b62d, type: 3}
   SBombs: {fileID: 9217862181697387115, guid: d40fa4dc1c8d91c45b2126d3e367a12c, type: 3}
+  Boss: {fileID: 0}
   runSpeed: 125
   dash: 0
 --- !u!95 &3124836745566226866
@@ -418,6 +420,19 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 2
   m_MaxDistanceOnly: 0
+--- !u!114 &1846598769511320904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647164039615587927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546eb46b9b95db84ca675c07fea99353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Proj: {fileID: 8263103063693786654, guid: 1597a181b44ebe948924066fc131400e, type: 3}
 --- !u!1 &693305662815489631
 GameObject:
   m_ObjectHideFlags: 0

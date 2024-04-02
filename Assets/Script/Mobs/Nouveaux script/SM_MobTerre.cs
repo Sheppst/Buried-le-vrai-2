@@ -14,6 +14,7 @@ public class SM_MobTerre : MonoBehaviour
     [SerializeField] private GameObject Ray;
     [SerializeField] float PatrolDistance;
     //static List<Transform> list;
+    private float Life = 100;
     private Transform Player;
     private Transform Direction;
     public float speed;
@@ -55,6 +56,10 @@ public class SM_MobTerre : MonoBehaviour
             CS = CSN;
         } // Pour le debug
 
+        if (Life <= 0) 
+        {
+            Prog.MoveNext(Command.Death);
+        }
         if (Prog.CurrentState != ProcessState.DetectSmth && Prog.CurrentState != ProcessState.Damaged) // Les changement ici bas ne doivent pas ce faire si le monstre est en train de détectez quelque chose, de prendre des dégâts.
         {
             StopAllCoroutines(); // Précaution pour éviter instabilité 
@@ -204,6 +209,13 @@ public class SM_MobTerre : MonoBehaviour
             Prog.MoveNext(Command.Resume); // Changement d'état de :
                                            // AttackSmth -> SuccesHit ça c'est l'effet princpalement voulu,
                                            // Damaged -> NoDetect Dépend de si j'ai envie faire des dégat juste par le contact,
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "ProjPlayer")
+        {
+            Life -= 2;
         }
     }
 }

@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float runSpeed = 40f;
 
+	private float Life;
+
 	float horizontalMove = 0f;
 	bool jump = false;
 	bool crouch = false;
@@ -29,6 +31,11 @@ public class PlayerMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+		if (Life <= 0f) 
+		{
+			print("Dead");
+		}
 
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
@@ -71,7 +78,12 @@ public class PlayerMovement : MonoBehaviour {
 		dash = false;
 	}
 
-	public void BiteByBoss ()
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
+
+    public void BiteByBoss ()
 	{
 		print("Touché");
 		if (Boss.GetComponent<Phase01>().transform.localScale.x < 0 )

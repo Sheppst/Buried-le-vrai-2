@@ -13,7 +13,7 @@ public class SM_MobVolantDistance : MonoBehaviour
     [SerializeField] private LayerMask WhoHaveToBeAggro;
     [SerializeField] private GameObject AttackObject;
     [SerializeField] private float speed;
-    [SerializeField] private float Life;
+    private float Life = 100;
     private float radius = 4.5f;
     private bool CoDec = true;
     private bool Pass = true;
@@ -28,13 +28,13 @@ public class SM_MobVolantDistance : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Left.parent = null;
-        Right.parent = null;
-        Prog = new Process();
+        Left.parent = null; // Détache les points de patrouilles
+        Right.parent = null; // Détache les points de patrouilles
+        Prog = new Process(); // Lance la machine d'état
         CS = Prog.CurrentState; // Pour le débug
-        if (Prog.CurrentState == ProcessState.Inactive)
+        if (Prog.CurrentState == ProcessState.Inactive) // Phase initiale
         {
-            Current = Left;
+            Current = Left; // L'objectif
             Prog.MoveNext(Command.Begin);
         }
     }
@@ -51,7 +51,10 @@ public class SM_MobVolantDistance : MonoBehaviour
         //    print(CSN.ToString());
         //    CS = CSN;
         //}  //Pour le débug
-
+        if (Life <= 0)
+        {
+            Prog.MoveNext(Command.Death);
+        }
         if (Prog.CurrentState == ProcessState.Terminated)
         {
             StopAllCoroutines();
@@ -113,12 +116,12 @@ public class SM_MobVolantDistance : MonoBehaviour
                 Return = false;
             }
             transform.position = Vector3.MoveTowards(transform.position, AttackObject.transform.position, speed / 1000);
-            if (transform.position == AttackObject.transform.position)
-            {
-                AttackObject.transform.SetParent(gameObject.transform);
-                Prog.MoveNext(Command.Resume);
-                Return = true;
-            }
+            //if (transform.position == AttackObject.transform.position)
+            //{
+            //    AttackObject.transform.SetParent(transform);
+            //    Prog.MoveNext(Command.Resume);
+            //    Return = true;
+            //}
         }
         if (Prog.CurrentState == ProcessState.SuccessHit)
         {
@@ -151,14 +154,13 @@ public class SM_MobVolantDistance : MonoBehaviour
         {
             if (dmg)
             {
-
                 StopAllCoroutines();
                 rigid.velocity = Vector3.zero;
                 StartCoroutine(Wait());
                 dmg = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.H)) // C'est ici que les dégâts sont enclenché
         {
             if (Prog.CurrentState == ProcessState.Moved)
             {
@@ -221,11 +223,20 @@ public class SM_MobVolantDistance : MonoBehaviour
         yield return new WaitForSeconds(1);
         cold = true;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if ( collision.gameObject.tag == "ProjPlayer" )
         {
-            Prog.MoveNext(Command.Resume);
+            Life -= 2;
+            ReceiveDamage();
         }
+    }
+    public void ReceiveDamage()
+    {
+        if (Prog.CurrentState == ProcessState.Moved)
+        {
+            Return = false;
+        }
+        Prog.MoveNext(Command.Hit);
     }
 }

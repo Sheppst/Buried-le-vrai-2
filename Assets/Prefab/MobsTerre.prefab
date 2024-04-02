@@ -146,7 +146,6 @@ GameObject:
   - component: {fileID: 3414320116381842560}
   - component: {fileID: 3964870469375189257}
   - component: {fileID: 6667215433673465584}
-  - component: {fileID: 5404267362319102967}
   - component: {fileID: 1695695308678228473}
   m_Layer: 0
   m_Name: MobsTerre
@@ -271,25 +270,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.71737754, y: 0.9072636}
   m_EdgeRadius: 0
---- !u!114 &5404267362319102967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9215435313173365348}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6992e29737d0eb448e127d80e7503ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 891451245635644946, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
-  Right: {fileID: 7857386384109718504}
-  Left: {fileID: 4926307068688610781}
-  Current: {fileID: 4926307068688610781}
-  Detect: {fileID: 5992453977765945802}
-  speed: 2
-  Aggro: 0
 --- !u!114 &1695695308678228473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +291,6 @@ MonoBehaviour:
   Ray: {fileID: 8831728614918509073}
   PatrolDistance: 4
   speed: 2
-  Change: 0
 --- !u!1001 &5268551942702488177
 PrefabInstance:
   m_ObjectHideFlags: 0

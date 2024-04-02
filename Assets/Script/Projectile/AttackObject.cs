@@ -8,13 +8,14 @@ public class AttackObject : MonoBehaviour
     [HideInInspector]public string TargetObject;
     [HideInInspector]public string Thrower;
     [SerializeField] private Rigidbody2D rigid;
-    [SerializeField] private float Speed = 1;
+    public float Speed = 1;
     // Start is called before the first frame update
     void Start()
     {
         Vector3 target = (Target - transform.position ).normalized;
         rigid.velocity = target * Speed;
         TurnOnTarget();
+        Destroy(gameObject, 5);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
