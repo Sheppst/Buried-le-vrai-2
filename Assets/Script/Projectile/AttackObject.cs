@@ -9,6 +9,7 @@ public class AttackObject : MonoBehaviour
     [SerializeField] private Rigidbody2D rigid;
     [SerializeField] private SpriteRenderer spriteRenderer;
     
+    public float TimeBeforeDestroy;
     public Vector3 Target;
     public float Speed = 1;
     public Sprite ObjSprite;
@@ -18,7 +19,7 @@ public class AttackObject : MonoBehaviour
         Vector3 target = (Target - transform.position ).normalized;
         rigid.velocity = target * Speed;
         TurnOnTarget();
-        Destroy(gameObject, 5);
+        Destroy(gameObject, TimeBeforeDestroy);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

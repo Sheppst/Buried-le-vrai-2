@@ -17,7 +17,7 @@ public class SM_MobVolantDistance : MonoBehaviour
     private float radius = 4.5f;
     private bool CoDec = true;
     private bool Pass = true;
-    private bool Restart = true;
+    //private bool Restart = true;
     private bool Return = true;
     private bool dmg = true;
     private bool cold = true;
@@ -45,12 +45,12 @@ public class SM_MobVolantDistance : MonoBehaviour
         //{
         //    print(D.ToString());
         //}
-        //ProcessState CSN = Prog.CurrentState;   //Pour le débug
-        //if (CS != CSN) 
-        //{
-        //    print(CSN.ToString());
-        //    CS = CSN;
-        //}  //Pour le débug
+        ProcessState CSN = Prog.CurrentState;   //Pour le débug
+        if (CS != CSN) 
+        {
+            print(CSN.ToString());
+            CS = CSN;
+        }  //Pour le débug
         if (Life <= 0) // Si la vie du monstre est inférieur ou égale à zéro lance la procédure de mort du monstre
         {
             Prog.MoveNext(Command.Death); // Changement d'état de n'importe quel autre état à Terminated
@@ -98,15 +98,18 @@ public class SM_MobVolantDistance : MonoBehaviour
             {
                 GameObject AttObj = Instantiate(AttackObject, transform.position, Quaternion.identity); // Instantiation dans un objet pour y changer ses paramêtres
                 AttObj.GetComponent<AttackObject>().Target = HitPlayer; // Définis la cible du projectile
-                AttObj.GetComponent<AttackObject>().TargetObject = HitPlayerTag; // Donne le tag de la cible 
+                AttObj.GetComponent<AttackObject>().TargetObject = HitPlayerTag; // Donne le tag de la cible
+                AttObj.GetComponent<AttackObject>().TimeBeforeDestroy = 15;
                 AttObj.GetComponent<AttackObject>().Thrower = gameObject.tag; // Donne le tag du lanceur,
-                                                                              // pour éviter que le projectile disparaisse aussi vite qu'il apparaît 
+                                                                              // pour éviter que le projectile disparaisse aussi vite qu'il apparaît
+                
                 StartCoroutine(Cooldown()); // Lance le tenmp d'attente
                 cold = false; // Met la variable d'accès à la condition : Off
             }
         }
         if (Prog.CurrentState == ProcessState.NoDetect) // Etat de non détection de la cible
         {
+            StopAllCoroutines(); // Précaution
             if (Return) // Condition qui fait changer de direction le monstre après sa détection une seule fois, 
                         // PROBLEME : Ne passe en "true" que durant la déclaration, étant une variable privé PB
             {
@@ -122,40 +125,49 @@ public class SM_MobVolantDistance : MonoBehaviour
                 }
                 Return = false; //Ferme la condition pour ne l'effectuer qu'une seule fois 
             }
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(Current.position.x, transform.position.y, Current.position.z), speed / 1000); // Le déplace à son nouvel objectif
+            if (Current.position.x == transform.position.x) // Si l'objectif est atteint...
+            {
+                Prog.MoveNext(Command.Resume); // Relance le mob en Moved
+                Return = true; // Réactive la variable pour le prochain passage
+                cold = true;
+            }
         }
-        //if (Prog.CurrentState == ProcessState.SuccessHit) // Normalement inutile dans le cadre du monstre qui attaque à distance 
-        //{
-        //    if (Restart)
-        //    {
-        //        StopAllCoroutines();
-        //        if (Current == Left)
-        //        {
-        //            Current = Right;
-        //            transform.localScale = new Vector3(transform.localScale.x * -1f, transform.localScale.y, transform.localScale.z);
-        //        }
-        //        else if (Current == Right)
-        //        {
-        //            Current = Left;
-        //            transform.localScale = new Vector3(transform.localScale.x * -1f, transform.localScale.y, transform.localScale.z);
-        //        }
-        //        StartCoroutine(Wait());
-        //        Return = false;
-        //        Restart = false;
-        //        if (transform.position == AttackObject.transform.position)
-        //        {
-        //            StopAllCoroutines();
-        //            Prog.MoveNext(Command.End);
-        //        }
-        //    }
-        //}
+        {
+            //if (Prog.CurrentState == ProcessState.SuccessHit) // Normalement inutile dans le cadre du monstre qui attaque à distance 
+            //{
+            //    if (Restart)
+            //    {
+            //        StopAllCoroutines();
+            //        if (Current == Left)
+            //        {
+            //            Current = Right;
+            //            transform.localScale = new Vector3(transform.localScale.x * -1f, transform.localScale.y, transform.localScale.z);
+            //        }
+            //        else if (Current == Right)
+            //        {
+            //            Current = Left;
+            //            transform.localScale = new Vector3(transform.localScale.x * -1f, transform.localScale.y, transform.localScale.z);
+            //        }
+            //        StartCoroutine(Wait());
+            //        Return = false;
+            //        Restart = false;
+            //        if (transform.position == AttackObject.transform.position)
+            //        {
+            //            StopAllCoroutines();
+            //            Prog.MoveNext(Command.End);
+            //        }
+            //    }
+            //}
+        }
         if (Prog.CurrentState == ProcessState.Damaged) // Etat où le monstre se prend un dégât
         {
             if (dmg)
             {
-                StopAllCoroutines();
-                rigid.velocity = Vector3.zero;
-                StartCoroutine(Wait());
-                dmg = false;
+                StopAllCoroutines(); // Précaution
+                // rigid.velocity = Vector3.zero; // Inutile dans le cas du Mob Distance
+                StartCoroutine(Wait()); // Attend un peu avant de reprendre 
+                dmg = false; // Empêche la condition de se réeffectuer
             }
         }
         if (Input.GetKeyDown(KeyCode.H)) // C'est ici que les dégâts sont enclenché, par test sinon désactivation
@@ -223,14 +235,14 @@ public class SM_MobVolantDistance : MonoBehaviour
         if (Prog.CurrentState == ProcessState.Damaged) // Permet de créer un léger stop causé par le dégât reçu
         {
             Prog.MoveNext(Command.Resume); // Puis ramène de l'état Damaged -> NoDetect
-            dmg = true;
+            dmg = true; //Remet la variable de condition de l'état de Damaged à "true"
             // Restart = true; // Inutile dans le contexte du mob distance 
         }
     }
     private IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(1);
-        cold = true;
+        cold = true; // Redémarre la variable permettant de re-attaquer
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
