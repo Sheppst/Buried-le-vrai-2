@@ -119,11 +119,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52dd3e04bdb581f4ab1913db007ee9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {x: 0, y: 0, z: 0}
   TargetObject: 
   Thrower: 
   rigid: {fileID: -1985221666432320849}
+  spriteRenderer: {fileID: 5422038598971291015}
+  TimeBeforeDestroy: 0
+  Target: {x: 0, y: 0, z: 0}
   Speed: 1
+  ObjSprite: {fileID: 0}
 --- !u!212 &5422038598971291015
 SpriteRenderer:
   m_ObjectHideFlags: 0
