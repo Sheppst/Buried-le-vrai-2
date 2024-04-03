@@ -11,8 +11,6 @@ public class AllMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Left.parent = null; 
-        Right.parent = null;
     }
 
     // Update is called once per frame

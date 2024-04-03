@@ -95,13 +95,15 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			// pousse le joueur sur la gauche légerement
 			rigid.velocity = Vector3.zero;
-			rigid.velocity = new Vector3(PropulseX * -1, PropulseY);
+            Vector2 Repouss = new Vector2(PropulseX * -1, PropulseY);
+			rigid.AddForce(Repouss);
         }
 		else if (Boss.GetComponent<Phase01>().transform.localScale.x > 0)
 		{
             // pousse le joueur sur la droite légerement
             rigid.velocity = Vector3.zero;
-            rigid.velocity = new Vector3(PropulseX, PropulseY);
+            Vector2 Repouss = new Vector2(PropulseX, PropulseY);
+			rigid.AddForce(Repouss);
         }
 		Life -= 20;
 	}
@@ -112,14 +114,16 @@ public class PlayerMovement : MonoBehaviour {
         {
             // pousse le joueur sur la gauche légerement
             rigid.velocity = Vector3.zero;
-            rigid.velocity = new Vector3(PropulseX * ChargePower, PropulseY * ChargePower);
+			Vector2 Repouss = new Vector2(PropulseX * -1 * ChargePower, PropulseY * ChargePower);
+			rigid.AddForce(Repouss); 
         }
         else if (Boss.GetComponent<Phase01>().transform.localScale.x > 0)
         {
             // pousse le joueur sur la droite légerement
             rigid.velocity = Vector3.zero;
-            rigid.velocity = new Vector3(PropulseX * -1 * ChargePower, PropulseY * ChargePower);
+            Vector2 Repouss = new Vector2(PropulseX * ChargePower, PropulseY * ChargePower);
+			rigid.AddForce(Repouss);
         }
-        Life -= 20;
+        Life -= 15;
     }
 }

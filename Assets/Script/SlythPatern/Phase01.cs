@@ -190,6 +190,10 @@ public class Phase01 : MonoBehaviour
                 rigid.velocity = Vector2.zero; // ... Le boss arrête de bouger
                 Prog.MoveNext(Command.CutPhase); // ... Effectue une transition d'état de Charge -> Inactive
             }
+            if (collision.tag == "Player")
+            {
+                GameObject.Find("Player").GetComponent<PlayerMovement>().ChargeByBoss();
+            }
         }
         else if (collision.tag == "BossObject" && Prog.CurrentState == ProcessState.Bited)
         {
