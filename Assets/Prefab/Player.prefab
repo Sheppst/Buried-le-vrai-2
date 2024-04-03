@@ -345,6 +345,10 @@ MonoBehaviour:
   TBombs: {fileID: 9217862181697387115, guid: 650e5186d17a7194596eeefbf4d2b62d, type: 3}
   SBombs: {fileID: 9217862181697387115, guid: d40fa4dc1c8d91c45b2126d3e367a12c, type: 3}
   Boss: {fileID: 0}
+  rigid: {fileID: 1276637949402637968}
+  PropulseX: 8
+  PropulseY: 8
+  ChargePower: 2
   runSpeed: 125
   dash: 0
 --- !u!95 &3124836745566226866

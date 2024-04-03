@@ -9,10 +9,15 @@ public class PlayerMovement : MonoBehaviour {
 	public GameObject TBombs;
 	public GameObject SBombs;
 	[SerializeField] private GameObject Boss;
+	[SerializeField] private Rigidbody2D rigid;
+	[SerializeField] private float PropulseX;
+	[SerializeField] private float PropulseY;
+	[SerializeField] private float ChargePower;
 
-	public float runSpeed = 40f;
 
-	private float Life;
+    public float runSpeed = 40f;
+
+	private float Life = 100;
 
 	float horizontalMove = 0f;
 	bool jump = false;
@@ -85,14 +90,36 @@ public class PlayerMovement : MonoBehaviour {
 
     public void BiteByBoss ()
 	{
-		print("Touché");
+		print("Mordu");
 		if (Boss.GetComponent<Phase01>().transform.localScale.x < 0 )
 		{
 			// pousse le joueur sur la gauche légerement
-		}
+			rigid.velocity = Vector3.zero;
+			rigid.velocity = new Vector3(PropulseX * -1, PropulseY);
+        }
 		else if (Boss.GetComponent<Phase01>().transform.localScale.x > 0)
 		{
-			// pousse le joueur sur la droite légerement
-		}
+            // pousse le joueur sur la droite légerement
+            rigid.velocity = Vector3.zero;
+            rigid.velocity = new Vector3(PropulseX, PropulseY);
+        }
+		Life -= 20;
 	}
+    public void ChargeByBoss()
+    {
+        print("Chargé");
+        if (Boss.GetComponent<Phase01>().transform.localScale.x < 0)
+        {
+            // pousse le joueur sur la gauche légerement
+            rigid.velocity = Vector3.zero;
+            rigid.velocity = new Vector3(PropulseX * ChargePower, PropulseY * ChargePower);
+        }
+        else if (Boss.GetComponent<Phase01>().transform.localScale.x > 0)
+        {
+            // pousse le joueur sur la droite légerement
+            rigid.velocity = Vector3.zero;
+            rigid.velocity = new Vector3(PropulseX * -1 * ChargePower, PropulseY * ChargePower);
+        }
+        Life -= 20;
+    }
 }
