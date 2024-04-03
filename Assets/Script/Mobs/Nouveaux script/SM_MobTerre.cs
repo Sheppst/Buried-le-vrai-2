@@ -52,7 +52,7 @@ public class SM_MobTerre : MonoBehaviour
         ProcessState CSN = Prog.CurrentState;   //Pour le débug
         if (CS != CSN)
         {
-            print(CSN.ToString());
+            //print(CSN.ToString());
             CS = CSN;
         } // Pour le debug
 
