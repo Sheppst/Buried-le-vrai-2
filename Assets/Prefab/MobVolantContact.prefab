@@ -111,7 +111,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   Point: {fileID: 9126980610551040484}
-  speed: 25
+  speed: 35
   Life: 0
 --- !u!58 &3224021893222806193
 CircleCollider2D:

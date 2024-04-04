@@ -113,7 +113,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   AttackObject: {fileID: 8263103063693786654, guid: 1597a181b44ebe948924066fc131400e, type: 3}
-  speed: 25
+  speed: 35
 --- !u!58 &3224021893222806193
 CircleCollider2D:
   m_ObjectHideFlags: 0
