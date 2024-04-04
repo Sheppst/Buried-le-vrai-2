@@ -70,3 +70,14 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Script/Projectile/Gun.cs
+Assets/Prefab/MobsTerre.prefab
+Assets/Prefab/AttackObject.prefab
+Assets/Imports/Assets/Monsters_Creatures_Fantasy/Skeleton/Idle_0.controller
+Assets/Imports/Assets/Monsters_Creatures_Fantasy/Skeleton/Death squelette.anim
+Assets/Imports/Assets/Monsters_Creatures_Fantasy/Goblin/Idle.png.meta
+Assets/Imports/Assets/Martial Hero/License.txt.meta
+Assets/Imports/Assets/Martial Hero/License.txt
+Assets/Imports/Assets/Martial Hero.meta
+Assets/Cours B1 Interface/Cours B1 Interface.sln.meta
+Assets/Cours B1 Interface/Assembly-CSharp.csproj.meta
