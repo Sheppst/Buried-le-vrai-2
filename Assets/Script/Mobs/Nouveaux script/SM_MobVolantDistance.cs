@@ -58,6 +58,9 @@ public class SM_MobVolantDistance : MonoBehaviour
         if (Prog.CurrentState == ProcessState.Terminated) // Etat de mort du monstre
         {
             StopAllCoroutines(); // Précaution
+            Right.parent = gameObject.transform;
+            Left.parent = gameObject.transform;
+            this.enabled = false;
             Destroy(gameObject); // Destruction du monstre
         }
         if (Prog.CurrentState == ProcessState.Moved) // Etat de mouvement de patrouille du monstre

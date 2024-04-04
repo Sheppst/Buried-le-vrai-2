@@ -34,8 +34,8 @@ public class SM_MobTerre : MonoBehaviour
         CS = Prog.CurrentState; // Pour le débug
         if (Prog.CurrentState == ProcessState.Inactive) // Set up les paramêtres de bases du mob
         {
-            Right.position = new Vector3(2 * PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Place la balise de patrouille en fonction de la position du mob et d'une certaine distance
-            Left.position = new Vector3(-2 * PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Place la balise de patrouille en fonction de la position du mob et d'une certaine distance
+            //Right.position = new Vector3(2 * PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Place la balise de patrouille en fonction de la position du mob et d'une certaine distance // Désactiver pour la milestone
+            //Left.position = new Vector3(-2 * PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Place la balise de patrouille en fonction de la position du mob et d'une certaine distance // Désactiver pour la milestone
             Point.transform.position = transform.position;
             Point.transform.parent = Mob; // Acroche le point de ralliement au Mob 
             Current = Left; // Le current de départ est la gauche
@@ -76,13 +76,17 @@ public class SM_MobTerre : MonoBehaviour
         if (Prog.CurrentState == ProcessState.Terminated) // Si le Mob meurt
         {
             StopAllCoroutines(); // Précaution pour éviter instabilité
+            Right.parent = gameObject.transform;
+            Left.parent = gameObject.transform;
+            Point.transform.parent = gameObject.transform;
+            this.enabled = false;
             Destroy(gameObject);
         }
         if (Prog.CurrentState == ProcessState.Inactive) // S'il reprend sa routine 
         {
             StopAllCoroutines(); // Précaution pour éviter instabilité
-            Right.position = new Vector3(2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob
-            Left.position = new Vector3(-2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob
+            //Right.position = new Vector3(2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob // Désactiver dans le cadre de la milestone
+            //Left.position = new Vector3(-2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob // Désactiver dans le cadre de la milestone
             Point.transform.position = transform.position; // Idem
             Point.transform.parent = Mob; // Idem
             Change = true;
@@ -174,11 +178,11 @@ public class SM_MobTerre : MonoBehaviour
         
         if (transform.position.x > Current.position.x) // Si le Mob se trouve à droite de sa cible se retourne vers elle
         {
-            transform.localScale = new Vector3(2, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
         else if (transform.position.x < Current.position.x ) // Idem pour la gauche
         {
-            transform.localScale = new Vector3(-2, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * - 1, transform.localScale.y, transform.localScale.z);
         }
 
     }
