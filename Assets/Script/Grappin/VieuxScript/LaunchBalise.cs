@@ -30,18 +30,18 @@ public class LaunchBalise : MonoBehaviour
         {
             transform.position = Player.position;
         }
-        if (Input.GetMouseButtonDown(0) && !OffContact) // Si j'enlève la condition OffContact alors la balise revient je ne sais pas pourquoi aled XD
+        if (Input.GetKeyDown(KeyCode.F) && !OffContact) // Si j'enlève la condition OffContact alors la balise revient je ne sais pas pourquoi aled XD
         {
             Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPosition.z = 0f;
             hit = targetPosition;
             OnMove = true;
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetKey(KeyCode.F))
         {
             Keep = true;
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetKeyUp(KeyCode.F))
         {
             Rigid.WakeUp();
             Keep = false;

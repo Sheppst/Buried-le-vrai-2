@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
     void Update()
     {
         Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetKeyDown(KeyCode.F)) 
+        if (Input.GetMouseButtonDown(0)) 
         {
             GameObject projectile = Proj;
             projectile.GetComponent<AttackObject>().Target = target;

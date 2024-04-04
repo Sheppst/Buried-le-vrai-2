@@ -64,11 +64,11 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			dash = true;
 		}
-		if (Input.GetKeyDown(KeyCode.E)) 
+		if (Input.GetKeyDown(KeyCode.Q)) 
 		{
 			Instantiate(TBombs,transform.position, Quaternion.identity);
 		}
-		if(Input.GetKeyDown(KeyCode.R))
+		if(Input.GetMouseButtonDown(1))
 		{
             Instantiate(SBombs, transform.position, Quaternion.identity);
         }
@@ -82,11 +82,6 @@ public class PlayerMovement : MonoBehaviour {
 		jump = false;
 		dash = false;
 	}
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Mob")
