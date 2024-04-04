@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [SerializeField] private GameObject Proj;
+    [SerializeField] private Sprite Balle;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +19,13 @@ public class Gun : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) 
         {
             GameObject projectile = Proj;
+            projectile.transform.localScale = Vector3.one * 0.042198f;
             projectile.GetComponent<AttackObject>().Target = target;
             projectile.GetComponent<AttackObject>().Speed = 20;
             projectile.GetComponent<AttackObject>().Thrower = tag;
             projectile.GetComponent<AttackObject>().tag = "ProjPlayer";
             projectile.GetComponent<AttackObject>().TimeBeforeDestroy = 5;
+            projectile.GetComponent<AttackObject>().ObjSprite = Balle;
             Instantiate(projectile,transform.position,Quaternion.identity);
         }
     }

@@ -16,6 +16,7 @@ public class AttackObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer.sprite = ObjSprite;
         Vector3 target = (Target - transform.position ).normalized;
         rigid.velocity = target * Speed;
         TurnOnTarget();
