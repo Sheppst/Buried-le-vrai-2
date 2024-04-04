@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5422038598971291015}
   m_Layer: 0
   m_Name: AttackObject
-  m_TagString: Untagged
+  m_TagString: ProjPlayer
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,12 +120,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetObject: 
-  Thrower: 
+  Thrower: Player
   rigid: {fileID: -1985221666432320849}
   spriteRenderer: {fileID: 5422038598971291015}
-  TimeBeforeDestroy: 0
-  Target: {x: 0, y: 0, z: 0}
-  Speed: 1
+  TimeBeforeDestroy: 5
+  Target: {x: -4.612771, y: 1.1485791, z: -10}
+  Speed: 20
   ObjSprite: {fileID: 0}
 --- !u!212 &5422038598971291015
 SpriteRenderer:

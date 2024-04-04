@@ -9,19 +9,30 @@ public class ThrowCoolDownBomb_SM : MonoBehaviour
     [SerializeField] private Rigidbody2D rigid;
     [SerializeField] private CircleCollider2D collid;
     [SerializeField] private float throwingspeed;
-    public GameObject Player;
+    private GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.Find("Player");
         Prog = new Process();
         if (Prog.CurrentState == ProcessState.Inactive)
         {
-            Vector2 direction = Player.transform.right * throwingspeed;
-            direction.y = 300;
-            rigid.AddForce(direction);
-            Prog.MoveNext(Command.Begin);
+            if (Player.transform.localScale.x > 0)
+            {
+              Vector2 direction = Player.transform.right * throwingspeed;
+              direction.y = 300;
+              rigid.AddForce(direction);
+              Prog.MoveNext(Command.Begin);
+            }
+            else
+            {
+                Vector2 direction = -Player.transform.right * throwingspeed;
+                direction.y = 300;
+                rigid.AddForce(direction);
+                Prog.MoveNext(Command.Begin);
+            }
         }
-        
+
     }
     // Update is called once per frame
     void Update()
@@ -37,7 +48,7 @@ public class ThrowCoolDownBomb_SM : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision != null && Prog.CurrentState == ProcessState.Active)
+        if (collision != null && Prog.CurrentState == ProcessState.Active && collision.gameObject.tag != "ExploFalse")
         {
             Prog.MoveNext(Command.Pause);
             rigid.bodyType = RigidbodyType2D.Static;

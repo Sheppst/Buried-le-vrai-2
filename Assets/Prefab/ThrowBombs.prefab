@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4395813098012107345}
   - component: {fileID: 3229265220044644965}
   - component: {fileID: 250408021572410640}
-  - component: {fileID: 5359254574151199339}
   - component: {fileID: 3073208652678728571}
   m_Layer: 0
   m_Name: ThrowBombs
@@ -150,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5359254574151199339
+--- !u!114 &3073208652678728571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,26 +158,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 9217862181697387115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 428cd39c6ab3c9c4fb76599973f6290f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigid: {fileID: 250408021572410640}
-  collid: {fileID: 3229265220044644965}
-  throwingspeed: 500
-  Player: {fileID: 647164039615587927, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
---- !u!114 &3073208652678728571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9217862181697387115}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8db48c0d0b44bc646b9a0ef71bdd6696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 250408021572410640}
   collid: {fileID: 3229265220044644965}
   throwingspeed: 500
-  Player: {fileID: 647164039615587927, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
