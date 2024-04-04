@@ -66,7 +66,7 @@ public class SM_MobVolantDistance : MonoBehaviour
         if (Prog.CurrentState == ProcessState.Moved) // Etat de mouvement de patrouille du monstre
         {
             // rigid.velocity = Vector3.zero; // Variable servant au script du monstre aérien de contact inutile dans ce script
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(Current.position.x, transform.position.y, Current.position.z), speed / 1000); 
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(Current.position.x, transform.position.y, Current.position.z), (speed * Time.deltaTime) / 10) ; 
             //^
             //|
             //Script de mouvement du monstre vers un objectif donnée (Current) 
@@ -130,7 +130,7 @@ public class SM_MobVolantDistance : MonoBehaviour
                 }
                 Return = false; //Ferme la condition pour ne l'effectuer qu'une seule fois 
             }
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(Current.position.x, transform.position.y, Current.position.z), speed / 1000); // Le déplace à son nouvel objectif
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(Current.position.x, transform.position.y, Current.position.z), (speed * Time.deltaTime)/10); // Le déplace à son nouvel objectif
             if (Current.position.x == transform.position.x) // Si l'objectif est atteint...
             {
                 Prog.MoveNext(Command.Resume); // Relance le mob en Moved

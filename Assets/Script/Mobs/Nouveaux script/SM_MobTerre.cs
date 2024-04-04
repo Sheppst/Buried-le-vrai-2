@@ -63,7 +63,7 @@ public class SM_MobTerre : MonoBehaviour
         if (Prog.CurrentState != ProcessState.DetectSmth && Prog.CurrentState != ProcessState.Damaged) // Les changement ici bas ne doivent pas ce faire si le monstre est en train de détectez quelque chose, de prendre des dégâts.
         {
             StopAllCoroutines(); // Précaution pour éviter instabilité 
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(Current.position.x,transform.position.y,transform.position.z), Time.deltaTime * speed); // Mouvement du monstre vers une cible 
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(Current.position.x,transform.position.y,transform.position.z), (Time.deltaTime * speed) / 10); // Mouvement du monstre vers une cible 
             if (transform.position.x > Current.position.x) // Si le monstre est à droite de la cible le raycast pointera sur la gauche, sur la cible 
             {
                 Ray.transform.eulerAngles = VecteurRotatGauche;
