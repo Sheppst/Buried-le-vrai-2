@@ -434,7 +434,7 @@ MonoBehaviour:
   Point: {fileID: 2166171260466249131}
   Ray: {fileID: 8831728614918509073}
   PatrolDistance: 1.438849
-  speed: 2
+  speed: 3
 --- !u!1001 &5268551942702488177
 PrefabInstance:
   m_ObjectHideFlags: 0
