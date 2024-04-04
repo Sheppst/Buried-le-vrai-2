@@ -16,7 +16,8 @@ public class RayCastLeft : MonoBehaviour
         }
         else
         {
-            Debug.DrawLine(transform.position, transform.right, Color.red);
+            Vector3 EndRaycast = transform.position + Vector3.left;
+            Debug.DrawLine(transform.position, EndRaycast, Color.red);
         }
     }
 }

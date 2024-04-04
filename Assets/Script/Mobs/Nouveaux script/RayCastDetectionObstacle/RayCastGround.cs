@@ -11,14 +11,16 @@ public class RayCastGround : MonoBehaviour
         RaycastHit2D Nohit = Physics2D.Raycast(transform.position, transform.up, 3f, layer);
         if (Nohit.point == null && Nohit.collider.gameObject.tag != "Player")
         {
-            Debug.DrawLine(transform.position, transform.up, Color.blue);
+            Vector3 EndRaycast = transform.position + Vector3.down * 3;
+            Debug.DrawLine(transform.position, EndRaycast, Color.blue);
         }
         else
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 0.5f, layer);
             if (hit.point == null && hit.collider.gameObject.tag != "Player")
             {
-                Debug.DrawLine(transform.position,transform.right , Color.yellow);
+                Vector3 EndRaycast = transform.position + Vector3.down * 0.5f;
+                Debug.DrawLine(transform.position, EndRaycast , Color.yellow);
                 transform.parent.position += Vector3.down * 0.01f;
             }
             else
