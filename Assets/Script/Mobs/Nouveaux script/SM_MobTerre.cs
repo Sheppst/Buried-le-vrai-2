@@ -95,7 +95,7 @@ public class SM_MobTerre : MonoBehaviour
         {
             StopAllCoroutines(); // Précaution pour éviter instabilité
             
-            if (transform.position == Current.position) // S'il arrive à destination change son Current
+            if (transform.position.x == Current.position.x) // S'il arrive à destination change son Current
             {
                 if (Current == Right)
                 {
@@ -144,7 +144,7 @@ public class SM_MobTerre : MonoBehaviour
             {
                 Prog.MoveNext(Command.Detect); // Passe de l'état NoDectect à AttackSmth
             }
-            if (transform.position == Current.position)
+            if (transform.position.x == Current.position.x)
             {
                 StopAllCoroutines(); // Précaution pour éviter instabilité
                 if (Direction == Right)
