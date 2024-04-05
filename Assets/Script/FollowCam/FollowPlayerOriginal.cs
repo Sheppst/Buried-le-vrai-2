@@ -7,8 +7,10 @@ public class FollowPlayerOriginal : MonoBehaviour
     public Transform target;
     private Rigidbody2D rigid;
     public float speed = 20f; 
-    private bool stat = true; 
-    
+    private bool stat = true;
+    [SerializeField] private float UpCam;
+
+
     void Start()
     {
         target = GameObject.Find("Player").transform;
@@ -31,7 +33,7 @@ public class FollowPlayerOriginal : MonoBehaviour
     }
     IEnumerator Focus()
     {
-        Vector2 direction = (target.position - transform.position).normalized;
+        Vector2 direction = ((target.position + Vector3.up * UpCam) - transform.position).normalized;
         rigid.velocity = direction * speed; 
         yield return new WaitForSeconds(0.01f);
         speed = 20f;

@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  player: {fileID: 0}
   speed: 20
+  UpCam: 0
 --- !u!114 &7185637759359110220
 MonoBehaviour:
   m_ObjectHideFlags: 0
