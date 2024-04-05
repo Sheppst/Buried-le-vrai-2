@@ -15,7 +15,7 @@ public class DetectBite : MonoBehaviour
     {
         Desactivate = false;
         current = GetComponentInParent<Phase01>().Current; // Recupère l'objet servant d'objectif au boss
-        RaycastHit2D AttackRange = Physics2D.Raycast(transform.position, transform.right, 1.4f, layer); // Crée un raycast allant d'un point A à un point B sur 2 pixels dans layer déclarer
+        RaycastHit2D AttackRange = Physics2D.Raycast(transform.position, transform.right, 5.55f, layer); // Crée un raycast allant d'un point A à un point B sur 2 pixels dans layer déclarer
         if (AttackRange.collider != null) // Si le raycast détecte qlq chose
         {
             Bite.SetActive(true); // Active l'objet de morsure 
