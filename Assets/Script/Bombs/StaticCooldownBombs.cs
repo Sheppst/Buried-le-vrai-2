@@ -20,7 +20,7 @@ public class StaticCooldownBombs : MonoBehaviour
     }
     private IEnumerator StaticExplosion()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         rigid.bodyType = RigidbodyType2D.Kinematic;
         collid.isTrigger = true;
         collid.radius = 8;
