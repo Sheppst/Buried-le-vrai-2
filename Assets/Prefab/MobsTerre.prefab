@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2384699231968666828}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.01, y: 0, z: 0}
+  m_LocalPosition: {x: -1.49, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -103,7 +103,7 @@ Transform:
   m_GameObject: {fileID: 4894476383757923619}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.98, y: 0, z: 0}
+  m_LocalPosition: {x: 1.57, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -434,7 +434,7 @@ MonoBehaviour:
   Point: {fileID: 2166171260466249131}
   Ray: {fileID: 8831728614918509073}
   PatrolDistance: 1.438849
-  speed: 3
+  speed: 25
 --- !u!1001 &5268551942702488177
 PrefabInstance:
   m_ObjectHideFlags: 0
