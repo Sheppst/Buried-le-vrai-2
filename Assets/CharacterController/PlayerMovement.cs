@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -18,8 +19,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
     public float runSpeed = 40f;
-
-	[SerializeField] private float Life = 100;
+	public float Life = 100;
 
 	float horizontalMove = 0f;
 	bool jump = false;
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (Life <= 0f) 
 		{
-			print("Dead");
+			SceneManager.LoadScene(0);
 		}
 
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;

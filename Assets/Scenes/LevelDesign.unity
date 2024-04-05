@@ -4175,6 +4175,11 @@ Transform:
   - {fileID: 1374095422}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &986544496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 647164039615587927, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
+  m_PrefabInstance: {fileID: 922860814}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &989473952
 GameObject:
   m_ObjectHideFlags: 0
@@ -5669,6 +5674,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1217634513}
   - component: {fileID: 1217634514}
+  - component: {fileID: 1217634515}
   m_Layer: 5
   m_Name: LifeSystems
   m_TagString: Untagged
@@ -5747,6 +5753,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1217634515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217634512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efce32a49ecb1c94eb84d36985631797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 986544496}
+  slid: {fileID: 1217634514}
 --- !u!1001 &1232057209
 PrefabInstance:
   m_ObjectHideFlags: 0
