@@ -6,7 +6,7 @@ public class FollowPlayerOriginal : MonoBehaviour
 {
     public Transform target;
     private Rigidbody2D rigid;
-    public float speed = 20f; 
+    public float speed = 40f; 
     private bool stat = true;
     [SerializeField] private float UpCam;
 
@@ -36,7 +36,7 @@ public class FollowPlayerOriginal : MonoBehaviour
         Vector2 direction = ((target.position + Vector3.up * UpCam) - transform.position).normalized;
         rigid.velocity = direction * speed; 
         yield return new WaitForSeconds(0.01f);
-        speed = 20f;
+        speed = 40f;
         stat = true; 
 
     }
