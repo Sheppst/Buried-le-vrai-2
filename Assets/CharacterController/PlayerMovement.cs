@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField] private float PropulseY;
 	[SerializeField] private float ChargePower;
 
+	private bool YesDash = true;
+
 
     public float runSpeed = 40f;
 
@@ -60,15 +62,17 @@ public class PlayerMovement : MonoBehaviour {
 			crouch = false;
             animator.SetBool("IsCrouching", false);
         }
-		if (Input.GetKeyDown(KeyCode.LeftShift))
+		if (Input.GetKeyDown(KeyCode.LeftShift) && YesDash)
 		{
 			dash = true;
+			YesDash = false;
+			StartCoroutine(WaitDash());
 		}
-		if (Input.GetKeyDown(KeyCode.Q)) 
+		if (Input.GetKeyDown(KeyCode.Q) && TBombs != null) 
 		{
 			Instantiate(TBombs,transform.position, Quaternion.identity);
 		}
-		if(Input.GetMouseButtonDown(1))
+		if(Input.GetMouseButtonDown(1) && SBombs != null)
 		{
             Instantiate(SBombs, transform.position, Quaternion.identity);
         }
@@ -127,5 +131,10 @@ public class PlayerMovement : MonoBehaviour {
 			rigid.AddForce(Repouss);
         }
         Life -= 15;
+    }
+    private IEnumerator WaitDash()
+    {
+        yield return new WaitForSeconds(1f);
+		YesDash = true;
     }
 }
