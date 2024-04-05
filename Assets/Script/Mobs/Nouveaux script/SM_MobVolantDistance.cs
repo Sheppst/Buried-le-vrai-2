@@ -60,7 +60,6 @@ public class SM_MobVolantDistance : MonoBehaviour
             StopAllCoroutines(); // Précaution
             Right.parent = gameObject.transform;
             Left.parent = gameObject.transform;
-            this.enabled = false;
             Destroy(gameObject); // Destruction du monstre
         }
         if (Prog.CurrentState == ProcessState.Moved) // Etat de mouvement de patrouille du monstre
@@ -202,7 +201,7 @@ public class SM_MobVolantDistance : MonoBehaviour
                 }
                 Vector3 P = ZoneDetection.position; // Position centrale de la zone de détection 
                 Debug.DrawLine(P, colliders[i].transform.position); // Dessine un trait pour voir d'où la détection se fait dans l'éditeur
-                if (Prog.CurrentState != ProcessState.DetectSmth && Prog.CurrentState != ProcessState.AttackSmth && Prog.CurrentState != ProcessState.SuccessHit && Prog.CurrentState != ProcessState.Damaged)
+                if (Prog.CurrentState != ProcessState.DetectSmth && Prog.CurrentState != ProcessState.AttackSmth && Prog.CurrentState != ProcessState.SuccessHit && Prog.CurrentState != ProcessState.Damaged && Prog.CurrentState != ProcessState.Terminated)
                 // Si l'état actuel se décrit comme passif
                 {
                     StopAllCoroutines(); // Précaution

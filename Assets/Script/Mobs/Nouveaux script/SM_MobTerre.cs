@@ -79,7 +79,6 @@ public class SM_MobTerre : MonoBehaviour
             Right.parent = gameObject.transform;
             Left.parent = gameObject.transform;
             Point.transform.parent = gameObject.transform;
-            this.enabled = false;
             Destroy(gameObject);
         }
         if (Prog.CurrentState == ProcessState.Inactive) // S'il reprend sa routine 
@@ -200,7 +199,7 @@ public class SM_MobTerre : MonoBehaviour
         {
             Prog.MoveNext(Command.Resume); // Changement de SucessHit à NoDetect
         }
-        else // Si l'état n'est pas dans ce concerné en haut va vers un autre état
+        else if (Prog.CurrentState != ProcessState.Terminated)// Si l'état n'est pas dans ce concerné en haut va vers un autre état
         { Prog.MoveNext(Command.End); } // Changement d'état de :
                                         // AttackSmth -> NoDetect = pas possible car il commence par un stopcoroutine et ne relance jamais de Wait (),
                                         // Damaged -> AttackSmth = ne se fait pas pour l'instant vu que damaged pas fait ,
