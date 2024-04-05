@@ -23,4 +23,12 @@ public class DestrucBloc : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "ExploStatTrue" || collision.gameObject.tag == "ExploThrTrue")
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
+    }
 }
