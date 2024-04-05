@@ -17,7 +17,6 @@ public class Phase01 : MonoBehaviour
     private float Life;
     private float speed = 5f;
     private bool Flip;
-    private bool FrameWait;
     private Transform Player;
     private PolygonCollider2D colid;
     public Transform Current;
@@ -56,6 +55,7 @@ public class Phase01 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Life = transform.parent.gameObject.GetComponent<AllMovement>().Life;
         ProcessState CSN = Prog.CurrentState;
         if (CS != CSN)
         {
