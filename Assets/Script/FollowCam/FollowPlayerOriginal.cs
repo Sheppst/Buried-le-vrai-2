@@ -5,7 +5,6 @@ using UnityEngine;
 public class FollowPlayerOriginal : MonoBehaviour
 {
     public Transform target;
-    public PlayerMovement player;
     private Rigidbody2D rigid;
     public float speed = 20f; 
     private bool stat = true; 
