@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 using static Interface;
-using Unity.VisualScripting;
 
 public class MouseDamage : MonoBehaviour
 {
