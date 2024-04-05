@@ -93,6 +93,13 @@ public class PlayerMovement : MonoBehaviour {
 			Life -= 5;
 		}
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Mob")
+        {
+            Life -= 5;
+        }
+    }
 
     public void BiteByBoss ()
 	{
