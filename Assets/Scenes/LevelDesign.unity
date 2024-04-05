@@ -1970,11 +1970,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4889020845821415720, guid: d82bf036604152e4c917906060ca5f63, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 74.03
+      value: -41.92
       objectReference: {fileID: 0}
     - target: {fileID: 4889020845821415720, guid: d82bf036604152e4c917906060ca5f63, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 70.86
+      value: 9.19
       objectReference: {fileID: 0}
     - target: {fileID: 4889020845821415720, guid: d82bf036604152e4c917906060ca5f63, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2011,10 +2011,6 @@ PrefabInstance:
     - target: {fileID: 5229833534661288190, guid: d82bf036604152e4c917906060ca5f63, type: 3}
       propertyPath: m_Name
       value: Main Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 8670598012443690743, guid: d82bf036604152e4c917906060ca5f63, type: 3}
-      propertyPath: speed
-      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4079,19 +4075,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 891451245635644946, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< HEAD
       value: -29.01
       objectReference: {fileID: 0}
     - target: {fileID: 891451245635644946, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -2.89
-=======
-      value: 73.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 891451245635644946, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 71.2
->>>>>>> 1185f5503b99d906d7c99b1a7a266596958908b6
       objectReference: {fileID: 0}
     - target: {fileID: 891451245635644946, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4131,11 +4119,11 @@ PrefabInstance:
       objectReference: {fileID: 321701859}
     - target: {fileID: 6792598577008105159, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 40.290455
+      value: -36.817528
       objectReference: {fileID: 0}
     - target: {fileID: 6792598577008105159, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 63.048855
+      value: -6.3613725
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8297,7 +8285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7857386384109718504, guid: 86767bc8ab5ced1489d2295df5dc1b2a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.35
+      value: 10.53
       objectReference: {fileID: 0}
     - target: {fileID: 9215435313173365348, guid: 86767bc8ab5ced1489d2295df5dc1b2a, type: 3}
       propertyPath: m_Name
@@ -9827,7 +9815,7 @@ GameObject:
   - component: {fileID: 2021315154}
   m_Layer: 0
   m_Name: Fondation
-  m_TagString: Block
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
