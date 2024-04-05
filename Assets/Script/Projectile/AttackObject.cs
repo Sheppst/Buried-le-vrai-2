@@ -18,7 +18,7 @@ public class AttackObject : MonoBehaviour
     {
         spriteRenderer.sprite = ObjSprite;
         Vector3 target = (Target - transform.position ).normalized;
-        rigid.velocity = target * Speed * Time.deltaTime;
+        rigid.velocity = target * Speed;
         TurnOnTarget();
         Destroy(gameObject, TimeBeforeDestroy);
     }
