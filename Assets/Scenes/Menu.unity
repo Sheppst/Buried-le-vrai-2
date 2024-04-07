@@ -295,7 +295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 218, y: -363}
+  m_AnchoredPosition: {x: 464, y: -363}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &487436016
@@ -659,7 +659,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -516, y: -360}
+  m_AnchoredPosition: {x: -432, y: -360}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1153999035
@@ -2422,8 +2422,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Touches :\nBombe Jetable : A\nBombe Posable : Clic Droit\nPistolet : Clic
     Gauche\nDash : Shift\nD\xE9tails : \n(Les bombes n'explose que sur les tiles
-    qui ont une texture)\n(Les tiles explosable \xE0 l'horizontale proche du point
-    d'apparition te feront pour l'instant tomber sous la map (Suite du niveau))"
+    qui ont une texture marron )\n(Les tiles explosable \xE0 l'horizontale proche
+    du point d'apparition te feront pour l'instant tomber sous la map (Suite du niveau))\nDouble
+    Saut Activ\xE9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

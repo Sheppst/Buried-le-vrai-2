@@ -124,7 +124,7 @@ public class CharacterController2D : MonoBehaviour
 		{
 			m_PlayerAnimJump.Play("Player_Jump", 0, 0f);
 			m_DoubleJump = false;
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce/2));
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
 	}
 
