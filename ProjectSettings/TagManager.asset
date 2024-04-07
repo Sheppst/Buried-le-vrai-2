@@ -15,6 +15,7 @@ TagManager:
   - Morsure
   - BossObject
   - ProjPlayer
+  - Aria
   layers:
   - Default
   - TransparentFX
