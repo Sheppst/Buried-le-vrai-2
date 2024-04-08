@@ -21,7 +21,7 @@ public class Aria : MonoBehaviour
     [SerializeField] Transform GroundCheck;
     [SerializeField] Transform RoofCheck;
     [SerializeField] Transform WallCheck;
-    [SerializeField] Transform LauchAttackUpAndDown;
+  
     [SerializeField] float CheckRadius;
     [SerializeField] float CheckRadiusPlayer;
     [SerializeField] LayerMask GroundWallRoof_Layer;
@@ -30,10 +30,10 @@ public class Aria : MonoBehaviour
     private bool IsTouchingRoof;
     private bool IsTouchingWall;
     private bool IsTouchingGround;
-    private bool PlayerIsInRange;
+   
     private bool GoingUp = true;
-    private bool FacingRight = true;
-    private bool CanIdleState = true;
+    private bool FacingLeft = true;
+    
     private Rigidbody2D enemyRB;
     void Start()
     {
@@ -48,18 +48,16 @@ public class Aria : MonoBehaviour
         IsTouchingRoof = Physics2D.OverlapCircle(RoofCheck.position, CheckRadius, GroundWallRoof_Layer);
         IsTouchingWall = Physics2D.OverlapCircle(WallCheck.position, CheckRadius, GroundWallRoof_Layer);
         IsTouchingGround = Physics2D.OverlapCircle(GroundCheck.position, CheckRadius, GroundWallRoof_Layer);
-        PlayerIsInRange = Physics2D.OverlapCircle(LauchAttackUpAndDown.position, CheckRadiusPlayer,Player_Layer);
-        if (CanIdleState)
-        {
+        
+       
             IdelState();
-        }
+        
         
        //AttackUpAndDownState();
-       if (PlayerIsInRange)
-        {
-            CanIdleState = false;
-            AttackPlayer();
-        }
+      
+            
+        //AttackPlayer();
+        
         //FlipTowardsPlayer();
     }
 
@@ -75,11 +73,11 @@ public class Aria : MonoBehaviour
         }
         if (IsTouchingWall)
         {
-            if (FacingRight)
+            if (FacingLeft)
             {
                 Flip();
             }
-            else if (!FacingRight)
+            else if (!FacingLeft)
             {
                 Flip();
             }
@@ -99,11 +97,11 @@ public class Aria : MonoBehaviour
         }
         if (IsTouchingWall)
         {
-            if (FacingRight)
+            if (FacingLeft)
             {
                 Flip();
             }
-            else if (!FacingRight)
+            else if (!FacingLeft)
             {
                 Flip();
             }
@@ -125,11 +123,11 @@ public class Aria : MonoBehaviour
     {
         float PlayerDirection = Player.position.x - transform.position.x;
 
-        if (PlayerDirection > 0 && FacingRight)
+        if (PlayerDirection > 0 && FacingLeft)
         {
             Flip();
         }
-        else if (PlayerDirection < 0 && !FacingRight)
+        else if (PlayerDirection < 0 && !FacingLeft)
         {
             Flip();
         }
@@ -143,7 +141,7 @@ public class Aria : MonoBehaviour
 
     void Flip()
     {  
-        FacingRight = !FacingRight;
+        FacingLeft = !FacingLeft;
         IdelMoveDirection.x *= -1;
         AttackMoveDirection.x *= -1;
         transform.Rotate(0, 180, 0);
@@ -158,6 +156,6 @@ public class Aria : MonoBehaviour
         Gizmos.DrawWireSphere(WallCheck.position, CheckRadius);
         
         Gizmos.DrawWireSphere(RoofCheck.position, CheckRadius);
-        Gizmos.DrawWireSphere(LauchAttackUpAndDown.position, CheckRadiusPlayer);
+        
     }
 }
