@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Ceci est un script qui est utilisé pour un gameobject
+// donnant une certaine logique de mort du joueur s'il arrive à sortir de la map
+
 public class TempoDeathOutMap : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -20,7 +23,7 @@ public class TempoDeathOutMap : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(0); // Change de scène pour aller au menu
         }
     }
 }

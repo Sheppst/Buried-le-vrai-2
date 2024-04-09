@@ -13,18 +13,18 @@ public class ThrowCoolDownBomb_SM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.Find("Player");
-        Prog = new Process();
-        if (Prog.CurrentState == ProcessState.Inactive)
+        Player = GameObject.Find("Player"); // Cherche l'objet nommé Player dans la scène et l'assigne à mon objet Player 
+        Prog = new Process(); // Créer un nouveau process de ma machine d'état
+        if (Prog.CurrentState == ProcessState.Inactive) // Etat de base
         {
-            if (Player.transform.localScale.x > 0)
+            if (Player.transform.localScale.x > 0) // Si le joueur est dans sa scale positif 
             {
-              Vector2 direction = Player.transform.right * throwingspeed;
-              direction.y = 300;
-              rigid.AddForce(direction);
-              Prog.MoveNext(Command.Begin);
+              Vector2 direction = Player.transform.right * throwingspeed; // direction prend comme paramètres l'axe X du joueur et le multiplie par une puissance donné
+              direction.y = 300; // Puis direction obtient une hauteur cible
+              rigid.AddForce(direction); // par la suite, on donne la force écrite dans direction à l'objet
+              Prog.MoveNext(Command.Begin); // Et on passe à l'état suivant
             }
-            else
+            else // Si le joueur n'est dans pas sa scale positif 
             {
                 Vector2 direction = -Player.transform.right * throwingspeed;
                 direction.y = 300;
