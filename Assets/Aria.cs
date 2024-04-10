@@ -62,46 +62,23 @@ public class Aria : MonoBehaviour
         IsTouchingGround = Physics2D.OverlapCircle(GroundCheck.position, CheckRadius, GroundWallRoof_Layer);
         NotAllowedDistance = Physics2D.OverlapCircle(NotAllowedDistanceCheck.position, CheckRadiusPlayer, Player_Layer);
 
-        AllowedDistance();
-
-
-        //IdelState();
-
-
-        //AttackUpAndDownState();
-
-
-        //AttackPlayer();
-
-
     }
     private void RandomStatePicker()
     {
         int randomState = Random.Range(0, 2);
         if (randomState == 0)
         {
-            Enemyanimator.Play("AttackUpAndDown");
+            FlipTowardsPlayer();
+            Enemyanimator.Play("AboutToAttackPlayer"); // Attaque Up And Down
         }
-        else if(randomState == 1 && NotAllowedDistance ==false)
+        if(randomState == 1 && NotAllowedDistance == false)
         {
-            Enemyanimator.Play("AttackPlayer");
+            FlipTowardsPlayer();
+            Enemyanimator.Play("AboutToAttackUpAndDown"); // Attaque Player
         }
         
     }
-    private void AllowedDistance()
-    {
-        if (NotAllowedDistance == false)
-        {
-            Enemyanimator.SetTrigger("AllowedDistance");
-
-        }
-        else if (NotAllowedDistance == true)
-        {
-            Enemyanimator.ResetTrigger("AllowedDistance");
-        }
-
-
-    }
+    
     public void IdelState()
     {
         Enemyanimator.ResetTrigger("Slam");
