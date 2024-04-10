@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Ce script est utilisé dans le cadre du MobTerre, quel qu'il soit
+
 public class SM_Detect : MonoBehaviour
 {
     [SerializeField] private LayerMask layer;
