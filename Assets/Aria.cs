@@ -16,6 +16,7 @@ public class Aria : MonoBehaviour
     //For AttackPlayer Stage
     [Header("AttackPlayer")]
     [SerializeField] float AttackPlayerMoveSpeed;
+    [SerializeField] float maxAttackPlayerHeight;
 
     // player check
     [SerializeField] Transform Player;
@@ -28,7 +29,7 @@ public class Aria : MonoBehaviour
     [SerializeField] Transform GroundCheck;
     [SerializeField] Transform RoofCheck;
     [SerializeField] Transform WallCheck;
-    [SerializeField] Transform NotAllowedDistanceCheck;
+  
 
 
     [SerializeField] float CheckRadius;
@@ -36,7 +37,8 @@ public class Aria : MonoBehaviour
     [SerializeField] LayerMask GroundWallRoof_Layer;
     [SerializeField] LayerMask Player_Layer;
 
-    [SerializeField] private bool NotAllowedDistance;
+    [SerializeField] private bool LastWasAttackPlayer;
+    [SerializeField] private bool LastWasUpAndDown;
     private bool IsTouchingRoof;
     private bool IsTouchingWall;
     private bool IsTouchingGround;
@@ -55,27 +57,59 @@ public class Aria : MonoBehaviour
     }
 
    
-    void Update()
+    void FixedUpdate()
     {
         IsTouchingRoof = Physics2D.OverlapCircle(RoofCheck.position, CheckRadius, GroundWallRoof_Layer);
         IsTouchingWall = Physics2D.OverlapCircle(WallCheck.position, CheckRadius, GroundWallRoof_Layer);
         IsTouchingGround = Physics2D.OverlapCircle(GroundCheck.position, CheckRadius, GroundWallRoof_Layer);
-        NotAllowedDistance = Physics2D.OverlapCircle(NotAllowedDistanceCheck.position, CheckRadiusPlayer, Player_Layer);
+        
 
     }
+  
     private void RandomStatePicker()
     {
-        int randomState = Random.Range(0, 2);
-        if (randomState == 0)
+        int randomState = Random.Range(0, 11);
+
+        if (LastWasUpAndDown == false)
+
         {
-            FlipTowardsPlayer();
-            Enemyanimator.Play("AboutToAttackPlayer"); // Attaque Up And Down
+            if (randomState >= 5 && LastWasAttackPlayer == false && transform.position.y <= 4)
+            {
+
+                FlipTowardsPlayer();
+                Enemyanimator.Play("AboutToAttackPlayer");
+                LastWasAttackPlayer = true;
+                LastWasUpAndDown = false;
+                // Attaque Up And Down
+            }
+            else if (randomState < 5)
+            {
+
+                Enemyanimator.Play("AboutToAttackUpAndDown");
+                LastWasAttackPlayer = false; // Attaque Player
+                LastWasUpAndDown = true;
+            }
         }
-        if(randomState == 1 && NotAllowedDistance == false)
+        else if (LastWasUpAndDown)
         {
-            FlipTowardsPlayer();
-            Enemyanimator.Play("AboutToAttackUpAndDown"); // Attaque Player
+            if (randomState >= 3 && LastWasAttackPlayer == false && transform.position.y <= 4)
+            {
+
+                FlipTowardsPlayer();
+                Enemyanimator.Play("AboutToAttackPlayer");
+                LastWasAttackPlayer = true;
+                LastWasUpAndDown = false;
+                // Attaque Up And Down
+            }
+            else if (randomState < 3)
+            {
+
+                Enemyanimator.Play("AboutToAttackUpAndDown");
+                LastWasAttackPlayer = false; // Attaque Player
+                LastWasUpAndDown = true;
+            }
         }
+       
         
     }
     
@@ -102,7 +136,7 @@ public class Aria : MonoBehaviour
                 Flip();
             }
         }
-          enemyRB.velocity = IdelMoveSpeed * IdelMoveDirection * Time.deltaTime;
+          enemyRB.velocity = IdelMoveSpeed * IdelMoveDirection * Time.fixedDeltaTime;
     }
 
    public void AttackUpAndDownState()
@@ -126,7 +160,7 @@ public class Aria : MonoBehaviour
                 Flip();
             }
         }
-        enemyRB.velocity = AttackMoveSpeed * AttackMoveDirection * Time.deltaTime;
+        enemyRB.velocity = AttackMoveSpeed * AttackMoveDirection * Time.fixedDeltaTime;
     }
 
     public void AttackPlayer()
@@ -136,12 +170,13 @@ public class Aria : MonoBehaviour
             PlayerPosition = Player.position - transform.position;
             PlayerPosition.Normalize();
             HasPlayerPosition = true;
+
         }
         if (HasPlayerPosition)
         
         {
             FlipTowardsPlayer();
-            enemyRB.velocity = PlayerPosition * AttackPlayerMoveSpeed * Time.deltaTime;
+            enemyRB.velocity = PlayerPosition * AttackPlayerMoveSpeed * Time.fixedDeltaTime;
         }
        if (IsTouchingGround || IsTouchingWall)
         {
@@ -191,7 +226,7 @@ public class Aria : MonoBehaviour
         Gizmos.DrawWireSphere(WallCheck.position, CheckRadius);
         
         Gizmos.DrawWireSphere(RoofCheck.position, CheckRadius);
-        Gizmos.DrawWireSphere(NotAllowedDistanceCheck.position, CheckRadiusPlayer);
+      
 
     }
 }
