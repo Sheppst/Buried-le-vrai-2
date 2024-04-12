@@ -801,6 +801,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3124836745566226866, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124836745566226866, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3105e738902214142aa92fe4a91ecf5c, type: 2}
     - target: {fileID: 5094202164152442199, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: Boss
       value: 
