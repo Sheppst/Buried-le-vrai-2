@@ -50,7 +50,7 @@ public class ThrowCoolDownBomb_SM : MonoBehaviour
     {
         if (collision != null && Prog.CurrentState == ProcessState.Active && collision.gameObject.tag != "ExploFalse")
         {
-            Prog.MoveNext(Command.Pause);
+            Prog.MoveNext(Command.Pause); 
             rigid.bodyType = RigidbodyType2D.Static;
             collid.isTrigger = true;
             collid.radius = 4;
