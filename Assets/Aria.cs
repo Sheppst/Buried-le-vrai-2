@@ -73,16 +73,17 @@ public class Aria : MonoBehaviour
         if (LastWasUpAndDown == false)
 
         {
-            if (randomState >= 5 && LastWasAttackPlayer == false && transform.position.y <= 4)
+            if (randomState >= 5 && LastWasAttackPlayer == false && transform.position.y >= 2.7)
             {
 
                 FlipTowardsPlayer();
                 Enemyanimator.Play("AboutToAttackPlayer");
                 LastWasAttackPlayer = true;
                 LastWasUpAndDown = false;
+                
                 // Attaque Up And Down
             }
-            else if (randomState < 5)
+            else
             {
 
                 Enemyanimator.Play("AboutToAttackUpAndDown");
@@ -90,9 +91,9 @@ public class Aria : MonoBehaviour
                 LastWasUpAndDown = true;
             }
         }
-        else if (LastWasUpAndDown)
+        if(LastWasUpAndDown)
         {
-            if (randomState >= 3 && LastWasAttackPlayer == false && transform.position.y <= 4)
+            if (randomState >= 3 && LastWasAttackPlayer == false && transform.position.y >= 2.7)
             {
 
                 FlipTowardsPlayer();
@@ -101,7 +102,7 @@ public class Aria : MonoBehaviour
                 LastWasUpAndDown = false;
                 // Attaque Up And Down
             }
-            else if (randomState < 3)
+            else
             {
 
                 Enemyanimator.Play("AboutToAttackUpAndDown");
