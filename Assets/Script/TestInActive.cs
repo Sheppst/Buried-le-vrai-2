@@ -6,11 +6,11 @@ public class TestInActive : MonoBehaviour
 {
     private void Awake()
     {
-        transform.position = new Vector3(-16, 1, 0);
+        
     }
     private void OnEnable()
     {
-        
+        transform.position = new Vector3(-16, 1, 0);
     }
     // Start is called before the first frame update
     void Start()

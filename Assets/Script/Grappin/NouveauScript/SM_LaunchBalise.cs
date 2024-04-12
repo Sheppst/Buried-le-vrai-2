@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Balise_SM;
 
+// Ce script envoie une balise qui sera suivie d'un trait corresopandt à un grappin
+
 public class SM_LaunchBalise : MonoBehaviour
 {
     [SerializeField] private LayerMask defaultlayer;
@@ -17,11 +19,11 @@ public class SM_LaunchBalise : MonoBehaviour
     ProcessState CS;
     private void Start()
     {
-        Prog = new Process();
+        Prog = new Process(); // Créer une nouvelle machine d'état
         if (Prog.CurrentState == ProcessState.Inactive)
         {
-            transform.SetParent(Player);
-            transform.position = Vector3.zero;
+            transform.SetParent(Player); // L'objet deviens enfant du joueur
+            transform.position = Vector3.zero; // Et se ressitue sur le centre du joueur
         }
     }
     // Update is called once per frame
@@ -30,17 +32,18 @@ public class SM_LaunchBalise : MonoBehaviour
         Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         targetPosition.z = 0f;
         hit = targetPosition;
-        if (Prog.CurrentState == ProcessState.Inactive)
+        if (Prog.CurrentState == ProcessState.Inactive) // Quand la balise n'est pas mobilisé et qu'elle est sur le joueur
         {
-            StopAllCoroutines();
-            transform.SetParent(Player);
+            // //IDEE : Créer une condition qui vérifie si en inactif on est bien sur le joueur et pas ailleur 
+            StopAllCoroutines(); // Précaution 
+            transform.SetParent(Player); // Redéfénis les mêmes condition que dans le Start
             transform.position = Vector3.zero;
         }
-        if (Prog.CurrentState == ProcessState.Throwed)
+        if (Prog.CurrentState == ProcessState.Throwed) // Quand la balise est envoyé vers la dernière position de la souris 
         {
-            Rigid.WakeUp();
-            transform.SetParent(null);
-            if (OnMove)
+            Rigid.WakeUp(); // Fait en sorte que le rigibody de l'objet marche
+            transform.SetParent(null); // N'est plus enfant de personne
+            if (OnMove) // Si la variable est ON donne une position où se dirigera 
             {
                 Vector2 Target = (hit - transform.position).normalized;
                 Rigid.velocity = 10 * speed * Target;
