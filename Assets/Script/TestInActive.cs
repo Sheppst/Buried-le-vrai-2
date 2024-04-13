@@ -13,7 +13,7 @@ public class TestInActive : MonoBehaviour
     }
     private void OnEnable()
     {
-        transform.position = new Vector3(-16, 1, 0);
+        transform.position = new Vector3(-5, 1, 0);
         OnLerp = false;
     }
     // Start is called before the first frame update
@@ -32,7 +32,7 @@ public class TestInActive : MonoBehaviour
         if (OnLerp)
         {
             Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = Vector3.Lerp(transform.position, target - Vector3.forward * Zslasher, speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, target - Vector3.forward * target.z, speed * Time.deltaTime);
             OnLerp = false;
             Zslasher++;
         }
