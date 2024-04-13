@@ -37,6 +37,7 @@ public class SM_LaunchBalise : MonoBehaviour
             StopAllCoroutines(); // Précaution 
             transform.position = Player.position;
             transform.SetParent(Player); // Redéfénis les mêmes condition que dans le Start
+            OnMove = true;
         }
         if (Prog.CurrentState == ProcessState.Throwed) // Quand la balise est envoyé vers la dernière position de la souris 
         {
@@ -108,7 +109,7 @@ public class SM_LaunchBalise : MonoBehaviour
     }
     private IEnumerator MaxDist()
     {
-        yield return new WaitForSeconds(3f * Time.deltaTime); //Permet à la balise d'aller jusqu'à une certaine distance, sinon autorise à ramener la balise
+        yield return new WaitForSeconds(3f); //Permet à la balise d'aller jusqu'à une certaine distance, sinon autorise à ramener la balise
         if (Prog.CurrentState == ProcessState.Throwed)
         {
             Prog.MoveNext(Command.End); // Effectue transition Throwed -> NoContacted
@@ -130,10 +131,10 @@ public class SM_LaunchBalise : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && Prog.CurrentState != ProcessState.Inactive)
-        {
-            Prog.MoveNext(Command.End); // 
-        }
+        //if (collision.tag == "Player" && Prog.CurrentState == ProcessState.NoContacted )
+        //{
+        //    Prog.MoveNext(Command.End); // 
+        //}
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
