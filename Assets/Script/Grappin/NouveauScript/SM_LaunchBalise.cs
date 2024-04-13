@@ -21,8 +21,8 @@ public class SM_LaunchBalise : MonoBehaviour
         Prog = new Process(); // Créer une nouvelle machine d'état
         if (Prog.CurrentState == ProcessState.Inactive)
         {
+            transform.position = Player.position; // Et se ressitue sur le centre du joueur
             transform.SetParent(Player); // L'objet deviens enfant du joueur
-            transform.position = Vector3.zero; // Et se ressitue sur le centre du joueur
         }
     }
     // Update is called once per frame
@@ -35,8 +35,8 @@ public class SM_LaunchBalise : MonoBehaviour
         {
             // //IDEE : Créer une condition qui vérifie si en inactif on est bien sur le joueur et pas ailleur 
             StopAllCoroutines(); // Précaution 
+            transform.position = Player.position;
             transform.SetParent(Player); // Redéfénis les mêmes condition que dans le Start
-            transform.position = Vector3.zero;
         }
         if (Prog.CurrentState == ProcessState.Throwed) // Quand la balise est envoyé vers la dernière position de la souris 
         {

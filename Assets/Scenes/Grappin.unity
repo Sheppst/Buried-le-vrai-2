@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 94224232254088543, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 164736108910816635, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_JumpForce
@@ -217,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999407907059169096, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3124836745566226866, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_Enabled
@@ -257,7 +257,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6604839700419214205, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638490334034888566, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8160917873960284722, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
       propertyPath: m_LocalPosition.x
