@@ -124,7 +124,7 @@ MonoBehaviour:
   rigid: {fileID: -1985221666432320849}
   spriteRenderer: {fileID: 5422038598971291015}
   TimeBeforeDestroy: 5
-  Target: {x: 6.293644, y: -2.397591, z: -10}
+  Target: {x: 8.347416, y: -2.3883657, z: -10}
   Speed: 20
   ObjSprite: {fileID: 21300000, guid: 6bd41e79653106b4f8ed547dc3692e96, type: 3}
 --- !u!212 &5422038598971291015

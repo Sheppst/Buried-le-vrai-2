@@ -20,7 +20,7 @@ public class Gun : MonoBehaviour
         Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButtonDown(0)) 
         {
-            //anim.SetTrigger("IsShootting");
+            anim.SetTrigger("IsShootting");
             GameObject projectile = Proj;
             projectile.transform.localScale = Vector3.one * 0.042198f;
             projectile.GetComponent<AttackObject>().Target = target;
