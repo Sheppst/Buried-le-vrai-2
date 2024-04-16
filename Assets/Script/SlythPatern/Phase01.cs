@@ -79,7 +79,7 @@ public class Phase01 : MonoBehaviour
 
             if (transform.position.x > Player.position.x) // Si le joueur se trouve à gauche ...
             {
-                Current = Left; // ... L'objectif de déplacement devient la quache
+                Current = Left; // ... L'objectif de déplacement devient la gauche
                 Ray.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 180); //... Le raycast se tourne vers la gauche 
                 transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1, transform.localScale.y, transform.localScale.z); //... Le boss se retourne vers le joueur 
                 
@@ -116,14 +116,14 @@ public class Phase01 : MonoBehaviour
         {
             if (Ray.activeSelf == false) // Si l'objet de détection n'est pas actif...
             {
-                if (Bl != null)
+                if (Bl != null) // Vide Bl
                 {
-                    Bl.GetComponent<BlockBit>().After();
-                    Bl = null;
+                    Bl.GetComponent<BlockBit>().After(); // Détruit l'actuel Bl
+                    Bl = null; // Et définis Bl comme vide
                 }
                 Prog.MoveNext(Command.CutPhase); // ... Changement d'état de Bited -> Inactive 
             }
-            else if (!Ray.GetComponentInChildren<DetectBite>().Detect || Ray.activeSelf == false)
+            else if (!Ray.GetComponentInChildren<DetectBite>().Detect) // 1ère condition détecte si qlq chose rentre en colision avec l'objet de détection
             {
                 transform.position = Vector3.MoveTowards(transform.position, Newpos, speed * Time.deltaTime); // Déplace le boss vers la dernière position du joueur connu
             }
