@@ -13,7 +13,7 @@ public class FollowPlayerOriginal : MonoBehaviour
 
     void Start()
     {
-        target = GameObject.Find("Player").transform;
+        target = GameObject.Find("CamPosition").transform;
         rigid = GetComponent<Rigidbody2D>();
     }
 
