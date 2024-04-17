@@ -6,12 +6,13 @@ using UnityEngine;
 public class RayCastRooffed : MonoBehaviour
 {
     [SerializeField] LayerMask layer;
+    [SerializeField] GameObject[] Detects;
     private bool HT;
     public bool Change;
     // Update is called once per frame
     void Update()
     {
-        if (Change)
+        if (!Change)
         {
             HT = false;
             RaycastHit2D Nohit = Physics2D.Raycast(transform.position, transform.up, 3f, layer);

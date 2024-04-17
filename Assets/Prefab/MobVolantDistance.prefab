@@ -194,7 +194,7 @@ GameObject:
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &429234918877168045
 Transform:
   m_ObjectHideFlags: 0
@@ -225,6 +225,11 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 64
+  Detects:
+  - {fileID: 8881031569012481710}
+  - {fileID: 7031350447342016065}
+  - {fileID: 3255705787155067925}
+  Change: 0
 --- !u!1 &3178511367873322295
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +277,7 @@ GameObject:
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1189113805622492318
 Transform:
   m_ObjectHideFlags: 0
@@ -303,6 +308,11 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 64
+  Detects:
+  - {fileID: 8881031569012481710}
+  - {fileID: 7031350447342016065}
+  - {fileID: 124043343280327400}
+  Change: 0
 --- !u!1 &4187892825349295081
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +391,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 64
+  Change: 0
 --- !u!1 &8223662177056838760
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,3 +470,4 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 64
+  Change: 0
