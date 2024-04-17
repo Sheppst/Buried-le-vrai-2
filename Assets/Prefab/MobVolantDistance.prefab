@@ -391,6 +391,10 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 64
+  Detects:
+  - {fileID: 8881031569012481710}
+  - {fileID: 124043343280327400}
+  - {fileID: 3255705787155067925}
   Change: 0
 --- !u!1 &8223662177056838760
 GameObject:
@@ -471,3 +475,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   Change: 0
+  Detects:
+  - {fileID: 7031350447342016065}
+  - {fileID: 124043343280327400}
+  - {fileID: 3255705787155067925}

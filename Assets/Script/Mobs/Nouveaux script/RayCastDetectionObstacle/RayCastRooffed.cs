@@ -31,6 +31,9 @@ public class RayCastRooffed : MonoBehaviour
                     if (hit[i].gameObject != gameObject) // La détection va forcément détecter l'objet lui-même s'il possède un collider donc on cherche à éviter ça.
                                                          // Et si un autre objet entre en collision déclenche la condition.
                     {
+                        Detects[0].GetComponent<RayCastRightV>().Change = false;
+                        Detects[1].GetComponent<RayCastLeftV>().Change = false;
+                        Detects[2].GetComponent<RayCastRooffed>().Change = false;
                         Debug.DrawLine(transform.position, hit[i].gameObject.transform.position, Color.red);
                         HT = true;
                         break;
@@ -38,6 +41,9 @@ public class RayCastRooffed : MonoBehaviour
                 }
                 if (!HT)
                 {
+                    Detects[0].GetComponent<RayCastRightV>().Change = true;
+                    Detects[1].GetComponent<RayCastLeftV>().Change = true;
+                    Detects[2].GetComponent<RayCastRooffed>().Change = true;
                     transform.parent.position += Vector3.up * 0.01f;
                 }
             }

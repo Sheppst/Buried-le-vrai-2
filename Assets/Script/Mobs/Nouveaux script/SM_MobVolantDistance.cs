@@ -70,7 +70,7 @@ public class SM_MobVolantDistance : MonoBehaviour
             //^
             //|
             //Script de mouvement du monstre vers un objectif donnée (Current) 
-            if (transform.position == Current.position) // Si le monstre arrive à destination de son objectif alors ...
+            if (transform.position.x == Current.position.x) // Si le monstre arrive à destination de son objectif alors ...
             {
                 if (Current == Left) // ... Si l'objectf est la gauche, le nouvelle objectif est à droite et retourne le monstre dans le sens de l'objectif
                 {
