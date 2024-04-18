@@ -8,6 +8,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform FirePos;
     [SerializeField] private Sprite Balle;
     [SerializeField] private Animator anim;
+    [SerializeField] private float SpeedBullet = 20;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class Gun : MonoBehaviour
             GameObject projectile = Proj;
             projectile.transform.localScale = Vector3.one * 0.042198f;
             projectile.GetComponent<AttackObject>().Target = target;
-            projectile.GetComponent<AttackObject>().Speed = 20;
+            projectile.GetComponent<AttackObject>().Speed = SpeedBullet;
             projectile.GetComponent<AttackObject>().Thrower = tag;
             projectile.GetComponent<AttackObject>().tag = "ProjPlayer";
             projectile.GetComponent<AttackObject>().TimeBeforeDestroy = 5;
