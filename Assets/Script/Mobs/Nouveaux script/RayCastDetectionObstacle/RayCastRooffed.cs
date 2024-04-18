@@ -6,7 +6,7 @@ using UnityEngine;
 public class RayCastRooffed : MonoBehaviour
 {
     [SerializeField] LayerMask layer;
-    [SerializeField] GameObject[] Detects;
+    [SerializeField] GameObject Detects;
     private bool HT;
     public bool Change;
     // Update is called once per frame
@@ -25,15 +25,13 @@ public class RayCastRooffed : MonoBehaviour
             else
             {
                 Debug.DrawLine(transform.position, Nohit.point, Color.red);
-                Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, 0.5f, layer);
+                Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, 0.2f, layer);
                 for (int i = 0; i < hit.Length; i++)
                 {
                     if (hit[i].gameObject != gameObject) // La détection va forcément détecter l'objet lui-même s'il possède un collider donc on cherche à éviter ça.
                                                          // Et si un autre objet entre en collision déclenche la condition.
                     {
-                        Detects[0].GetComponent<RayCastRightV>().Change = false;
-                        Detects[1].GetComponent<RayCastLeftV>().Change = false;
-                        Detects[2].GetComponent<RayCastRooffed>().Change = false;
+                        Detects.GetComponent<RayCastWallV>().Change = false;
                         Debug.DrawLine(transform.position, hit[i].gameObject.transform.position, Color.red);
                         HT = true;
                         break;
@@ -41,9 +39,7 @@ public class RayCastRooffed : MonoBehaviour
                 }
                 if (!HT)
                 {
-                    Detects[0].GetComponent<RayCastRightV>().Change = true;
-                    Detects[1].GetComponent<RayCastLeftV>().Change = true;
-                    Detects[2].GetComponent<RayCastRooffed>().Change = true;
+                    Detects.GetComponent<RayCastWallV>().Change = true;
                     transform.parent.position += Vector3.up * 0.01f;
                 }
             }
