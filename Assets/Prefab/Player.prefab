@@ -326,9 +326,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.018522305, y: -0.4861165}
+  m_Offset: {x: -0.018522313, y: 0.4645901}
   serializedVersion: 2
-  m_Radius: 0.1572118
+  m_Radius: 0.09313438
 --- !u!114 &5094202164152442199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,7 +347,7 @@ MonoBehaviour:
   SBombs: {fileID: 9217862181697387115, guid: d40fa4dc1c8d91c45b2126d3e367a12c, type: 3}
   Boss: {fileID: 0}
   rigid: {fileID: 1276637949402637968}
-  PropulseX: 670
+  PropulseX: 500
   PropulseY: 250
   ChargePower: 3
   runSpeed: 100
@@ -442,6 +442,7 @@ MonoBehaviour:
   FirePos: {fileID: 2679435121233979955}
   Balle: {fileID: 21300000, guid: 6bd41e79653106b4f8ed547dc3692e96, type: 3}
   anim: {fileID: 3124836745566226866}
+  SpeedBullet: 60
 --- !u!1 &693305662815489631
 GameObject:
   m_ObjectHideFlags: 0
