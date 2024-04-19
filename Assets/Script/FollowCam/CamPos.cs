@@ -26,5 +26,9 @@ public class CamPos : MonoBehaviour
         {
             Target = transform.parent.position + Vector3.left * EcartementCam;
         }
+        if (Target.x == transform.position.x)
+        {
+            transform.Translate(Target * Time.deltaTime * CamSpeed);
+        }
     }
 }
