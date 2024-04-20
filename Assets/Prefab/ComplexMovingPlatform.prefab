@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 515899241331069608}
   - component: {fileID: 5592400956719084228}
   - component: {fileID: 1378095894145782259}
-  m_Layer: 8
-  m_Name: MovingPlatform
+  m_Layer: 6
+  m_Name: ComplexMovingPlatform
   m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.12, y: 13.95, z: 0.129968}
-  m_LocalScale: {x: 4.0825596, y: 0.24821213, z: 1}
+  m_LocalScale: {x: 4.804356, y: 0.29209605, z: 1.1768}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,10 +76,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 84559311
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 5c217e58d79b6ad4aafcd8c6959f44ce, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -165,14 +165,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b7de2610c17b64da84904fa14d13aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
+  waypoints:
+  - {x: 12.5, y: -4, z: 0}
+  - {x: 24, y: -4, z: 0}
+  - {x: 18.5, y: -0, z: 0}
   handleRadius: 0.25
   snappingSettings: {x: 0.5, y: 0.5}
   gizmoDeselectedColor: {r: 0, g: 0, b: 0, a: 1}
   rb: {fileID: 5592400956719084228}
   editing: 0
-  pathType: 1
-  behaviorType: 1
+  pathType: 0
+  behaviorType: 0
   moveSpeed: 5
   stopDistance: 0.1
 --- !u!50 &5592400956719084228

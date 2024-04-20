@@ -135,7 +135,7 @@ namespace Bundos.MovingPlatforms
                 }
             }
         }
-
+       
         private bool IsSelected()
         {
             return UnityEditor.Selection.activeGameObject == transform.gameObject;

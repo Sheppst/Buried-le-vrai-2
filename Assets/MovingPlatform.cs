@@ -42,8 +42,8 @@ public class MovingPlatform : MonoBehaviour
             return EndPoint.position;
         }
     }
+    
 
-   
     private void OnDrawGizmos()
     {
         if (Platform != null && StartPoint != null && EndPoint != null)
