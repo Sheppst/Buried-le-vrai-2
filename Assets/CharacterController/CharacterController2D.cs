@@ -21,6 +21,7 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private bool m_DoubleJump = true;
 	private bool m_JumpAnim;
+	private int m_ActualDir;
 	private Vector3 velocity = Vector3.zero;
 
 	private void Awake()
@@ -101,18 +102,24 @@ public class CharacterController2D : MonoBehaviour
 
             // If the input is moving the player right and the player is facing left...
             // Move étant la valeur de déplacement du joueur si elle est positive alors le joueur se déplacera sur la droite et sinon sur la gauche 
-            if (move > 0 && !m_FacingRight) // Ici le joueur on remarque que le move passe en positif et que le joueur fixe à gauche alors on le retourne 
-			{
+            if (move > 0) //&& !m_FacingRight// Ici le joueur on remarque que le move passe en positif et que le joueur fixe à gauche alors on le retourne 
+            {
 				// ... flip the player.
 				Flip();
-				m_DashPower *= -1;
+                Vector3 theScale = transform.localScale;
+                theScale.x = Mathf.Abs(theScale.x);
+                transform.localScale = theScale;
+                m_DashPower = Mathf.Abs(m_DashPower);
 			}
 			// Otherwise if the input is moving the player left and the player is facing right...
-			else if (move < 0 && m_FacingRight) // Ici l'inverse se produit
-			{
+			else if (move < 0) //&& m_FacingRight // Ici l'inverse se produit
+            {
 				// ... flip the player.
 				Flip();
-                m_DashPower *= -1;
+                Vector3 theScale = transform.localScale;
+                theScale.x = Mathf.Abs(theScale.x) * - 1;
+                transform.localScale = theScale;
+                m_DashPower = Mathf.Abs(m_DashPower) * -1;
             }
 		}
 		// If the player should jump...
@@ -138,12 +145,14 @@ public class CharacterController2D : MonoBehaviour
 		// Change le booléen en fonction de là ou le joueur fait face
 		// càd que qu'au départ le sprite regarde à droite et la variable est en "true",
 		// ainsi si la variable prend ici l'inverse de la valeur qu'elle possédait elle va inulectablement nous dire si le joueur fera face ou non à la droite
+		
+
 		m_FacingRight = !m_FacingRight;
 
 		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		//Vector3 theScale = transform.localScale;
+		//theScale.x *= -1;
+		//transform.localScale = theScale;
 	}
 	private IEnumerator AnimJump ()
 	{

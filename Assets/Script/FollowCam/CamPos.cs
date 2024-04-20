@@ -6,29 +6,43 @@ public class CamPos : MonoBehaviour
 {
     [SerializeField] float EcartementCam;
     [SerializeField] float CamSpeed;
+
+    private Vector3 Target;
     private bool turn;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 Target = new Vector3();
-        if (transform.parent.localScale.x > 0)
+        //transform.position = Vector3.up * transform.parent.position.y;
+        if (!Input.anyKey)
+        {
+            Target = transform.parent.position;
+            if (transform.position != Target) 
+            { 
+                transform.position = Vector3.MoveTowards(transform.position, Target, CamSpeed * Time.deltaTime/4); 
+            }
+        }
+        if (Input.GetKey(KeyCode.D))
         {
             Target = transform.parent.position + Vector3.right * EcartementCam;
+            if (transform.position.x < Target.x)
+            {
+                transform.position += Vector3.right * Time.deltaTime * CamSpeed;
+            }
         }
-        else if (transform.parent.localScale.x < 0)
+        else if (Input.GetKey(KeyCode.Q))
         {
             Target = transform.parent.position + Vector3.left * EcartementCam;
+            if (transform.position.x > Target.x)
+            {
+                transform.position += Vector3.left * Time.deltaTime * CamSpeed;
+            }
         }
-        if (Target.x == transform.position.x)
-        {
-            transform.Translate(Target * Time.deltaTime * CamSpeed);
-        }
+        //transform.position = Target;
     }
 }
