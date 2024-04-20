@@ -6,6 +6,7 @@ public class CamPos : MonoBehaviour
 {
     [SerializeField] float EcartementCam;
     [SerializeField] float CamSpeed;
+    [SerializeField] float CamReturnSpeedDivisor = 4;
 
     private Vector3 Target;
     private bool turn;
@@ -24,7 +25,7 @@ public class CamPos : MonoBehaviour
             Target = transform.parent.position;
             if (transform.position != Target) 
             { 
-                transform.position = Vector3.MoveTowards(transform.position, Target, CamSpeed * Time.deltaTime/4); 
+                transform.position = Vector3.MoveTowards(transform.position, Target, CamSpeed * Time.deltaTime/CamReturnSpeedDivisor); 
             }
         }
         if (Input.GetKey(KeyCode.D))
