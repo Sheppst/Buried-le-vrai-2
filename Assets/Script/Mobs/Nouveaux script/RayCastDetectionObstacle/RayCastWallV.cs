@@ -23,13 +23,13 @@ public class RayCastWallV : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 1, layer);
             if (hit.point != null && hit.collider.gameObject.tag != "Player")
             {
-                Detects.GetComponent<RayCastWallV>().Change = true;
+                Detects.GetComponent<RayCastRooffed>().Change = true;
                 Debug.DrawLine(transform.position, hit.point, Color.yellow);
                 transform.parent.position += Vector3.down * 0.01f;
             }
             else
             {
-                Detects.GetComponent<RayCastWallV>().Change = false;
+                Detects.GetComponent<RayCastRooffed>().Change = false;
                 Vector3 EndRaycast = transform.position + Vector3.left;
                 Debug.DrawLine(transform.position, EndRaycast, Color.red);
             }
