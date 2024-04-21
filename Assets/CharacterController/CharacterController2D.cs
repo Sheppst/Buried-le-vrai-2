@@ -49,11 +49,16 @@ public class CharacterController2D : MonoBehaviour
 					m_PlayerAnimJump.SetBool("IsJumping", false);
 					m_JumpAnim = false;
 				}
-			}
-				
-				
-				
+			}	
 		}
+		if (transform.localScale.x < 0)
+		{
+            m_DashPower = Mathf.Abs(m_DashPower) * -1;
+        }
+		else
+		{
+            m_DashPower = Mathf.Abs(m_DashPower);
+        }
 	}
 
 
@@ -109,7 +114,7 @@ public class CharacterController2D : MonoBehaviour
                 Vector3 theScale = transform.localScale;
                 theScale.x = Mathf.Abs(theScale.x);
                 transform.localScale = theScale;
-                m_DashPower = Mathf.Abs(m_DashPower);
+                //m_DashPower = Mathf.Abs(m_DashPower);
 			}
 			// Otherwise if the input is moving the player left and the player is facing right...
 			else if (move < 0) //&& m_FacingRight // Ici l'inverse se produit
@@ -119,7 +124,7 @@ public class CharacterController2D : MonoBehaviour
                 Vector3 theScale = transform.localScale;
                 theScale.x = Mathf.Abs(theScale.x) * - 1;
                 transform.localScale = theScale;
-                m_DashPower = Mathf.Abs(m_DashPower) * -1;
+                //m_DashPower = Mathf.Abs(m_DashPower) * -1;
             }
 		}
 		// If the player should jump...
@@ -159,4 +164,5 @@ public class CharacterController2D : MonoBehaviour
 		yield return new WaitForSeconds(0.2f);
 		m_JumpAnim = true;
 	}
+
 }
