@@ -16,6 +16,7 @@ TagManager:
   - BossObject
   - ProjPlayer
   - Aria
+  - pics
   layers:
   - Default
   - TransparentFX
