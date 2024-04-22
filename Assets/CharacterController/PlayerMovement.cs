@@ -15,8 +15,11 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField] private float PropulseX;
 	[SerializeField] private float PropulseY;
 	[SerializeField] private float ChargePower;
+	[SerializeField] private float dashspeed = 10000f;
+	private float dashPower = 0f;
 
-	private bool YesDash = true;
+
+    private bool YesDash = true;
 
 
     public float runSpeed = 40f;
@@ -44,6 +47,7 @@ public class PlayerMovement : MonoBehaviour {
 		//Life = GetComponent<PlayerLifeSystem>().Life;
 
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+		dashPower = Input.GetAxisRaw("Horizontal") * dashspeed;
 
 		animator.SetFloat("IsRunning",Mathf.Abs(horizontalMove));
 
@@ -72,7 +76,7 @@ public class PlayerMovement : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		// Move our character
-		controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash);
+		controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash,dashPower);
 		jump = false;
 		dash = false;
 	}

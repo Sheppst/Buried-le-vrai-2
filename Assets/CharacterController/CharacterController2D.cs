@@ -16,7 +16,7 @@ public class CharacterController2D : MonoBehaviour
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
-	[SerializeField] private float m_DashPower = 10000f;
+	//[SerializeField] private float m_DashPower = 10000f;
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private bool m_DoubleJump = true;
@@ -28,18 +28,6 @@ public class CharacterController2D : MonoBehaviour
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            m_DashPower = Mathf.Abs(m_DashPower) * -1;
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            m_DashPower = Mathf.Abs(m_DashPower);
-        }
-    }
 
 	private void FixedUpdate()
 	{
@@ -62,20 +50,9 @@ public class CharacterController2D : MonoBehaviour
 				}
 			}	
 		}
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            m_DashPower = Mathf.Abs(m_DashPower) * -1;
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            m_DashPower = Mathf.Abs(m_DashPower);
-        }
-
     }
 
-
-
-    public void Move(float move, bool crouch, bool jump, bool dash)
+    public void Move(float move, bool crouch, bool jump, bool dash, float dashPower)
 	{
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
@@ -89,7 +66,7 @@ public class CharacterController2D : MonoBehaviour
 
 		if (dash)
 		{
-			Vector2 D = new Vector2(m_DashPower, 0f);
+			Vector2 D = new Vector2(dashPower, 0f);
 			m_Rigidbody2D.AddForce(D);
 		}
 
