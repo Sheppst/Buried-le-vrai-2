@@ -29,6 +29,17 @@ public class CharacterController2D : MonoBehaviour
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            m_DashPower = Mathf.Abs(m_DashPower) * -1;
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            m_DashPower = Mathf.Abs(m_DashPower);
+        }
+    }
 
 	private void FixedUpdate()
 	{
@@ -51,18 +62,20 @@ public class CharacterController2D : MonoBehaviour
 				}
 			}	
 		}
-		if (transform.localScale.x < 0)
-		{
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
             m_DashPower = Mathf.Abs(m_DashPower) * -1;
         }
-		else
-		{
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
             m_DashPower = Mathf.Abs(m_DashPower);
         }
-	}
+
+    }
 
 
-	public void Move(float move, bool crouch, bool jump, bool dash)
+
+    public void Move(float move, bool crouch, bool jump, bool dash)
 	{
 		// If crouching, check to see if the character can stand up
 		if (!crouch)

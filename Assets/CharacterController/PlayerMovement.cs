@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour {
     void Update () 
 	{
 
-		Life = GetComponent<PlayerLifeSystem>().Life;
+		//Life = GetComponent<PlayerLifeSystem>().Life;
 
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
