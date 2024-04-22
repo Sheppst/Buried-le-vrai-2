@@ -127,7 +127,9 @@ public class CharacterController2D : MonoBehaviour
 		}
 		else if (m_DoubleJump && jump) // Permet au joueur si les conditons sont rassemblé à sauté une deuxième fois 
 		{
-			m_PlayerAnimJump.Play("Player_Jump", 0, 0f); // Réinitialise l'animation de saut 
+			StopAllCoroutines();
+            StartCoroutine(AnimJump());
+            m_PlayerAnimJump.Play("Player_Jump", 0, 0f); // Réinitialise l'animation de saut 
 			m_DoubleJump = false;
 			m_Rigidbody2D.velocity = Vector3.zero;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));

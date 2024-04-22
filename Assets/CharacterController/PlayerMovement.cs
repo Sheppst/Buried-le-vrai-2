@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update () 
 	{
+		animator.SetFloat("JumpFall",rigid.velocity.y);
 
 		//Life = GetComponent<PlayerLifeSystem>().Life;
 
