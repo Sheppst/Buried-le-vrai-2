@@ -12,13 +12,13 @@ public class LifeSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxLife = player.GetComponent<PlayerMovement>().Life;
+        maxLife = player.GetComponent<PlayerLifeSystem>().Life;
     }
 
     // Update is called once per frame
     void Update()
     {
-        LifePlayer = player.GetComponent<PlayerMovement>().Life;
+        LifePlayer = player.GetComponent<PlayerLifeSystem>().Life;
         slid.value = LifePlayer / maxLife;
     }
 }

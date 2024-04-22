@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
+	private float Life;
 	public CharacterController2D controller;
 	public Animator animator;
 	public GameObject TBombs;
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
     public float runSpeed = 40f;
-	public float Life = 100;
+	
 
 	float horizontalMove = 0f;
 	bool jump = false;
@@ -37,12 +38,10 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update () 
+	{
 
-		if (Life <= 0f) 
-		{
-			SceneManager.LoadScene(0);
-		}
+		Life = GetComponent<PlayerLifeSystem>().Life;
 
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
@@ -53,15 +52,6 @@ public class PlayerMovement : MonoBehaviour {
 			jump = true;
 			animator.SetBool("IsJumping", true);
 		}
-		if (Input.GetButtonDown("Crouch"))
-		{
-			crouch = true;
-            animator.SetBool("IsCrouching", true);
-        } else if (Input.GetButtonUp("Crouch"))
-		{
-			crouch = false;
-            animator.SetBool("IsCrouching", false);
-        }
 		if (Input.GetKeyDown(KeyCode.LeftShift) && YesDash)
 		{
 			dash = true;
@@ -86,20 +76,8 @@ public class PlayerMovement : MonoBehaviour {
 		jump = false;
 		dash = false;
 	}
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Mob")
-		{
-			Life -= 5;
-		}
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Mob")
-        {
-            Life -= 5;
-        }
-    }
+    
+   
 
     public void BiteByBoss ()
 	{
