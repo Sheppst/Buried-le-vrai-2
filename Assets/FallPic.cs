@@ -15,7 +15,7 @@ public class FallPics : MonoBehaviour
         yield return new WaitForSeconds(FallDelay);
 
         rb.bodyType = RigidbodyType2D.Dynamic;
-        rb.gravityScale = 2f;
+        rb.gravityScale = 3f;
         Destroy(gameObject, DestroyDelay);
     }
 
