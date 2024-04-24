@@ -16,11 +16,17 @@ public class AttackObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer.sprite = ObjSprite;
-        Vector3 target = (Target - transform.position ).normalized;
-        rigid.velocity = target * Speed;
-        TurnOnTarget();
-        Destroy(gameObject, TimeBeforeDestroy);
+        
+        spriteRenderer.sprite = ObjSprite; // Définis le sprite en fonction de son utilisation
+        Vector3 target = (Target - transform.position ); // Crée un vecteur entre le point départ et le point d'arrivé puis le transforme en direction
+        float dist = Vector3.Distance(transform.position, Target);
+        //dist /= 10;
+        //print(dist);
+        //Speed -= dist;
+        print(target.magnitude);
+        rigid.velocity = new Vector2(target.x,target.y).normalized * Speed; // Applique cette direction à un certaine vitesse sur la vélocité objet
+        TurnOnTarget(); // Dirge le sens de pointage de l'objet en direction voulu
+        Destroy(gameObject, TimeBeforeDestroy); // Détruit le GO après un certains temps
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
