@@ -21,7 +21,7 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private bool m_DoubleJump = true;
 	private bool m_JumpAnim;
-	private int m_ActualDir;
+	private bool m_OneDash;
 	private Vector3 velocity = Vector3.zero;
 
 	private void Awake()
@@ -41,7 +41,8 @@ public class CharacterController2D : MonoBehaviour
 		{
 			if (colliders[i].gameObject != gameObject) // La détection va forcément détecter l'objet lui-même s'il possède un collider donc on cherche à éviter ça.
 													   // Et si un autre objet entre en collision déclenche la condition.
-			{ 
+			{
+				m_OneDash = true;
 				m_Grounded = true;
 				if (m_JumpAnim)
 				{ 
@@ -64,10 +65,11 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 
-		if (dash)
+		if (dash && m_OneDash)
 		{
 			Vector2 D = new Vector2(dashPower, 0f);
 			m_Rigidbody2D.AddForce(D);
+			m_OneDash = false;
 		}
 
 		//only control the player if grounded or airControl is turned on
