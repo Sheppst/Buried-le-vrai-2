@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update () 
 	{
+		
+		
 		animator.SetFloat("JumpFall",rigid.velocity.y);
 
 		//Life = GetComponent<PlayerLifeSystem>().Life;
@@ -77,7 +79,20 @@ public class PlayerMovement : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		// Move our character
-		controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash,dashPower);
+		if (rigid.velocity.x == 0 && transform.localScale.x < 0)
+		{
+			dashPower = dashspeed * -1;
+            controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash, dashPower);
+        }
+		else if (rigid.velocity.x == 0)
+		{
+            dashPower = dashspeed;
+            controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash, dashPower);
+        }
+		else
+		{ 
+			controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash,dashPower);
+		}
 		jump = false;
 		dash = false;
 	}
