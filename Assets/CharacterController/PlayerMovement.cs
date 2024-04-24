@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField] private float PropulseX;
 	[SerializeField] private float PropulseY;
 	[SerializeField] private float ChargePower;
-	[SerializeField] private float dashspeed = 10000f;
+	[SerializeField] private float dashspeed;
 	private float dashPower = 0f;
 
 
@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour {
     }
     private IEnumerator WaitDash()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 		YesDash = true;
     }
 }
