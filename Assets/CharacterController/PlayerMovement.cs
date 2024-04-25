@@ -40,19 +40,19 @@ public class PlayerMovement : MonoBehaviour {
         dash = false;
     }
 
-    // Update is called once per frame
-    void Update () 
+	// Update is called once per frame
+	void Update()
 	{
-		
-		
-		animator.SetFloat("JumpFall",rigid.velocity.y);
+
+
+		animator.SetFloat("JumpFall", rigid.velocity.y);
 
 		//Life = GetComponent<PlayerLifeSystem>().Life;
 
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 		dashPower = Input.GetAxisRaw("Horizontal") * dashspeed;
 
-		animator.SetFloat("IsRunning",Mathf.Abs(horizontalMove));
+		animator.SetFloat("IsRunning", Mathf.Abs(horizontalMove));
 
 		if (Input.GetButtonDown("Jump"))
 		{
@@ -65,34 +65,23 @@ public class PlayerMovement : MonoBehaviour {
 			YesDash = false;
 			StartCoroutine(WaitDash());
 		}
-		if (Input.GetKeyDown(KeyCode.Q) && TBombs != null) 
+		if (Input.GetKeyDown(KeyCode.Q) && TBombs != null)
 		{
-			Instantiate(TBombs,transform.position, Quaternion.identity);
+			Instantiate(TBombs, transform.position, Quaternion.identity);
 		}
-		if(Input.GetMouseButtonDown(1) && SBombs != null)
+		if (Input.GetMouseButtonDown(1) && SBombs != null)
 		{
-            Instantiate(SBombs, transform.position, Quaternion.identity);
-        }
-
+			Instantiate(SBombs, transform.position, Quaternion.identity);
+		}
+		
 	}
 
-	void FixedUpdate ()
+
+    void FixedUpdate ()
 	{
-		// Move our character
-		if (rigid.velocity.x == 0 && transform.localScale.x < 0)
-		{
-			dashPower = dashspeed * -1;
-            controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash, dashPower);
-        }
-		else if (rigid.velocity.x == 0)
-		{
-            dashPower = dashspeed;
-            controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash, dashPower);
-        }
-		else
-		{ 
-			controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash,dashPower);
-		}
+        
+        // Move our character
+        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash,dashPower);
 		jump = false;
 		dash = false;
 	}

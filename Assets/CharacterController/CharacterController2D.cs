@@ -67,7 +67,15 @@ public class CharacterController2D : MonoBehaviour
 
 		if (dash && m_OneDash)
 		{
-			Vector2 D = new Vector2(dashPower, 0f);
+            if (dashPower == 0 && transform.localScale.x < 0)
+            {
+                dashPower = 10000f * -1;
+            }
+            else if (dashPower == 0)
+            {
+                dashPower = 10000f;
+            }
+            Vector2 D = new Vector2(dashPower, 0f);
 			m_Rigidbody2D.AddForce(D);
 			m_OneDash = false;
 		}
