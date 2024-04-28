@@ -48,9 +48,9 @@ public class dash : MonoBehaviour
             _canDash = true;
             _trailRenderer.emitting = true;
             _dashingDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            if (_dashingDir ==  Vector2.zero)
-            {
-                _dashingDir = new Vector2(transform.localScale.x, 0);
+                if (_dashingDir ==  Vector2.zero)
+                {
+                    _dashingDir = new Vector2(transform.localScale.x, 0);
             }
             StartCoroutine(StopDashing());  
         }
