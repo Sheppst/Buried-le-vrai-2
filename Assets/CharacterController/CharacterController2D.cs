@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
 {
+	
 	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
@@ -13,7 +14,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
     [SerializeField] private Animator m_PlayerAnimJump;
 
-    const float k_GroundedRadius = .4f; // Radius of the overlap circle to determine if grounded
+    const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	//[SerializeField] private float m_DashPower = 10000f;
@@ -24,6 +25,7 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_OneDash;
 	private Vector3 velocity = Vector3.zero;
 
+
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -31,6 +33,7 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		
 		m_Grounded = false;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
