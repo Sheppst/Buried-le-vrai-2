@@ -7,7 +7,7 @@ public class fallingPlatform : MonoBehaviour
     // Elliot Script
     [SerializeField] private float FallDelay;
     [SerializeField] float DestroyDelay;
-
+    [SerializeField] float gravity;
     [SerializeField] private Rigidbody2D rb;
 
     private IEnumerator Fall()

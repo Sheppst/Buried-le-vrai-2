@@ -41,15 +41,6 @@ public class Ascenceur : MonoBehaviour
         
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-       
-    }
-  
-   
-
-    
-    
 
     Vector2 currentMovementTarget()
     {
