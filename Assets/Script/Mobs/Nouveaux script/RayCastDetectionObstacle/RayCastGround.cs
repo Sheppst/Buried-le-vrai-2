@@ -5,29 +5,24 @@ using UnityEngine;
 public class RayCastGround : MonoBehaviour
 {
     [SerializeField] LayerMask layer;
+    [SerializeField] float Speed;
+    private bool Nothing;
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D Nohit = Physics2D.Raycast(transform.position, transform.up, 3f, layer);
-        if (Nohit.point == null && Nohit.collider.gameObject.tag != "Player")
+        Collider2D[] Ground = Physics2D.OverlapCircleAll(transform.position, .2f);
+        Nothing = true;
+        for (int i = 0; i < Ground.Length; i++)
         {
-            Vector3 EndRaycast = transform.position + Vector3.down * 3;
-            Debug.DrawLine(transform.position, EndRaycast, Color.blue);
-        }
-        else
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 0.5f, layer);
-            if (hit.point == null && hit.collider.gameObject.tag != "Player")
+            if (Ground[i] != transform.parent.gameObject)
             {
-                Vector3 EndRaycast = transform.position + Vector3.down * 0.5f;
-                Debug.DrawLine(transform.position, EndRaycast , Color.yellow);
-                transform.parent.position += Vector3.down * 0.01f;
-            }
-            else
-            {
-                Debug.DrawLine(transform.position, hit.point, Color.red);
+                Nothing = false;
             }
         }
-        
+        if (Nothing)
+        {
+            transform.parent.position += Vector3.down * Speed * Time.deltaTime;
+        }
+            
     }
 }

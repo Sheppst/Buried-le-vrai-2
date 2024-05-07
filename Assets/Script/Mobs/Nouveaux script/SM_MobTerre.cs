@@ -228,7 +228,7 @@ public class SM_MobTerre : MonoBehaviour
         {
             Life -= 2;
         }
-        if (collision.gameObject.tag == "ForbDown" || collision.gameObject.tag == "ForbDown")
+        if (collision.gameObject.tag == "ForbDown")
         {
             if (Prog.CurrentState == ProcessState.AttackSmth)
             {
@@ -248,14 +248,6 @@ public class SM_MobTerre : MonoBehaviour
                 }
             }
         }
-        if (collision.gameObject.tag == "AuthUp")
-        {
-            if (ActualMovementUP)
-            {
-                DirAscend = Vector3.up;
-                Ascend = true;
-            }
-        }
         if (collision.gameObject.tag == "AuthDown")
         {
             if (ActualMovementUP)
@@ -268,7 +260,7 @@ public class SM_MobTerre : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "ForbDown" || collision.gameObject.tag == "ForbDown")
+        if (collision.gameObject.tag == "ForbDown")
         {
             if (Prog.CurrentState == ProcessState.Moved)
             {
@@ -280,14 +272,6 @@ public class SM_MobTerre : MonoBehaviour
                 {
                     Right.transform.position = transform.position;
                 }
-            }
-        }
-        if (collision.gameObject.tag == "AuthUp")
-        {
-            if (!ActualMovementUP)
-            {
-                ActualMovementUP = true;
-                Ascend = false;
             }
         }
         if (collision.gameObject.tag == "AuthDown")
