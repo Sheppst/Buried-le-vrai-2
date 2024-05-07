@@ -271,7 +271,8 @@ GameObject:
   - component: {fileID: 282348875}
   - component: {fileID: 282348877}
   - component: {fileID: 282348876}
-  m_Layer: 7
+  - component: {fileID: 282348878}
+  m_Layer: 0
   m_Name: voidUP
   m_TagString: ForbUp
   m_Icon: {fileID: 0}
@@ -395,6 +396,33 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!50 &282348878
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282348874}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &284784370
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +434,8 @@ GameObject:
   - component: {fileID: 284784371}
   - component: {fileID: 284784373}
   - component: {fileID: 284784372}
-  m_Layer: 7
+  - component: {fileID: 284784374}
+  m_Layer: 0
   m_Name: EdgeDOWN
   m_TagString: AuthDown
   m_Icon: {fileID: 0}
@@ -550,6 +579,33 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!50 &284784374
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284784370}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &327799898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,7 +1679,8 @@ GameObject:
   - component: {fileID: 1301236660}
   - component: {fileID: 1301236662}
   - component: {fileID: 1301236661}
-  m_Layer: 7
+  - component: {fileID: 1301236663}
+  m_Layer: 0
   m_Name: EdgeUP
   m_TagString: AuthUp
   m_Icon: {fileID: 0}
@@ -1767,6 +1824,33 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!50 &1301236663
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301236659}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1306174751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1832,6 +1916,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1695695308678228473, guid: 86767bc8ab5ced1489d2295df5dc1b2a, type: 3}
+      propertyPath: AscendSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3414320116381842560, guid: 86767bc8ab5ced1489d2295df5dc1b2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.56
@@ -1892,7 +1980,8 @@ GameObject:
   - component: {fileID: 1550332891}
   - component: {fileID: 1550332893}
   - component: {fileID: 1550332892}
-  m_Layer: 7
+  - component: {fileID: 1550332894}
+  m_Layer: 0
   m_Name: voidDOWN
   m_TagString: ForbDown
   m_Icon: {fileID: 0}
@@ -2056,6 +2145,33 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!50 &1550332894
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550332890}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

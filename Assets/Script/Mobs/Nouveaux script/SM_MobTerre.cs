@@ -13,13 +13,17 @@ public class SM_MobTerre : MonoBehaviour
     [SerializeField] private GameObject Point;
     [SerializeField] private GameObject Ray;
     [SerializeField] float PatrolDistance;
+    [SerializeField] private float AscendSpeed;
     //static List<Transform> list;
     private float Life = 10;
     private Transform Player;
     private Transform Direction;
     public float speed;
     private bool Change = true;
+    private bool ActualMovementUP = true;
+    private bool Ascend;
     private Vector3 VecteurRotatGauche = new Vector3(0,0,180);
+    private Vector3 DirAscend;
     Process Prog;
     ProcessState CS;
     // Start is called before the first frame update
@@ -48,6 +52,10 @@ public class SM_MobTerre : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Ascend)
+        {
+            transform.position += DirAscend * AscendSpeed * Time.deltaTime;
+        }
         Player = GameObject.Find("Player").GetComponent<Transform>(); // A update en fonction du nom de joueur
         ProcessState CSN = Prog.CurrentState;   //Pour le débug
         if (CS != CSN)
@@ -140,7 +148,7 @@ public class SM_MobTerre : MonoBehaviour
                 StartCoroutine(Wait());
                 Change = false;
             }
-            if (Prog.CurrentState == ProcessState.NoDetect && Ray.GetComponent<SM_Detect>().Hit()) // S'il il ne détecte plus sa cible
+            if (Prog.CurrentState == ProcessState.NoDetect && Ray.GetComponent<SM_Detect>().Hit()) // S'il il ne détecte plus sa cible et qu'il l'a redetecte
             {
                 Prog.MoveNext(Command.Detect); // Passe de l'état NoDectect à AttackSmth
             }
@@ -219,6 +227,76 @@ public class SM_MobTerre : MonoBehaviour
         if (collision.gameObject.tag == "ProjPlayer")
         {
             Life -= 2;
+        }
+        if (collision.gameObject.tag == "ForbDown" || collision.gameObject.tag == "ForbDown")
+        {
+            if (Prog.CurrentState == ProcessState.AttackSmth)
+            {
+                Prog.MoveNext(Command.End);
+            }
+            else if (Prog.CurrentState == ProcessState.Moved)
+            {
+                if (Direction == Right)
+                {
+                    Current = Left;
+                    Direction = Left;
+                }
+                else if (Direction == Left)
+                {
+                    Current = Right;
+                    Direction = Right;
+                }
+            }
+        }
+        if (collision.gameObject.tag == "AuthUp")
+        {
+            if (ActualMovementUP)
+            {
+                DirAscend = Vector3.up;
+                Ascend = true;
+            }
+        }
+        if (collision.gameObject.tag == "AuthDown")
+        {
+            if (ActualMovementUP)
+            {
+                ActualMovementUP = false;
+                Ascend = false;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "ForbDown" || collision.gameObject.tag == "ForbDown")
+        {
+            if (Prog.CurrentState == ProcessState.Moved)
+            {
+                if (Direction == Right)
+                {
+                    Left.transform.position = transform.position;
+                }
+                else if (Direction == Left)
+                {
+                    Right.transform.position = transform.position;
+                }
+            }
+        }
+        if (collision.gameObject.tag == "AuthUp")
+        {
+            if (!ActualMovementUP)
+            {
+                ActualMovementUP = true;
+                Ascend = false;
+            }
+        }
+        if (collision.gameObject.tag == "AuthDown")
+        {
+            if (!ActualMovementUP)
+            {
+                DirAscend = Vector3.down;
+                Ascend = true;
+            }
         }
     }
 }
