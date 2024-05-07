@@ -7,6 +7,7 @@ public class RayCastWallV : MonoBehaviour
     [SerializeField] LayerMask layer;
     [SerializeField] GameObject Detects;
     public bool Change;
+    private bool Nohit;
     // Update is called once per frame
     void Update()
     {
@@ -18,21 +19,38 @@ public class RayCastWallV : MonoBehaviour
         {
             transform.eulerAngles = Vector3.right * 180;
         }
-        if (!Change)
+        //if (!Change)
+        //{
+        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 1, layer);
+        //    if (hit.collider.gameObject.tag != "Player" && hit.point != null)
+        //    {
+        //        Detects.GetComponent<RayCastRooffed>().Change = true;
+        //        Debug.DrawLine(transform.position, hit.point, Color.yellow);
+        //        transform.parent.position += Vector3.down * 0.01f;
+        //    }
+        //    else
+        //    {
+        //        Detects.GetComponent<RayCastRooffed>().Change = false;
+        //        Vector3 EndRaycast = transform.position + Vector3.left;
+        //        Debug.DrawLine(transform.position, EndRaycast, Color.red);
+        //    }
+        //}
+        Nohit = true;
+        Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, .1f,layer);
+        bool ascend = false;
+        for (int i = 0; i < hit.Length; i++)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 1, layer);
-            if (hit.point != null && hit.collider.gameObject.tag != "Player")
+
+            if ( hit.Length <= 1 && !ascend)
             {
-                Detects.GetComponent<RayCastRooffed>().Change = true;
-                Debug.DrawLine(transform.position, hit.point, Color.yellow);
+                break;
+            }
+            if (hit[i].tag != "Player")
+            {
+                ascend = true;
                 transform.parent.position += Vector3.down * 0.01f;
             }
-            else
-            {
-                Detects.GetComponent<RayCastRooffed>().Change = false;
-                Vector3 EndRaycast = transform.position + Vector3.left;
-                Debug.DrawLine(transform.position, EndRaycast, Color.red);
-            }
+            Nohit = false;
         }
     }
 }
