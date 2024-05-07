@@ -20,10 +20,9 @@ TagManager:
   - MovingPlatform
   - EndElevator
   - ' closedoor'
-  - ForbUp
   - ForbDown
-  - AuthDown
-  - AuthUp
+  - StopDownUp
+  - DetectCollid
   layers:
   - Default
   - TransparentFX

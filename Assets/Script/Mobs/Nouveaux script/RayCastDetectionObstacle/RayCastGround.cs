@@ -7,6 +7,7 @@ public class RayCastGround : MonoBehaviour
     [SerializeField] LayerMask layer;
     [SerializeField] float Speed;
     private bool Nothing;
+    public bool Descend;
     // Update is called once per frame
     void Update()
     {
@@ -21,8 +22,12 @@ public class RayCastGround : MonoBehaviour
         }
         if (Nothing)
         {
+            Descend = true;
+        }
+        if (Descend)
+        {
             transform.parent.position += Vector3.down * Speed * Time.deltaTime;
         }
-            
+
     }
 }

@@ -248,13 +248,19 @@ public class SM_MobTerre : MonoBehaviour
                 }
             }
         }
-        if (collision.gameObject.tag == "AuthDown")
+        if (collision.gameObject.tag == "StopDownUp")
         {
-            if (ActualMovementUP)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                ActualMovementUP = false;
-                Ascend = false;
+                if (transform.GetChild(i).tag == "DetectCollid")
+                {
+                    transform.GetChild(i).GetComponent<RayCastGround>().Descend = false;
+                }
             }
+        }
+        if (collision.gameObject.tag == "Ground")
+        {
+            transform.position += Vector3.up * AscendSpeed * Time.deltaTime;
         }
     }
 
@@ -274,13 +280,12 @@ public class SM_MobTerre : MonoBehaviour
                 }
             }
         }
-        if (collision.gameObject.tag == "AuthDown")
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
         {
-            if (!ActualMovementUP)
-            {
-                DirAscend = Vector3.down;
-                Ascend = true;
-            }
+            transform.position += Vector3.up * AscendSpeed * Time.deltaTime;
         }
     }
 }
