@@ -20,6 +20,10 @@ TagManager:
   - MovingPlatform
   - EndElevator
   - ' closedoor'
+  - ForbUp
+  - ForbDown
+  - AuthDown
+  - AuthUp
   layers:
   - Default
   - TransparentFX
@@ -28,7 +32,7 @@ TagManager:
   - Water
   - UI
   - GroundWallRoof
-  - 
+  - AscendDescend
   - 
   - 
   - 
