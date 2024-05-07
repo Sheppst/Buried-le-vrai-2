@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
-
+	Mana Mana;
 	private float Life;
 	public CharacterController2D controller;
 	public Animator animator;
@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour {
     private void Awake()
     {
         dash = false;
+	
     }
 
 	// Update is called once per frame
@@ -61,6 +62,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		if (Input.GetKeyDown(KeyCode.LeftShift) && YesDash)
 		{
+			
 			dash = true;
 			YesDash = false;
 			StartCoroutine(WaitDash());

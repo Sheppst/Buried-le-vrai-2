@@ -10,41 +10,45 @@ public class ManaBar : MonoBehaviour
     {
         barImage = transform.Find("Bar").GetComponent<Image>();
         mana = new Mana();
+        
     }
 
     private void Update()
     {
-        mana.Update();  
-    }
-    public class Mana
-    {
+        mana.Update();
+        barImage.fillAmount = mana.ManaNormalized();
         
-        private float manaPool;
-        private const float maxMana = 100f;
-        private float manaRegen;
+    }
+      
+}
+public class Mana : MonoBehaviour
+{
 
-        public Mana()
-        {
-            manaPool = 0f;
-            manaRegen = 30f;
-        }
+    private float manaPool;
+    private const float maxMana = 100f;
+    private float manaRegen;
 
-       public void Update()
-        {
-            manaPool += manaRegen * Time.deltaTime;
-        }
-        public void SpendMana(int amount)
-        {
-            if (manaPool>= amount)
-            {
-                manaPool -= amount;
-            }
-        }
+    public Mana()
+    {
+        manaPool = 0f;
+        manaRegen = 30f;
+    }
 
-        public float ManaNormalized()
+    public void Update()
+    {
+        manaPool += manaRegen * Time.deltaTime;
+        manaPool = Mathf.Clamp(manaPool, 0f, maxMana);
+    }
+    public void SpendMana(int amount)
+    {
+        if (manaPool >= amount)
         {
-            return manaPool / maxMana;
+            manaPool -= amount;
         }
     }
-    
+
+    public float ManaNormalized()
+    {
+        return manaPool / maxMana;
+    }
 }
