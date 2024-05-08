@@ -228,37 +228,38 @@ public class SM_MobTerre : MonoBehaviour
         {
             Life -= 2;
         }
-        if (collision.gameObject.tag == "ForbDown")
+        if (collision.gameObject.tag == "ForbDown") // Si le monstre rentre en contact avec un tile de collision l'interdisant de s'aventurer plus loin
         {
-            if (Prog.CurrentState == ProcessState.AttackSmth)
+            if (Prog.CurrentState == ProcessState.AttackSmth) // S'il attaque arrête l'état 
             {
-                Prog.MoveNext(Command.End);
+                Prog.MoveNext(Command.End); // Transition de AttackSmth -> NoDetect
             }
-            else if (Prog.CurrentState == ProcessState.Moved)
+            else if (Prog.CurrentState == ProcessState.Moved) // S'il se déplace change sa direction
             {
-                if (Direction == Right)
+                if (Direction == Right) // Si la direction actuel est à droite change le Current et la Direction à Gauche
                 {
                     Current = Left;
                     Direction = Left;
                 }
-                else if (Direction == Left)
+                else if (Direction == Left) // Vice-Versa
                 {
                     Current = Right;
                     Direction = Right;
                 }
             }
         }
-        if (collision.gameObject.tag == "StopDownUp")
+        if (collision.gameObject.tag == "StopDownUp") // Si le monstre descend un bloc l'arrête
         {
-            for (int i = 0; i < transform.childCount; i++)
+            for (int i = 0; i < transform.childCount; i++) // Sur le monstre il y a des enfants qui se détache de temps à autre donc l'enfant que je recherche n'est pas statique
+                                                           // Il alterne de la 4 ème place à la 2scd place et peut être à la première place
             {
-                if (transform.GetChild(i).tag == "DetectCollid")
+                if (transform.GetChild(i).tag == "DetectCollid") // Trouve l'enfant grâce à un tag spécial
                 {
                     transform.GetChild(i).GetComponent<RayCastGround>().Descend = false;
                 }
             }
         }
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground") // Si le monstre rentre en contact avec l'environnement, le fait monter
         {
             transform.position += Vector3.up * AscendSpeed * Time.deltaTime;
         }
@@ -266,9 +267,9 @@ public class SM_MobTerre : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "ForbDown")
+        if (collision.gameObject.tag == "ForbDown") //S'il quitte la tile d'interdiction
         {
-            if (Prog.CurrentState == ProcessState.Moved)
+            if (Prog.CurrentState == ProcessState.Moved) // Si l'état actuelle est la patrouille, réinitialise les points de rencontres 
             {
                 if (Direction == Right)
                 {
@@ -283,7 +284,7 @@ public class SM_MobTerre : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground") // Tant qu'il reste en contact avec l'environnement le fait monter
         {
             transform.position += Vector3.up * AscendSpeed * Time.deltaTime;
         }

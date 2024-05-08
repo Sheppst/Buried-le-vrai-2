@@ -14,6 +14,7 @@ public class SM_MobVolantDistance : MonoBehaviour
     [SerializeField] private GameObject AttackObject;
     [SerializeField] private float speed;
     [SerializeField] private float speedProj;
+    [SerializeField] private float AscendSpeed;
     private float Life = 10;
     private float radius = 4.5f;
     private bool CoDec = true;
@@ -121,12 +122,12 @@ public class SM_MobVolantDistance : MonoBehaviour
                 if (Current == Left) // Si l'objectif étais à gauche à effectue une transition sur la droite
                 {
                     Current = Right;
-                    transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1f, transform.localScale.y, transform.localScale.z);
+                    //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1f, transform.localScale.y, transform.localScale.z);
                 }
                 else if (Current == Right) // Si l'objectif étais à droite à effectue une transition sur la gauche
                 {
                     Current = Left;
-                    transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                    //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 }
                 Return = false; //Ferme la condition pour ne l'effectuer qu'une seule fois 
             }
@@ -223,6 +224,14 @@ public class SM_MobVolantDistance : MonoBehaviour
                                             // AttackSmth -> NoDetect
             }
         }
+        if (transform.position.x > Current.position.x) // Si le Mob se trouve à droite de sa cible se retourne vers elle
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else if (transform.position.x < Current.position.x) // Idem pour la gauche
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1, transform.localScale.y, transform.localScale.z);
+        }
 
     }
     private IEnumerator Detected()
@@ -255,6 +264,63 @@ public class SM_MobVolantDistance : MonoBehaviour
         {
             Life -= 2;
             ReceiveDamage();
+        }
+        if (collision.gameObject.tag == "ForbDown") // Si le monstre rentre en contact avec un tile de collision l'interdisant de s'aventurer plus loin
+        {
+            if (Prog.CurrentState == ProcessState.AttackSmth) // S'il attaque arrête l'état 
+            {
+                Prog.MoveNext(Command.End); // Transition de AttackSmth -> NoDetect
+            }
+            else if (Prog.CurrentState == ProcessState.Moved) // S'il se déplace change sa direction
+            {
+                if (Current == Right) // Si la direction actuel est à droite change le Current et la Direction à Gauche
+                {
+                    Current = Left;
+                }
+                else if (Current == Left) // Vice-Versa
+                {
+                    Current = Right;
+                }
+            }
+        }
+        if (collision.gameObject.tag == "StopDownUp") // Si le monstre descend un bloc l'arrête
+        {
+            for (int i = 0; i < transform.childCount; i++) // Sur le monstre il y a des enfants qui se détache de temps à autre donc l'enfant que je recherche n'est pas statique
+                                                           // Il alterne de la 4 ème place à la 2scd place et peut être à la première place
+            {
+                if (transform.GetChild(i).tag == "DetectCollid") // Trouve l'enfant grâce à un tag spécial
+                {
+                    transform.GetChild(i).GetComponent<RayCastWallV>().Descend = false;
+                }
+            }
+        }
+        if (collision.gameObject.tag == "Ground") // Si le monstre rentre en contact avec l'environnement, le fait descendre
+        {
+            transform.position += Vector3.down * AscendSpeed * Time.deltaTime;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "ForbDown") //S'il quitte la tile d'interdiction
+        {
+            if (Prog.CurrentState == ProcessState.Moved) // Si l'état actuelle est la patrouille, réinitialise les points de rencontres 
+            {
+                if (Current == Right)
+                {
+                    Left.transform.position = transform.position;
+                }
+                else if (Current == Left)
+                {
+                    Right.transform.position = transform.position;
+                }
+            }
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ground") // Tant qu'il reste en contact avec l'environnement le fait descendre
+        {
+            transform.position += Vector3.down * AscendSpeed * Time.deltaTime;
         }
     }
     public void ReceiveDamage()
