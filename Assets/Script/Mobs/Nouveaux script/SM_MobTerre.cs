@@ -99,8 +99,8 @@ public class SM_MobTerre : MonoBehaviour
         if (Prog.CurrentState == ProcessState.Inactive) // S'il reprend sa routine 
         {
             StopAllCoroutines(); // Précaution pour éviter instabilité
-            //Right.position = new Vector3(2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob // Désactiver dans le cadre de la milestone
-            //Left.position = new Vector3(-2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob // Désactiver dans le cadre de la milestone
+            Right.position = new Vector3(2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob // Désactiver dans le cadre de la milestone
+            Left.position = new Vector3(-2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob // Désactiver dans le cadre de la milestone
             Point.transform.position = transform.position; // Idem
             Point.transform.parent = Mob; // Idem
             Change = true;
