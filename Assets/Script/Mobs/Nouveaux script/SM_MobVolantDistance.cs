@@ -303,9 +303,29 @@ public class SM_MobVolantDistance : MonoBehaviour
                 }
             }
         }
-        if (collision.gameObject.tag == "Ground" && !Act) // Si le monstre rentre en contact avec l'environnement, le fait descendre
+        if (collision.gameObject.tag == "Ground" && !Act && Prog.CurrentState != ProcessState.AttackSmth && Prog.CurrentState != ProcessState.DetectSmth) // Si le monstre rentre en contact avec l'environnement, le fait descendre
         {
             transform.position += Vector3.down * AscendSpeed * Time.deltaTime;
+        }
+    }
+    public bool CurrStat(string CS)
+    {
+        ProcessState cs = ProcessState.Inactive;
+        if (CS == "DetectStmh")
+        {
+            cs = ProcessState.DetectSmth;
+        }
+        if (CS == "AttackStmh")
+        {
+            cs = ProcessState.AttackSmth;
+        }
+        if (cs == Prog.CurrentState)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -327,7 +347,7 @@ public class SM_MobVolantDistance : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground" && !Act) // Tant qu'il reste en contact avec l'environnement le fait descendre
+        if (collision.gameObject.tag == "Ground" && !Act && Prog.CurrentState != ProcessState.AttackSmth && Prog.CurrentState != ProcessState.DetectSmth) // Tant qu'il reste en contact avec l'environnement le fait descendre
         {
             transform.position += Vector3.down * AscendSpeed * Time.deltaTime;
         }

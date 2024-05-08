@@ -24,7 +24,7 @@ public class RayCastWallV : MonoBehaviour
         {
             Descend = true;
         }
-        if (Descend)
+        if (Descend && transform.parent.GetComponent<SM_MobVolantDistance>().CurrStat("DetectStmh") && transform.parent.GetComponent<SM_MobVolantDistance>().CurrStat("AttackStmh"))
         {
             transform.parent.position += Vector3.up * Speed * Time.deltaTime;
         }
