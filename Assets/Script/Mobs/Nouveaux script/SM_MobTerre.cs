@@ -20,7 +20,7 @@ public class SM_MobTerre : MonoBehaviour
     private Transform Direction;
     public float speed;
     private bool Change = true;
-    private bool ActualMovementUP = true;
+    private bool Act;
     private bool Ascend;
     private Vector3 VecteurRotatGauche = new Vector3(0,0,180);
     private Vector3 DirAscend;
@@ -52,6 +52,13 @@ public class SM_MobTerre : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).tag == "DetectCollid") // Trouve l'enfant grâce à un tag spécial
+            {
+                Act = transform.GetChild(i).GetComponent<RayCastGround>().Descend;
+            }
+        }
         if (Ascend)
         {
             transform.position += DirAscend * AscendSpeed * Time.deltaTime;
@@ -259,7 +266,7 @@ public class SM_MobTerre : MonoBehaviour
                 }
             }
         }
-        if (collision.gameObject.tag == "Ground") // Si le monstre rentre en contact avec l'environnement, le fait monter
+        if (collision.gameObject.tag == "Ground" && !Act) // Si le monstre rentre en contact avec l'environnement, le fait monter
         {
             transform.position += Vector3.up * AscendSpeed * Time.deltaTime;
         }
@@ -284,7 +291,7 @@ public class SM_MobTerre : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground") // Tant qu'il reste en contact avec l'environnement le fait monter
+        if (collision.gameObject.tag == "Ground" && !Act) // Tant qu'il reste en contact avec l'environnement le fait monter
         {
             transform.position += Vector3.up * AscendSpeed * Time.deltaTime;
         }

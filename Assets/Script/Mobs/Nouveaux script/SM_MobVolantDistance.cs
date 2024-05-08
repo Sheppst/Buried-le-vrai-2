@@ -23,6 +23,7 @@ public class SM_MobVolantDistance : MonoBehaviour
     private bool Return = true;
     private bool dmg = true;
     private bool cold = true;
+    private bool Act;
     private Vector3 HitPlayer;
     private string HitPlayerTag;
     ProcessState CS;
@@ -43,6 +44,14 @@ public class SM_MobVolantDistance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).tag == "DetectCollid") // Trouve l'enfant grâce à un tag spécial
+            {
+                Act = transform.GetChild(i).GetComponent<RayCastWallV>().Descend;
+            }
+        }
         //if (Prog.CurrentState == ProcessState.Damaged) //Pour le débug
         //{
         //    print(D.ToString());
@@ -294,7 +303,7 @@ public class SM_MobVolantDistance : MonoBehaviour
                 }
             }
         }
-        if (collision.gameObject.tag == "Ground") // Si le monstre rentre en contact avec l'environnement, le fait descendre
+        if (collision.gameObject.tag == "Ground" && !Act) // Si le monstre rentre en contact avec l'environnement, le fait descendre
         {
             transform.position += Vector3.down * AscendSpeed * Time.deltaTime;
         }
@@ -318,7 +327,7 @@ public class SM_MobVolantDistance : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground") // Tant qu'il reste en contact avec l'environnement le fait descendre
+        if (collision.gameObject.tag == "Ground" && !Act) // Tant qu'il reste en contact avec l'environnement le fait descendre
         {
             transform.position += Vector3.down * AscendSpeed * Time.deltaTime;
         }
