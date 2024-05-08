@@ -99,8 +99,8 @@ public class SM_MobTerre : MonoBehaviour
         if (Prog.CurrentState == ProcessState.Inactive) // S'il reprend sa routine 
         {
             StopAllCoroutines(); // Précaution pour éviter instabilité
-            Right.position = new Vector3(2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob // Désactiver dans le cadre de la milestone
-            Left.position = new Vector3(-2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob // Désactiver dans le cadre de la milestone
+            //Right.position = new Vector3(2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob // Désactiver dans le cadre de la milestone
+            //Left.position = new Vector3(-2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob // Désactiver dans le cadre de la milestone
             Point.transform.position = transform.position; // Idem
             Point.transform.parent = Mob; // Idem
             Change = true;
@@ -220,6 +220,23 @@ public class SM_MobTerre : MonoBehaviour
                                         // Damaged -> AttackSmth = ne se fait pas pour l'instant vu que damaged pas fait ,
                                         // PROBLEME : la condition n'est jamais utilisé 
     }
+
+    public bool CurrStat(string CS )
+    {
+        ProcessState cs = ProcessState.Inactive;
+        if (CS == "DetectStmh")
+        {
+            cs = ProcessState.DetectSmth;
+        }
+        if (cs == Prog.CurrentState)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player" && Prog.CurrentState == ProcessState.AttackSmth) // S'il rentre en contact avec le joueur procède à un changement d'état
@@ -266,7 +283,7 @@ public class SM_MobTerre : MonoBehaviour
                 }
             }
         }
-        if (collision.gameObject.tag == "Ground" && !Act) // Si le monstre rentre en contact avec l'environnement, le fait monter
+        if (collision.gameObject.tag == "Ground" && !Act && Prog.CurrentState != ProcessState.DetectSmth) // Si le monstre rentre en contact avec l'environnement, le fait monter
         {
             transform.position += Vector3.up * AscendSpeed * Time.deltaTime;
         }

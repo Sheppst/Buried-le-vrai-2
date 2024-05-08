@@ -21,12 +21,20 @@ public class SM_Detect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 10f, layer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 10f);
 
         if (hit.collider != null)
         {
-            Debug.DrawRay(transform.position, transform.right * hit.distance, Color.yellow);
-            Player = true;
+            if (hit.collider.CompareTag("Player"))
+            {
+                Debug.DrawRay(transform.position, transform.right * hit.distance, Color.yellow);
+                Player = true;
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, transform.right * hit.distance, Color.red);
+                Player = false;
+            }
         }
         else
         {

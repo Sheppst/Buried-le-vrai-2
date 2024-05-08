@@ -24,7 +24,7 @@ public class RayCastGround : MonoBehaviour
         {
             Descend = true;
         }
-        if (Descend)
+        if (Descend && transform.parent.GetComponent<SM_MobTerre>().CurrStat("DetectStmh"))
         {
             transform.parent.position += Vector3.down * Speed * Time.deltaTime;
         }
