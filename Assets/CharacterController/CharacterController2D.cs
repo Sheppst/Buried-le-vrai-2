@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
 {
-	
+	private Mana mana;
+	[SerializeField] private int doubleJumpCost;
 	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
@@ -29,6 +30,7 @@ public class CharacterController2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		mana = GetComponent<Mana>();
 	}
 
 	private void FixedUpdate()
@@ -138,10 +140,11 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce)); // Confère une vélocité au joueur pour aller vers le haut
 			m_DoubleJump = true;
 		}
-		else if (m_DoubleJump && jump) // Permet au joueur si les conditons sont rassemblé à sauté une deuxième fois 
+		else if (m_DoubleJump && jump && mana.manaPool >= doubleJumpCost) // Permet au joueur si les conditons sont rassemblé à sauté une deuxième fois 
 		{
+			mana.SpendMana(doubleJumpCost);
 			StopAllCoroutines();
-            StartCoroutine(AnimJump());
+            StartCoroutine(AnimJump());			
             m_PlayerAnimJump.Play("Player_Jump", 0, 0f); // Réinitialise l'animation de saut 
 			m_DoubleJump = false;
 			m_Rigidbody2D.velocity = Vector3.zero;

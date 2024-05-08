@@ -503,10 +503,10 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: M
-    descriptiveName: M
+    descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: m
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

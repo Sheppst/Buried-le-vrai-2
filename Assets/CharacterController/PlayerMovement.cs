@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
-	Mana Mana;
+	private Mana mana;
 	private float Life;
 	public CharacterController2D controller;
 	public Animator animator;
@@ -18,8 +18,9 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField] private float dashspeed;
 	private float dashPower = 0f;
 
-
-    private bool YesDash = true;
+	[SerializeField] private int dashCost = 15;
+	[SerializeField] private int DoubleJumpCost = 15;
+	private bool YesDash = true;
 
 
     public float runSpeed = 40f;
@@ -38,8 +39,8 @@ public class PlayerMovement : MonoBehaviour {
     private void Awake()
     {
         dash = false;
-	
-    }
+		mana = GetComponent<Mana>();
+	}
 
 	// Update is called once per frame
 	void Update()
@@ -60,9 +61,9 @@ public class PlayerMovement : MonoBehaviour {
 			jump = true;
 			animator.SetBool("IsJumping", true);
 		}
-		if (Input.GetKeyDown(KeyCode.LeftShift) && YesDash)
+		if (Input.GetKeyDown(KeyCode.LeftShift) && YesDash && mana.manaPool >= dashCost)
 		{
-			
+			mana.SpendMana(dashCost);
 			dash = true;
 			YesDash = false;
 			StartCoroutine(WaitDash());

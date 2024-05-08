@@ -9,8 +9,9 @@ public class ManaBar : MonoBehaviour
     void Awake()
     {
         barImage = transform.Find("Bar").GetComponent<Image>();
-        mana = new Mana();
-        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        mana = player.GetComponent<Mana>();
+
     }
 
     private void Update()
@@ -21,34 +22,4 @@ public class ManaBar : MonoBehaviour
     }
       
 }
-public class Mana : MonoBehaviour
-{
 
-    private float manaPool;
-    private const float maxMana = 100f;
-    private float manaRegen;
-
-    public Mana()
-    {
-        manaPool = 0f;
-        manaRegen = 30f;
-    }
-
-    public void Update()
-    {
-        manaPool += manaRegen * Time.deltaTime;
-        manaPool = Mathf.Clamp(manaPool, 0f, maxMana);
-    }
-    public void SpendMana(int amount)
-    {
-        if (manaPool >= amount)
-        {
-            manaPool -= amount;
-        }
-    }
-
-    public float ManaNormalized()
-    {
-        return manaPool / maxMana;
-    }
-}

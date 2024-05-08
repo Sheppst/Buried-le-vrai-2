@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    private Mana mana;
+    [SerializeField] private int bulletCost;
     [SerializeField] private GameObject Proj;
     [SerializeField] private Transform FirePos;
     [SerializeField] private Sprite Balle;
     [SerializeField] private Animator anim;
     [SerializeField] private float SpeedBullet = 20;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        mana = GetComponent<Mana>();
     }
 
     // Update is called once per frame
@@ -35,9 +37,9 @@ public class Gun : MonoBehaviour
                 transform.localScale = NewSight;
             }
         }
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0) && mana.manaPool >= bulletCost) 
         {
-            
+            mana.SpendMana(bulletCost);
             anim.SetTrigger("IsShootting");
             GameObject projectile = Proj;
             projectile.transform.localScale = Vector3.one * 0.042198f;
