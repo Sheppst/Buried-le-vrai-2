@@ -11,8 +11,10 @@ public class Phase01 : MonoBehaviour
     [SerializeField] private LayerMask layer;
     [SerializeField] private GameObject Ray;
     [SerializeField] private GameObject Block;
+    [SerializeField] private float ChargeStrength;
     private GameObject Bl;
     private Vector3 Newpos;
+    private Vector2 Vec2Pos;
     private Rigidbody2D rigid;
     private float Life;
     private float speed = 5f;
@@ -25,6 +27,7 @@ public class Phase01 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Vec2Pos = transform.position;
         Bl = null;
         Life = transform.parent.gameObject.GetComponent<AllMovement>().Life;
         colid = GetComponent<PolygonCollider2D>();
@@ -55,6 +58,7 @@ public class Phase01 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vec2Pos = transform.position;
         Life = transform.parent.gameObject.GetComponent<AllMovement>().Life;
         ProcessState CSN = Prog.CurrentState;
         if (CS != CSN)
@@ -185,14 +189,17 @@ public class Phase01 : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.Charge) // Si durant la phase de Charge ...
         {
+            Vector2 YProp = new Vector2(collision.transform.position.x, collision.transform.position.y) * Vector2.one * 500;
+            Vector2 CollidKnock = (YProp - Vec2Pos).normalized;
+            if (collision.tag == "Player")
+            {
+                //GameObject.Find("Player").GetComponent<PlayerMovement>().ChargeByBoss();
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(CollidKnock * ChargeStrength);
+            }
             if (collision != null ) // /... Le boss rencontre n'importe quel obstacle, alors ...
             {
                 rigid.velocity = Vector2.zero; // ... Le boss arrête de bouger
                 Prog.MoveNext(Command.CutPhase); // ... Effectue une transition d'état de Charge -> Inactive
-            }
-            if (collision.tag == "Player")
-            {
-                GameObject.Find("Player").GetComponent<PlayerMovement>().ChargeByBoss();
             }
         }
         else if (collision.tag == "BossObject" && Prog.CurrentState == ProcessState.Bited)
