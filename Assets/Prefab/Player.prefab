@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 1846598769511320904}
   - component: {fileID: 6147885481138543937}
   - component: {fileID: 3596417167674377402}
+  - component: {fileID: 5232332425208087738}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -135,7 +136,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: -2.52, z: 0}
-  m_LocalScale: {x: 1.6667411, y: 1.0709734, z: 1.6667411}
+  m_LocalScale: {x: 1.7539409, y: 1.3285486, z: 1.7224205}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8160917873960284722}
@@ -167,7 +168,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -282,7 +283,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.022089995, y: -0.019716382}
+  m_Offset: {x: -0.022089988, y: 0.02096346}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -293,7 +294,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4619698, y: 1.2461374}
+  m_Size: {x: 0.4619698, y: 1.1647778}
   m_EdgeRadius: 0
 --- !u!114 &5094202164152442199
 MonoBehaviour:
@@ -389,7 +390,7 @@ DistanceJoint2D:
   m_BreakTorque: Infinity
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: -0.000000269898, y: 0.0000013503086}
+  m_Anchor: {x: -2.2989964, y: -0.95672405}
   m_ConnectedAnchor: {x: 16.43, y: 65.31}
   m_AutoConfigureDistance: 0
   m_Distance: 2
@@ -440,6 +441,21 @@ MonoBehaviour:
   manaPool: 0
   manaRegen: 0
   regenDelay: 1
+--- !u!114 &5232332425208087738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647164039615587927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8069ca94423454f97e7cf4d28e3be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaPotAmount: 0
+  maxManaPot: 0
+  drinkMana: 0
 --- !u!1 &693305662815489631
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +481,7 @@ Transform:
   m_GameObject: {fileID: 693305662815489631}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.012, y: -0.621, z: 0.1679072}
+  m_LocalPosition: {x: -0.012, y: -0.666, z: 0.1679072}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -6,8 +6,8 @@ public class Mana : MonoBehaviour
 {
 
     public float manaPool;
-    private const float maxMana = 100f;
-    [SerializeField] private float manaRegen;
+    [HideInInspector] public const float maxMana = 100f;
+    [SerializeField] public float manaRegen;
     public bool regenDelay = true;
 
     public Mana()
@@ -20,7 +20,7 @@ public class Mana : MonoBehaviour
     {
         if (regenDelay == true)
         {
-            manaRegen = 5f;
+            manaRegen = 24f;
             manaPool += manaRegen * Time.deltaTime;
             manaPool = Mathf.Clamp(manaPool, 0f, maxMana);
         }else
@@ -39,10 +39,7 @@ public class Mana : MonoBehaviour
 
     }
     public void Update()
-    {
-        {
-            
-        }
+    {    
         RegenerateMana();
     }
     public void SpendMana(int manaCost)

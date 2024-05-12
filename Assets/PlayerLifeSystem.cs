@@ -6,33 +6,37 @@ using UnityEngine.SceneManagement;
 public class PlayerLifeSystem : MonoBehaviour
 {
     
-   [SerializeField] public float Life = 100;
+    public float lifePool = 100;
+    [HideInInspector] public const float maxLife = 100f;
+    
 
     void Start()
     {
         
     }
-
-   
-    void Update()
+    public void Update()
     {
-        if (Life <= 0f)
+        if (lifePool <= 0f)
         {
             SceneManager.LoadScene(0);
         }
+    }
+    public float LifeNormalized()
+    {
+        return lifePool / maxLife;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Mob")
         {
-            Life -= 5;
+            lifePool -= 5;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Mob" || collision.gameObject.tag == "pics")
         {
-            Life -= 5;
+            lifePool -= 5;
         }
 
     }

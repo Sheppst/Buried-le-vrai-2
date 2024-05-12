@@ -8,7 +8,7 @@ public class ManaBar : MonoBehaviour
     private Mana mana;
     void Awake()
     {
-        barImage = transform.Find("Bar").GetComponent<Image>();
+        barImage = transform.Find("ManaBar").GetComponent<Image>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         mana = player.GetComponent<Mana>();
 

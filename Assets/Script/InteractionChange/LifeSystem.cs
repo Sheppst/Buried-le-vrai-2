@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LifeSystem : MonoBehaviour
+public class LifeBar : MonoBehaviour
 {
+    private PlayerLifeSystem playerLifeSystem;
     [SerializeField] private GameObject player;
-    [SerializeField] private Slider slid;
-    private float LifePlayer;
-    private float maxLife;
+    [SerializeField] private Image barImage;
+    
     // Start is called before the first frame update
     void Start()
     {
-        maxLife = player.GetComponent<PlayerLifeSystem>().Life;
+        barImage = transform.Find("LifeBar").GetComponent<Image>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerLifeSystem = player.GetComponent<PlayerLifeSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        LifePlayer = player.GetComponent<PlayerLifeSystem>().Life;
-        slid.value = LifePlayer / maxLife;
+        playerLifeSystem.Update();
+        barImage.fillAmount = playerLifeSystem.LifeNormalized();
     }
 }
