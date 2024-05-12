@@ -7,21 +7,21 @@ using TMPro;
 public class Inventory : MonoBehaviour
 {
     [Header("Mana")]
-    public int manaPotAmount;
+    private int manaPotAmount;
     [HideInInspector] public int maxManaPot = 5;
     private bool drinkMana;
-    public bool addManaPot;
+    private bool addManaPot;
     private Mana mana;
-    public TextMeshProUGUI manaTextMeshPro;
+    [SerializeField] private TextMeshProUGUI manaTextMeshPro;
 
 
     [Header("Life")]
-    public int lifePotAmount;
+    private int lifePotAmount;
     [HideInInspector] public int maxLifePot = 5;
     private bool drinkLife;
-    public bool addLifePot;
+    private bool addLifePot;
     private PlayerLifeSystem playerLifeSystem;
-    public TextMeshProUGUI lifeTextMeshPro;
+    [SerializeField] private TextMeshProUGUI lifeTextMeshPro;
     
 
 
@@ -38,11 +38,11 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         //Input
-        if (Input.GetKeyDown(KeyCode.E) && manaPotAmount > 0)
+        if (Input.GetKeyDown(KeyCode.E) && manaPotAmount > 0 && mana.manaPool < 100)
         {
             drinkMana = true;
         }
-        if (Input.GetKeyDown(KeyCode.F) && lifePotAmount > 0)
+        if (Input.GetKeyDown(KeyCode.F) && lifePotAmount > 0 && playerLifeSystem.lifePool < 100)
         {
             drinkLife = true;
         }
