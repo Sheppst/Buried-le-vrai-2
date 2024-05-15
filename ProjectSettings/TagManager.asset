@@ -63,3 +63,6 @@ TagManager:
   - name: Player
     uniqueID: 561881177
     locked: 0
+  - name: Notaffectedbylight
+    uniqueID: 3895462727
+    locked: 0
