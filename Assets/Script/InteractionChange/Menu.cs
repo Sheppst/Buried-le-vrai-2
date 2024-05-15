@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private GameObject OptPanel;
     void Start()
     {
-        
+        OptPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,6 +27,10 @@ public class Menu : MonoBehaviour
     }
     public void Options()
     {
-
+        OptPanel.SetActive(true);
+    }
+    public void OptionOff()
+    {
+        OptPanel.SetActive(false);
     }
 }
