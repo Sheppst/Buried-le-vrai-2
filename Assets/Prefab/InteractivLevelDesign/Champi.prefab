@@ -870,7 +870,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4866,7 +4866,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.03, y: 14.01, z: 0}
-  m_LocalScale: {x: 1.7071084, y: 1.4814222, z: 1.4814222}
+  m_LocalScale: {x: 1.2247895, y: 1.2247895, z: 1.2247895}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3408134393594041972}
@@ -5049,8 +5049,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.014500022, y: 0.059599996, z: 0}
-    m_Extent: {x: 1.3018, y: 0.9178, z: 0}
+    m_Center: {x: 0.019249976, y: 0.055000007, z: 0}
+    m_Extent: {x: 1.2981501, y: 0.9085, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -5063,23 +5063,14 @@ MonoBehaviour:
   m_ShapePath:
   - {x: -0.7798087, y: -0.3538962, z: 0}
   - {x: 0.72297287, y: -0.3538962, z: 0}
-  - {x: 0.7208517, y: -0.23704612, z: 0}
   - {x: 0.817036, y: -0.24208416, z: 0}
   - {x: 0.8183058, y: 0.060037576, z: 0}
-  - {x: 0.7223986, y: 0.058412734, z: 0}
   - {x: 0.71816736, y: 0.15918113, z: 0}
-  - {x: 0.62225854, y: 0.15755565, z: 0}
   - {x: 0.62225854, y: 0.2566992, z: 0}
-  - {x: 0.52070624, y: 0.25669986, z: 0}
   - {x: 0.52211624, y: 0.36071858, z: 0}
-  - {x: 0.3239914, y: 0.35990745, z: 0}
   - {x: 0.3186267, y: 0.45820642, z: 0}
   - {x: -0.2901434, y: 0.46977213, z: 0}
-  - {x: -0.29345477, y: 0.36752117, z: 0}
   - {x: -0.46833536, y: 0.36752117, z: 0}
-  - {x: -0.47707933, y: 0.25668377, z: 0}
   - {x: -0.5820076, y: 0.2617218, z: 0}
-  - {x: -0.5820076, y: 0.15088442, z: 0}
   - {x: -0.6913078, y: 0.15088442, z: 0}
-  - {x: -0.6869358, y: 0.0601998, z: 0}
   - {x: -0.7831201, y: 0.0601998, z: 0}
