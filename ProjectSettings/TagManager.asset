@@ -24,6 +24,7 @@ TagManager:
   - StopDownUp
   - DetectCollid
   - DialogueManager
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
