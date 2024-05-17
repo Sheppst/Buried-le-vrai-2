@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 using TMPro;
 
@@ -10,18 +9,37 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public GameObject dialogueUI;
     public float textSpeed = 0.05f;
+
     private Queue<string> sentences;
     private int index;
     private string[] lines;
+    private PlayerInteract playerInteract;
+    private bool isDialogueActive = false; // Track whether a dialogue is active
 
     void Start()
     {
         sentences = new Queue<string>();
         dialogueUI.SetActive(false); // Ensure the dialogue UI is initially inactive
+
+        // Find the PlayerInteract script in the scene
+        playerInteract = FindObjectOfType<PlayerInteract>();
+        if (playerInteract == null)
+        {
+            Debug.LogError("PlayerInteract script not found in the scene.");
+        }
     }
 
     public void StartDialogue(NPC npc)
     {
+        if (isDialogueActive) return; // Prevent starting a new dialogue if one is active
+
+        isDialogueActive = true;
+
+        if (playerInteract != null)
+        {
+            playerInteract.SetInteractionMessageActive(false); // Disable interaction message
+        }
+
         dialogueUI.SetActive(true);
         nameText.text = npc.npcName;
         sentences.Clear();
@@ -93,6 +111,12 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         dialogueUI.SetActive(false);
+        isDialogueActive = false; // Reset dialogue active state
+
+        if (playerInteract != null)
+        {
+            playerInteract.SetInteractionMessageActive(true); // Re-enable interaction message
+        }
         Debug.Log("Dialogue ended.");
     }
 }
