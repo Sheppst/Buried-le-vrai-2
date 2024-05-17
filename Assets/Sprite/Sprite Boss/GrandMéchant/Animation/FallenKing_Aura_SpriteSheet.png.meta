@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -108,7 +108,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: FallenKing_Aura_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 186
+        height: 186
+      alignment: 9
+      pivot: {x: 0.518259, y: 0.39957526}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f2ab506a1bdf954bab5228ecbc90318
+      internalID: -957507441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_Aura_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 0
+        width: 186
+        height: 186
+      alignment: 9
+      pivot: {x: 0.5228237, y: 0.3995753}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65a538d62200bd54f97a23ef078f9e4d
+      internalID: -940942521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_Aura_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 0
+        width: 186
+        height: 186
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3995753}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bca3108371a4664cb2e472d7b99c78d
+      internalID: 940646179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_Aura_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 0
+        width: 186
+        height: 186
+      alignment: 9
+      pivot: {x: 0.53651804, y: 0.3995753}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31d17436ede5a3742bd7a8b4431af8ad
+      internalID: -1732798257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_Aura_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 0
+        width: 186
+        height: 186
+      alignment: 9
+      pivot: {x: 0.50912935, y: 0.39957526}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c988e71079a37b4cae3c070f7b2ffb6
+      internalID: 970448711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +224,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FallenKing_Aura_SpriteSheet_0: -957507441
+      FallenKing_Aura_SpriteSheet_1: -940942521
+      FallenKing_Aura_SpriteSheet_2: 940646179
+      FallenKing_Aura_SpriteSheet_3: -1732798257
+      FallenKing_Aura_SpriteSheet_4: 970448711
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
