@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PlayerInteraction : MonoBehaviour
+public class PlayerInteract : MonoBehaviour
 {
     public float interactionRange = 3f;
     public LayerMask npcLayer;
-    public TextMeshProUGUI interactionMessage; // Ensure this is assigned in the Inspector
+    public TextMeshProUGUI interactionMessage; // Reference to the interaction message UI element
     public Vector3 offset = new Vector3(0, 50, 0); // Offset for positioning the message
     private DialogueManager dialogueManager;
     private bool isPlayerNearby = false;
@@ -26,11 +26,6 @@ public class PlayerInteraction : MonoBehaviour
         else
         {
             Debug.LogError("DialogueManager not found. Make sure there is a DialogueManager in the scene with the correct tag.");
-        }
-
-        if (interactionMessage == null)
-        {
-            Debug.LogError("interactionMessage is not assigned. Please assign it in the Inspector.");
         }
 
         interactionMessage.gameObject.SetActive(false); // Ensure the message is initially hidden
@@ -100,13 +95,6 @@ public class PlayerInteraction : MonoBehaviour
 
     public void SetInteractionMessageActive(bool isActive)
     {
-        if (interactionMessage != null)
-        {
-            interactionMessage.gameObject.SetActive(isActive);
-        }
-        else
-        {
-            Debug.LogError("interactionMessage is not assigned.");
-        }
+        interactionMessage.gameObject.SetActive(isActive);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using TMPro;
 
@@ -12,19 +13,11 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     private int index;
     private string[] lines;
-    private PlayerInteraction playerInteraction; // Reference to PlayerInteraction
 
     void Start()
     {
         sentences = new Queue<string>();
         dialogueUI.SetActive(false); // Ensure the dialogue UI is initially inactive
-
-        // Find the PlayerInteraction script
-        playerInteraction = FindObjectOfType<PlayerInteraction>();
-        if (playerInteraction == null)
-        {
-            Debug.LogError("PlayerInteraction not found. Make sure there is a PlayerInteraction in the scene.");
-        }
     }
 
     public void StartDialogue(NPC npc)
@@ -43,12 +36,6 @@ public class DialogueManager : MonoBehaviour
 
         DisplayNextSentence();
         Debug.Log($"Started dialogue with {npc.npcName}");
-
-        // Disable the interaction message
-        if (playerInteraction != null)
-        {
-            playerInteraction.SetInteractionMessageActive(false);
-        }
     }
 
     void Update()
@@ -107,11 +94,5 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueUI.SetActive(false);
         Debug.Log("Dialogue ended.");
-
-        // Re-enable the interaction message
-        if (playerInteraction != null)
-        {
-            playerInteraction.SetInteractionMessageActive(true);
-        }
     }
 }
