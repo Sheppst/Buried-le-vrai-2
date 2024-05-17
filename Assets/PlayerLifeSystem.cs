@@ -85,7 +85,7 @@ public class PlayerLifeSystem : MonoBehaviour
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         float elapsedTime = 0f;
-        float blinkTime = 0.1f;
+        float blinkTime = 0.2f;
 
         while (elapsedTime < 1f)
         {
