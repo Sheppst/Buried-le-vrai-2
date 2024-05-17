@@ -23,6 +23,7 @@ TagManager:
   - ForbDown
   - StopDownUp
   - DetectCollid
+  - DialogueManager
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - UI
   - GroundWallRoof
   - AscendDescend
-  - 
+  - Npc
   - 
   - 
   - 
