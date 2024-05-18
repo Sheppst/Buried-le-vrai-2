@@ -28,6 +28,8 @@ TagManager:
   - Smash
   - Aura
   - Legs
+  - smash
+  - Body
   layers:
   - Default
   - TransparentFX
