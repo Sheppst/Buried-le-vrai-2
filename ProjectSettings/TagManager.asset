@@ -25,6 +25,9 @@ TagManager:
   - DetectCollid
   - DialogueManager
   - Checkpoint
+  - Smash
+  - Aura
+  - Legs
   layers:
   - Default
   - TransparentFX
