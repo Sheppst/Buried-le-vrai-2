@@ -1,0 +1,523 @@
+fileFormatVersion: 2
+guid: 6f08fb81698c069408621805048bf178
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 171.11111
+        height: 156
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 449dc086d46ecc54e95e01e5a6e94f18
+      internalID: -114132907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 0
+        width: 171.11111
+        height: 156
+      alignment: 9
+      pivot: {x: 0.51, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88d7fce3b0e8c584bb09f5e2e1d7c1c1
+      internalID: 67288466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 0
+        width: 171
+        height: 156
+      alignment: 9
+      pivot: {x: 0.52, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca24b9be08057654098becc1a3cd72a4
+      internalID: 2091387606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 0
+        width: 171.11111
+        height: 156
+      alignment: 9
+      pivot: {x: 0.53, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 472d14efc1179ec46bcbe02fc8e81378
+      internalID: 940886490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 0
+        width: 171.11111
+        height: 156
+      alignment: 9
+      pivot: {x: 0.54, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0adcdb11af807cd40a3a8f4e5f8e9110
+      internalID: 1903730943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 0
+        width: 171.11111
+        height: 156
+      alignment: 9
+      pivot: {x: 0.55, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba4ce91ebb1b99640877b3b43d1daeb1
+      internalID: 1165923815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 0
+        width: 171
+        height: 156
+      alignment: 9
+      pivot: {x: 0.56, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d991973813ab94abf4166b2ac23851
+      internalID: -1046073826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1213
+        y: 0
+        width: 171.11111
+        height: 156
+      alignment: 9
+      pivot: {x: 0.57, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 593f887a45c8eec46856b9775e70574f
+      internalID: 1444554430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 0
+        width: 171.11111
+        height: 156
+      alignment: 9
+      pivot: {x: 0.58, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b52fac011de1ace4eae39c66e10fc7dc
+      internalID: -139173658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1556
+        y: 0
+        width: 171
+        height: 156
+      alignment: 9
+      pivot: {x: 0.59, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5051003701ef4184f8c91e249927683d
+      internalID: 959286003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 1726
+        y: 0
+        width: 171.11111
+        height: 156
+      alignment: 9
+      pivot: {x: 0.6, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c54ce94b1ae8f39468e0607a29424b71
+      internalID: -352284175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 1898
+        y: 0
+        width: 171
+        height: 156
+      alignment: 9
+      pivot: {x: 0.61, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c9dc9d8a6cbf04b85eb966eb601b2c
+      internalID: -1507018972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 2069
+        y: 0
+        width: 171
+        height: 156
+      alignment: 9
+      pivot: {x: 0.62, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fcb9e15001f0b14ca66f64c49c21f5b
+      internalID: 1793622031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 2239
+        y: 0
+        width: 171.11111
+        height: 156
+      alignment: 9
+      pivot: {x: 0.63, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56803876615bfb24a835967704d5e5f3
+      internalID: 72642189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 2414
+        y: 0
+        width: 171
+        height: 156
+      alignment: 9
+      pivot: {x: 0.64, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 025031f71bdf88f42ab4f6fadc49e7a0
+      internalID: 2091597246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 2586
+        y: 0
+        width: 171
+        height: 156
+      alignment: 9
+      pivot: {x: 0.66, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ae54df39b0f8d4994804edbded15c8
+      internalID: 1329023833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 2752
+        y: 0
+        width: 171.11111
+        height: 156
+      alignment: 9
+      pivot: {x: 0.67, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 197fa0577acd55a449f6895d8dfe96b4
+      internalID: -1110223946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallenKing_smashAnim_SpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 2923
+        y: 0
+        width: 171
+        height: 156
+      alignment: 9
+      pivot: {x: 0.68, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa2ff9e31123c984a91c35a8e690f462
+      internalID: -2107421826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      FallenKing_smashAnim_SpriteSheet_0: -114132907
+      FallenKing_smashAnim_SpriteSheet_1: 67288466
+      FallenKing_smashAnim_SpriteSheet_10: -352284175
+      FallenKing_smashAnim_SpriteSheet_11: -1507018972
+      FallenKing_smashAnim_SpriteSheet_12: 1793622031
+      FallenKing_smashAnim_SpriteSheet_13: 72642189
+      FallenKing_smashAnim_SpriteSheet_14: 2091597246
+      FallenKing_smashAnim_SpriteSheet_15: 1329023833
+      FallenKing_smashAnim_SpriteSheet_16: -1110223946
+      FallenKing_smashAnim_SpriteSheet_17: -2107421826
+      FallenKing_smashAnim_SpriteSheet_2: 2091387606
+      FallenKing_smashAnim_SpriteSheet_3: 940886490
+      FallenKing_smashAnim_SpriteSheet_4: 1903730943
+      FallenKing_smashAnim_SpriteSheet_5: 1165923815
+      FallenKing_smashAnim_SpriteSheet_6: -1046073826
+      FallenKing_smashAnim_SpriteSheet_7: 1444554430
+      FallenKing_smashAnim_SpriteSheet_8: -139173658
+      FallenKing_smashAnim_SpriteSheet_9: 959286003
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

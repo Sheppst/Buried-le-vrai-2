@@ -45,6 +45,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 m_OneDash = true;
                 m_Grounded = true;
+                m_DoubleJump = true; // Réinitialiser le double saut lorsqu'on touche le sol
                 if (m_JumpAnim)
                 {
                     m_PlayerAnimJump.SetBool("IsJumping", false);
@@ -115,22 +116,24 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        if (m_Grounded && jump)
+        if (jump)
         {
-            StartCoroutine(AnimJump());
-            m_Grounded = false;
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-            m_DoubleJump = true;
-        }
-        else if (m_DoubleJump && jump && mana.manaPool >= doubleJumpCost)
-        {
-            mana.SpendMana(doubleJumpCost);
-            StopAllCoroutines();
-            StartCoroutine(AnimJump());
-            m_PlayerAnimJump.Play("Player_Jump", 0, 0f);
-            m_DoubleJump = false;
-            m_Rigidbody2D.velocity = Vector3.zero;
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            if (m_Grounded)
+            {
+                StartCoroutine(AnimJump());
+                m_Grounded = false;
+                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            }
+            else if (m_DoubleJump && mana.manaPool >= doubleJumpCost)
+            {
+                mana.SpendMana(doubleJumpCost);
+                StopAllCoroutines();
+                StartCoroutine(AnimJump());
+                m_PlayerAnimJump.Play("Player_Jump", 0, 0f);
+                m_DoubleJump = false;
+                m_Rigidbody2D.velocity = Vector3.zero;
+                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            }
         }
     }
 
