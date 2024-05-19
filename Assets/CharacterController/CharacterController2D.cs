@@ -25,6 +25,9 @@ public class CharacterController2D : MonoBehaviour
     private bool m_OneDash;
     private Vector3 velocity = Vector3.zero;
 
+    public bool canMove = true; // Drapeau pour contrôler le mouvement
+    public bool isKnockedBack = false; // Drapeau pour indiquer si le joueur est en knockback
+
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -53,6 +56,8 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(float move, bool crouch, bool jump, bool dash, float dashPower)
     {
+        if (isKnockedBack) return; // Si le joueur est en knockback, désactiver le mouvement et les sauts
+
         if (!crouch)
         {
             if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))

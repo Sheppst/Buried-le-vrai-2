@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -41,11 +40,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!canControl) return; // Prevent player control during respawn delay
 
-        if (animationsEnabled)
+        if (!controller.isKnockedBack && animationsEnabled)
         {
             animator.SetFloat("JumpFall", rigid.velocity.y);
             animator.SetFloat("IsRunning", Mathf.Abs(horizontalMove));
         }
+
+        if (controller.isKnockedBack) return; // Désactiver les contrôles pendant le knockback
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         dashPower = Input.GetAxisRaw("Horizontal") * dashspeed;
