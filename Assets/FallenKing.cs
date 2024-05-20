@@ -1,8 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class Boss : MonoBehaviour
 {
     public GameObject auraPrefab; // Le prefab de l'aura
+    public GameObject pattePrefab; // Le prefab des pattes
     public Transform auraSpawnPoint; // Le point de spawn de l'aura
     public Transform player; // Référence au joueur
     public float detectionRange = 15f; // Portée de détection pour attaquePatte
@@ -13,12 +15,14 @@ public class Boss : MonoBehaviour
     public float auraDuration = 5f; // Durée de l'aura
     public float auraRegenRate = 10f; // Taux de régénération de l'aura
     public float walkSpeed = 3f; // Vitesse de déplacement
+    public bool drawGizmos = true; // Activer/désactiver les gizmos
+    public float groundYPosition = 0f; // Position Y du sol
 
     private Animator animator;
     private bool isAuraActive = false;
     private bool hasAuraBeenUsed = false; // Nouvelle variable pour vérifier si l'aura a été utilisée
-
     private GameObject currentAuraInstance; // Référence à l'instance actuelle de l'aura
+    private Coroutine patteCoroutine; // Référence à la coroutine d'attaque pattes
 
     private void Start()
     {
@@ -28,6 +32,11 @@ public class Boss : MonoBehaviour
         if (auraPrefab == null)
         {
             Debug.LogError("auraPrefab n'est pas assigné !");
+        }
+
+        if (pattePrefab == null)
+        {
+            Debug.LogError("pattePrefab n'est pas assigné !");
         }
 
         if (auraSpawnPoint == null)
@@ -77,6 +86,46 @@ public class Boss : MonoBehaviour
         }
     }
 
+    public void StartAttaquePattes()
+    {
+        if (patteCoroutine == null)
+        {
+            patteCoroutine = StartCoroutine(AttaquePattesCoroutine());
+        }
+    }
+
+    public void StopAttaquePattes()
+    {
+        if (patteCoroutine != null)
+        {
+            StopCoroutine(patteCoroutine);
+            patteCoroutine = null;
+        }
+    }
+
+    private IEnumerator AttaquePattesCoroutine()
+    {
+        while (true)
+        {
+            SpawnPattes();
+            yield return new WaitForSeconds(0.5f); // Temps entre chaque instantiation, ajustez selon vos besoins
+        }
+    }
+
+    private void SpawnPattes()
+    {
+        if (pattePrefab != null && player != null)
+        {
+            Vector3 spawnPosition = new Vector3(player.transform.position.x, groundYPosition, player.transform.position.z);
+            Instantiate(pattePrefab, spawnPosition, Quaternion.identity);
+            Debug.Log("Patte instanciée");
+        }
+        else
+        {
+            Debug.LogError("Échec de l'instanciation de la patte : le prefab ou le joueur est null");
+        }
+    }
+
     public void DestroyAura()
     {
         if (currentAuraInstance != null)
@@ -90,10 +139,14 @@ public class Boss : MonoBehaviour
     // Dessiner les gizmos pour la portée de détection et la portée de smash
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, smashRange);
+        if (drawGizmos)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, smashRange);
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, detectionRange);
+        }
     }
 }
+

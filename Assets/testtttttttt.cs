@@ -1,48 +1,40 @@
 using UnityEngine;
 
-public class InstantiateAtGroundLevel : MonoBehaviour
+public class ObjectSpawner : MonoBehaviour
 {
-    public GameObject prefab; // Le prefab à instancier
-    public Transform playerTransform; // Référence au transform du joueur
-    public string groundTag = "Ground"; // Tag pour identifier le sol
+    // Référence au joueur et à l'objet à instancier
+    public GameObject player;
+    public GameObject objectToSpawn;
+    public float groundYPosition;
 
-    void Update()
+    void Start()
     {
-        // Condition pour instancier (par exemple, lorsqu'on appuie sur la touche espace)
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Assurez-vous que les références sont définies
+        if (player == null || objectToSpawn == null)
         {
-            InstantiatePrefabAtGroundLevel();
+            Debug.LogError("Player or ObjectToSpawn not set.");
+            return;
         }
     }
 
-    void InstantiatePrefabAtGroundLevel()
+    void Update()
     {
-        if (prefab != null && playerTransform != null)
+        // Vérifier si la touche "N" est pressée
+        if (Input.GetKeyDown(KeyCode.N))
         {
-            // Effectuer un raycast vers le bas depuis la position du joueur pour détecter le sol
-            RaycastHit2D hit = Physics2D.Raycast(playerTransform.position, Vector2.down, Mathf.Infinity);
-
-            // Visualiser le raycast dans la vue de la scène
-            Debug.DrawRay(playerTransform.position, Vector2.down * 100, Color.red, 2f);
-
-            if (hit.collider != null && hit.collider.CompareTag("Ground"))
-            {
-                Debug.Log("Sol détecté à la position : " + hit.point);
-
-                // Calculer la position au niveau du sol mais alignée horizontalement avec le joueur
-                Vector3 positionAtGroundLevel = new Vector3(playerTransform.position.x, hit.point.y, playerTransform.position.z);
-
-                // Instancier le prefab à la position calculée sans rotation
-                Instantiate(prefab, positionAtGroundLevel, Quaternion.identity);
-            }
-            else
-            {
-                Debug.LogError("Sol non détecté ou tag incorrect.");
-            }
+            SpawnObjectAtPlayerPosition();
         }
-        else
-        {
-            Debug.LogError("Prefab ou PlayerTransform non défini.");
-        }
+    }
+
+    void SpawnObjectAtPlayerPosition()
+    {
+        // Récupérer la position X du joueur
+        float playerXPosition = player.transform.position.x;
+
+        // Créer la position pour le nouvel objet
+        Vector3 spawnPosition = new Vector3(playerXPosition, groundYPosition, 0);
+
+        // Instancier l'objet à la position déterminée
+        Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
     }
 }

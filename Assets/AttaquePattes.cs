@@ -1,22 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackBehaviour : StateMachineBehaviour
+public class AttaquePattesBehaviour : StateMachineBehaviour
 {
+    private Boss boss;
+
+    // Appelé au début de l'état d'animation
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Actions à effectuer lorsque l'état AttaquePattes est atteint
+        boss = animator.GetComponent<Boss>();
     }
 
+    // Appelé à chaque frame de l'état d'animation
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Logic for updating AttaquePattes state if necessary
     }
 
+    // Appelé à la fin de l'état d'animation
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Actions à effectuer lors de la sortie de l'état AttaquePattes
-        animator.SetTrigger("Walk"); // Après AttaquePattes, passer à l'état de marche
+        if (boss != null)
+        {
+            boss.StopAttaquePattes();
+        }
+    }
+
+    // Méthode appelée par un événement d'animation pour commencer l'instanciation des pattes
+    public void StartPattesInstantiation()
+    {
+        if (boss != null)
+        {
+            boss.StartAttaquePattes();
+        }
     }
 }

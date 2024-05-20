@@ -30,6 +30,7 @@ TagManager:
   - Legs
   - smash
   - Body
+  - attaquePattes
   layers:
   - Default
   - TransparentFX
