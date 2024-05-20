@@ -387,16 +387,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   auraPrefab: {fileID: 7286549144140692257, guid: edb905ca66c85ce4096bccc76e587fbb, type: 3}
+  pattePrefab: {fileID: 2004668498278183975, guid: 613cd58faf5b1da48bef24379f23658f, type: 3}
   auraSpawnPoint: {fileID: 2067991547338427494}
   player: {fileID: 0}
-  detectionRange: 15
-  smashRange: 5
+  detectionRange: 11
+  smashRange: 3.5
   maxHealth: 100
   currentHealth: 0
   healthThreshold: 50
   auraDuration: 3.2
   auraRegenRate: 12
   walkSpeed: 3
+  drawGizmos: 0
+  groundYPosition: -22
 --- !u!1 &8774716646957398586
 GameObject:
   m_ObjectHideFlags: 0
