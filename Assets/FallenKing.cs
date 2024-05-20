@@ -23,31 +23,31 @@ public class Boss : MonoBehaviour
     private bool hasAuraBeenUsed = false; // Nouvelle variable pour vérifier si l'aura a été utilisée
     private GameObject currentAuraInstance; // Référence à l'instance actuelle de l'aura
     private Coroutine patteCoroutine; // Référence à la coroutine d'attaque pattes
+    private Rigidbody2D rb;
+
+    private bool facingLeft = true;
+
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float checkRadius;
+
+    private bool isTouchingGround;
+    private bool isTouchingWall;
+    private Vector2 moveDirection = Vector2.left;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
 
-        if (auraPrefab == null)
-        {
-            Debug.LogError("auraPrefab n'est pas assigné !");
-        }
-
-        if (pattePrefab == null)
-        {
-            Debug.LogError("pattePrefab n'est pas assigné !");
-        }
-
-        if (auraSpawnPoint == null)
-        {
-            Debug.LogError("auraSpawnPoint n'est pas assigné !");
-        }
-
-        if (player == null)
-        {
-            Debug.LogError("player n'est pas assigné !");
-        }
+        if (auraPrefab == null) Debug.LogError("auraPrefab n'est pas assigné !");
+        if (pattePrefab == null) Debug.LogError("pattePrefab n'est pas assigné !");
+        if (auraSpawnPoint == null) Debug.LogError("auraSpawnPoint n'est pas assigné !");
+        if (player == null) Debug.LogError("player n'est pas assigné !");
+        if (groundCheck == null) Debug.LogError("groundCheck n'est pas assigné !");
+        if (wallCheck == null) Debug.LogError("wallCheck n'est pas assigné !");
     }
 
     private void Update()
@@ -59,11 +59,14 @@ public class Boss : MonoBehaviour
             TriggerAura();
         }
 
-        // Initialisation du mouvement si nécessaire
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-        {
-            animator.SetTrigger("Walk");
-        }
+        FlipTowardsPlayer();
+
+        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+        isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, checkRadius, groundLayer);
+
+        if (isTouchingWall) Flip();
+
+        rb.velocity = moveDirection * walkSpeed;
     }
 
     private void TriggerAura()
@@ -108,7 +111,7 @@ public class Boss : MonoBehaviour
         while (true)
         {
             SpawnPattes();
-            yield return new WaitForSeconds(0.5f); // Temps entre chaque instantiation, ajustez selon vos besoins
+            yield return new WaitForSeconds(0.3f); // Temps entre chaque instantiation, ajustez selon vos besoins
         }
     }
 
@@ -136,7 +139,27 @@ public class Boss : MonoBehaviour
         isAuraActive = false;
     }
 
-    // Dessiner les gizmos pour la portée de détection et la portée de smash
+    private void FlipTowardsPlayer()
+    {
+        float playerDirection = player.position.x - transform.position.x;
+
+        if (playerDirection > 0 && facingLeft)
+        {
+            Flip();
+        }
+        else if (playerDirection < 0 && !facingLeft)
+        {
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        facingLeft = !facingLeft;
+        moveDirection.x *= -1;
+        transform.Rotate(0, 180, 0);
+    }
+
     private void OnDrawGizmos()
     {
         if (drawGizmos)
@@ -146,7 +169,12 @@ public class Boss : MonoBehaviour
 
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, detectionRange);
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(wallCheck.position, checkRadius);
         }
     }
 }
-

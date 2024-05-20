@@ -11,12 +11,11 @@ public class SmashBehaviour : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (!hasSetTrigger)
-        {
+               
             // Assurer que la transition ne se fait qu'une seule fois
             animator.SetTrigger("Idle");
-            hasSetTrigger = true;
-        }
+          
+       
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,3 +23,4 @@ public class SmashBehaviour : StateMachineBehaviour
         animator.ResetTrigger("Smash");
     }
 }
+

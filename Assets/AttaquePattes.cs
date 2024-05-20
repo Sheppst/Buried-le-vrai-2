@@ -13,6 +13,8 @@ public class AttaquePattesBehaviour : StateMachineBehaviour
     // Appelé à chaque frame de l'état d'animation
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.SetTrigger("Walk");
+
     }
 
     // Appelé à la fin de l'état d'animation
@@ -22,6 +24,7 @@ public class AttaquePattesBehaviour : StateMachineBehaviour
         {
             boss.StopAttaquePattes();
         }
+        animator.ResetTrigger("AttaquePattes");
     }
 
     // Méthode appelée par un événement d'animation pour commencer l'instanciation des pattes
@@ -33,3 +36,4 @@ public class AttaquePattesBehaviour : StateMachineBehaviour
         }
     }
 }
+
