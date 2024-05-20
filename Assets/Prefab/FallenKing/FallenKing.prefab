@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 6253747508395907356}
   - component: {fileID: 5712288553447552263}
   - component: {fileID: 4189921503330000329}
+  - component: {fileID: 6211321925147389701}
   m_Layer: 0
   m_Name: FallenKing
   m_TagString: Untagged
@@ -290,7 +291,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.06, y: -0.77, z: 0}
-  m_LocalScale: {x: 3.8, y: 3, z: 3}
+  m_LocalScale: {x: 3.6917295, y: 2.9145236, z: 2.9145236}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1987263040894731418}
@@ -373,6 +374,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6211321925147389701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197607701245438561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bf96836cf096846a5026a6b255ad1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  auraPrefab: {fileID: 7286549144140692257, guid: edb905ca66c85ce4096bccc76e587fbb, type: 3}
+  auraSpawnPoint: {fileID: 2067991547338427494}
+  player: {fileID: 0}
+  detectionRange: 15
+  smashRange: 5
+  maxHealth: 100
+  currentHealth: 0
+  healthThreshold: 50
+  auraDuration: 3.2
+  auraRegenRate: 12
+  walkSpeed: 3
 --- !u!1 &8774716646957398586
 GameObject:
   m_ObjectHideFlags: 0

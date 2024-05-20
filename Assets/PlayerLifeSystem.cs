@@ -109,6 +109,7 @@ public class PlayerLifeSystem : MonoBehaviour
         {
             LoseHealthAndRespawn();
         }
+
     }
 
     private void LoseHealthAndRespawn()
