@@ -33,6 +33,7 @@ public class AttaquePattesBehaviour : StateMachineBehaviour
             else
             {
                 animator.SetTrigger("Walk");
+                animator.ResetTrigger("AttaquePattes");
             }
         }
     }

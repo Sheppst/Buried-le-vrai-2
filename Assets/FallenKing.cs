@@ -148,6 +148,14 @@ public class Boss : MonoBehaviour
         {
             // Add logic for when the boss dies, if necessary
         }
+
+        if (currentHealth <= maxHealth * 0.5f && !hasAuraBeenUsed)
+        {
+            isAuraActive = true;
+            hasAuraBeenUsed = true;
+            animator.SetTrigger("Aura"); // Active le trigger "Aura"
+        }
+
         StartCoroutine(FlashRed());
     }
 
