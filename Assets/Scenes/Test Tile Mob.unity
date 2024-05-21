@@ -2460,10 +2460,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MobVolantDistance
       objectReference: {fileID: 0}
-    - target: {fileID: 7031350447342016065, guid: 375348895644b6f47b78a757f0975a1c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8316058475792114716, guid: 375348895644b6f47b78a757f0975a1c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.06
@@ -2820,6 +2816,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: -1.5899429
       objectReference: {fileID: 0}
+    - target: {fileID: 9157200693616101276, guid: 8bab04336ef2b3e489f372115eece57b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2873,21 +2873,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5875503179649121578, guid: 86767bc8ab5ced1489d2295df5dc1b2a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5992453977765945802, guid: 86767bc8ab5ced1489d2295df5dc1b2a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.417
-      objectReference: {fileID: 0}
     - target: {fileID: 9215435313173365348, guid: 86767bc8ab5ced1489d2295df5dc1b2a, type: 3}
       propertyPath: m_Name
       value: MobsTerre
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215435313173365348, guid: 86767bc8ab5ced1489d2295df5dc1b2a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
