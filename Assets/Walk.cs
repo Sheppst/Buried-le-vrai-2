@@ -9,6 +9,7 @@ public class WalkBehaviour : StateMachineBehaviour
     private float moveSpeed;
     private float walkDuration = 0.3f; // Durée de marche en secondes
     private float walkTimer;
+    private bool checkSmashRange = false;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -18,6 +19,7 @@ public class WalkBehaviour : StateMachineBehaviour
         smashRange = boss.smashRange;
         moveSpeed = boss.walkSpeed; // Obtenir la vitesse de déplacement depuis le script principal
         walkTimer = 0f;
+        checkSmashRange = false;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -31,19 +33,23 @@ public class WalkBehaviour : StateMachineBehaviour
             walkTimer += Time.deltaTime;
             if (walkTimer >= walkDuration)
             {
-                // Vérifier la distance au joueur pour décider de l'action suivante
-                float distanceToPlayer = Vector3.Distance(animator.transform.position, player.position);
-                if (distanceToPlayer <= smashRange)
+                // Commence à vérifier la portée de smash vers la fin de l'animation
+                if (stateInfo.normalizedTime >= 0.98f && !checkSmashRange)
                 {
-                    animator.SetTrigger("Smash");
-                }
-                else if (distanceToPlayer <= detectionRange)
-                {
-                    animator.SetTrigger("AttaquePattes");
-                }
-                else
-                {
-                    animator.SetTrigger("Idle");
+                    checkSmashRange = true;
+                    float distanceToPlayer = Vector3.Distance(animator.transform.position, player.position);
+                    if (distanceToPlayer <= smashRange)
+                    {
+                        animator.SetTrigger("Smash");
+                    }
+                    else if (distanceToPlayer <= detectionRange)
+                    {
+                        animator.SetTrigger("AttaquePattes");
+                    }
+                    else
+                    {
+                        animator.SetTrigger("Idle");
+                    }
                 }
             }
         }
@@ -54,5 +60,8 @@ public class WalkBehaviour : StateMachineBehaviour
         // Réinitialiser les triggers utilisés pour éviter les conflits
         animator.ResetTrigger("Walk");
         animator.ResetTrigger("AttaquePattes");
+        animator.ResetTrigger("Smash");
+        animator.ResetTrigger("Idle");
+        checkSmashRange = false; // Réinitialiser pour la prochaine entrée dans cet état
     }
 }

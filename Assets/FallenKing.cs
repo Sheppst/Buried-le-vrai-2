@@ -3,20 +3,39 @@ using System.Collections;
 
 public class Boss : MonoBehaviour
 {
+    [Header("Aura Settings")]
     public GameObject auraPrefab; // Le prefab de l'aura
-    public GameObject pattePrefab; // Le prefab des pattes
     public Transform auraSpawnPoint; // Le point de spawn de l'aura
+    public float auraDuration = 5f; // Durée de l'aura
+    public float auraRegenRate = 10f; // Taux de régénération de l'aura
+
+    [Header("Patte Settings")]
+    public GameObject pattePrefab; // Le prefab des pattes
+    public float groundYPosition = 0f; // Position Y du sol
+
+    [Header("Detection Settings")]
     public Transform player; // Référence au joueur
     public float detectionRange = 15f; // Portée de détection pour attaquePatte
     public float smashRange = 5f; // Portée de détection pour Smash
+
+    [Header("Health Settings")]
     public float maxHealth = 100f;
     public float currentHealth;
     public float healthThreshold = 50f; // Seuil de points de vie pour lancer l'aura
-    public float auraDuration = 5f; // Durée de l'aura
-    public float auraRegenRate = 10f; // Taux de régénération de l'aura
+    public float damageAmount = 10f; // Amount of damage taken per hit
+    public float redIntensity = 1f; // Intensité du rouge lors du flash
+
+    [Header("Movement Settings")]
     public float walkSpeed = 3f; // Vitesse de déplacement
+
+    [Header("Gizmos Settings")]
     public bool drawGizmos = true; // Activer/désactiver les gizmos
-    public float groundYPosition = 0f; // Position Y du sol
+
+    [Header("Collision Settings")]
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float checkRadius;
 
     private Animator animator;
     private bool isAuraActive = false;
@@ -24,13 +43,9 @@ public class Boss : MonoBehaviour
     private GameObject currentAuraInstance; // Référence à l'instance actuelle de l'aura
     private Coroutine patteCoroutine; // Référence à la coroutine d'attaque pattes
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
 
     private bool facingLeft = true;
-
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private Transform wallCheck;
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private float checkRadius;
 
     private bool isTouchingGround;
     private bool isTouchingWall;
@@ -40,6 +55,7 @@ public class Boss : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         currentHealth = maxHealth;
 
         if (auraPrefab == null) Debug.LogError("auraPrefab n'est pas assigné !");
@@ -158,6 +174,32 @@ public class Boss : MonoBehaviour
         facingLeft = !facingLeft;
         moveDirection.x *= -1;
         transform.Rotate(0, 180, 0);
+    }
+
+    private void TakeDamage(float damageAmount)
+    {
+        currentHealth -= damageAmount;
+        if (currentHealth <= 0)
+        {
+            // Add logic for when the boss dies, if necessary
+        }
+        StartCoroutine(FlashRed());
+    }
+
+    private IEnumerator FlashRed()
+    {
+        Color originalColor = spriteRenderer.color;
+        spriteRenderer.color = new Color(1f, 0f, 0f, redIntensity); // Intensité du rouge ajustable
+        yield return new WaitForSeconds(0.1f); // Duration of the flash
+        spriteRenderer.color = originalColor;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ProjPlayer"))
+        {
+            TakeDamage(damageAmount);
+        }
     }
 
     private void OnDrawGizmos()
