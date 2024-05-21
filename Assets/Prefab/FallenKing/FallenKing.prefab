@@ -293,6 +293,90 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &3324704171971914320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2953453524902194904}
+  - component: {fileID: 521667251753064580}
+  - component: {fileID: 3581108587176841929}
+  m_Layer: 8
+  m_Name: NPCBehaviour
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2953453524902194904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324704171971914320}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6253747508395907356}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &521667251753064580
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324704171971914320}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
+--- !u!114 &3581108587176841929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324704171971914320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f9454f08206f04ba2fa21cae6affd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: FallenKing
+  dialogues:
+  - sentences:
+    - caca
 --- !u!1 &8106051040355578449
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6253747508395907356
 Transform:
   m_ObjectHideFlags: 0
@@ -364,6 +448,7 @@ Transform:
   - {fileID: 2067991547338427494}
   - {fileID: 6912704119733603059}
   - {fileID: 2899450595694539602}
+  - {fileID: 2953453524902194904}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5712288553447552263
@@ -406,7 +491,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -768436245, guid: 32d4a0f9afd76454bbdab5e549257b51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -452,25 +537,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   auraPrefab: {fileID: 7286549144140692257, guid: edb905ca66c85ce4096bccc76e587fbb, type: 3}
-  pattePrefab: {fileID: 2004668498278183975, guid: 613cd58faf5b1da48bef24379f23658f, type: 3}
   auraSpawnPoint: {fileID: 2067991547338427494}
+  auraDuration: 3.2
+  auraRegenRate: 12
+  pattePrefab: {fileID: 2004668498278183975, guid: 613cd58faf5b1da48bef24379f23658f, type: 3}
+  groundYPosition: -22
   player: {fileID: 0}
   detectionRange: 11
   smashRange: 3.5
   maxHealth: 100
   currentHealth: 0
   healthThreshold: 50
-  auraDuration: 3.2
-  auraRegenRate: 12
-  walkSpeed: 3
-  drawGizmos: 1
-  groundYPosition: -22
+  damageAmount: 10
+  redIntensity: 0.5
+  walkSpeed: 5
+  drawGizmos: 0
   groundCheck: {fileID: 6912704119733603059}
   wallCheck: {fileID: 2899450595694539602}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   checkRadius: 0.5
+  isAuraActive: 0
+  hasAuraBeenUsed: 0
+  currentAuraInstance: {fileID: 0}
 --- !u!50 &3438750497251347583
 Rigidbody2D:
   serializedVersion: 4

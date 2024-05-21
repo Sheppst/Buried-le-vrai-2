@@ -200,16 +200,14 @@ public class PlayerLifeSystem : MonoBehaviour
 
     private Vector2 DetermineKnockbackDirection()
     {
-        Vector2 direction;
-        if (bossTransform.localScale.x > 0)
+        // Déterminer la direction du knockback en fonction de la position relative du joueur et du boss
+        if (bossTransform.position.x < transform.position.x)
         {
-            direction = Vector2.left;
+            return Vector2.right; // Boss est à gauche du joueur, donc propulser vers la droite
         }
         else
         {
-            direction = Vector2.right;
+            return Vector2.left; // Boss est à droite du joueur, donc propulser vers la gauche
         }
-        return direction;
     }
 }
-

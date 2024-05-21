@@ -38,9 +38,9 @@ public class Boss : MonoBehaviour
     [SerializeField] private float checkRadius;
 
     private Animator animator;
-    private bool isAuraActive = false;
-    private bool hasAuraBeenUsed = false; // Nouvelle variable pour vérifier si l'aura a été utilisée
-    private GameObject currentAuraInstance; // Référence à l'instance actuelle de l'aura
+    public bool isAuraActive = false;
+    public bool hasAuraBeenUsed = false; // Nouvelle variable pour vérifier si l'aura a été utilisée
+    public GameObject currentAuraInstance; // Référence à l'instance actuelle de l'aura
     private Coroutine patteCoroutine; // Référence à la coroutine d'attaque pattes
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -70,11 +70,6 @@ public class Boss : MonoBehaviour
     {
         if (player == null) return;
 
-        if (currentHealth <= healthThreshold && !isAuraActive && !hasAuraBeenUsed)
-        {
-            TriggerAura();
-        }
-
         FlipTowardsPlayer();
 
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
@@ -83,26 +78,6 @@ public class Boss : MonoBehaviour
         if (isTouchingWall) Flip();
 
         rb.velocity = moveDirection * walkSpeed;
-    }
-
-    private void TriggerAura()
-    {
-        isAuraActive = true;
-        hasAuraBeenUsed = true; // Marquer l'aura comme utilisée
-        animator.SetTrigger("Aura");
-    }
-
-    public void SpawnAura()
-    {
-        if (auraPrefab != null && auraSpawnPoint != null)
-        {
-            currentAuraInstance = Instantiate(auraPrefab, auraSpawnPoint.position, auraSpawnPoint.rotation);
-            Debug.Log("Aura instanciée");
-        }
-        else
-        {
-            Debug.LogError("Échec de l'instanciation de l'aura : le prefab ou le point de spawn est null");
-        }
     }
 
     public void StartAttaquePattes()
@@ -143,16 +118,6 @@ public class Boss : MonoBehaviour
         {
             Debug.LogError("Échec de l'instanciation de la patte : le prefab ou le joueur est null");
         }
-    }
-
-    public void DestroyAura()
-    {
-        if (currentAuraInstance != null)
-        {
-            Destroy(currentAuraInstance);
-            Debug.Log("Aura détruite");
-        }
-        isAuraActive = false;
     }
 
     private void FlipTowardsPlayer()
