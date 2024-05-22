@@ -285,7 +285,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 64
-  Speed: 2
+  Speed: 5
   Descend: 0
 --- !u!1 &8223662177056838760
 GameObject:
