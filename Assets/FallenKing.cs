@@ -43,7 +43,8 @@ public class Boss : MonoBehaviour
     private Animator animator;
     public bool isAuraActive = false;
     public bool hasAuraBeenUsed = false; // Nouvelle variable pour vérifier si l'aura a été utilisée
-    private bool isInvincible = false; // Variable pour vérifier si le boss est invincible
+    private bool isInvincible = true; // Le boss est invincible au début
+    
     private Coroutine patteCoroutine; // Référence à la coroutine d'attaque pattes
     private Coroutine regenCoroutine; // Référence à la coroutine de régénération de l'aura
     private Rigidbody2D rb;
@@ -73,6 +74,9 @@ public class Boss : MonoBehaviour
         if (groundCheck == null) Debug.LogError("groundCheck n'est pas assigné !");
         if (wallCheck == null) Debug.LogError("wallCheck n'est pas assigné !");
         if (movementBounds == null) Debug.LogError("movementBounds n'est pas assigné !");
+
+        // Le boss est invincible au début
+        isInvincible = true;
     }
 
     private void Update()
@@ -260,12 +264,18 @@ public class Boss : MonoBehaviour
 
         while (timer < auraDuration)
         {
-            currentHealth = Mathf.Min(currentHealth + auraRegenRate * Time.deltaTime, maxHealth);
+            currentHealth += auraRegenRate * Time.deltaTime;
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Clamp currentHealth to maxHealth
             timer += Time.deltaTime;
             yield return null;
         }
 
+        isInvincible = false; // Le boss redevient vulnérable après la régénération
+    }
+
+    public void GoToIdleState()
+    {
         isInvincible = false; // Le boss redevient vulnérable
-        isAuraActive = false; // Désactivation de l'aura
+        animator.SetTrigger("EndDialogue");
     }
 }

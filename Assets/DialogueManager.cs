@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     private string[] lines;
     private PlayerInteract playerInteract;
     private bool isDialogueActive = false; // Track whether a dialogue is active
+    private Boss boss;
 
     void Start()
     {
@@ -26,6 +27,13 @@ public class DialogueManager : MonoBehaviour
         if (playerInteract == null)
         {
             Debug.LogError("PlayerInteract script not found in the scene.");
+        }
+
+        // Find the Boss script in the scene
+        boss = FindObjectOfType<Boss>();
+        if (boss == null)
+        {
+            Debug.LogError("Boss script not found in the scene.");
         }
     }
 
@@ -117,6 +125,13 @@ public class DialogueManager : MonoBehaviour
         {
             playerInteract.SetInteractionMessageActive(true); // Re-enable interaction message
         }
+
+        // Notifier le boss que le dialogue est terminé
+        if (boss != null)
+        {
+            boss.GoToIdleState();
+        }
+
         Debug.Log("Dialogue ended.");
     }
 }
