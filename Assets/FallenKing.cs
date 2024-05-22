@@ -44,7 +44,6 @@ public class Boss : MonoBehaviour
     public bool isAuraActive = false;
     public bool hasAuraBeenUsed = false; // Nouvelle variable pour vérifier si l'aura a été utilisée
     private bool isInvincible = true; // Le boss est invincible au début
-    
     private Coroutine patteCoroutine; // Référence à la coroutine d'attaque pattes
     private Coroutine regenCoroutine; // Référence à la coroutine de régénération de l'aura
     private Rigidbody2D rb;
@@ -215,6 +214,14 @@ public class Boss : MonoBehaviour
         }
 
         StartCoroutine(FlashRed());
+        StartCoroutine(TemporaryInvincibility(0.1f)); // Rendre le boss invincible pendant 0.1 seconde
+    }
+
+    private IEnumerator TemporaryInvincibility(float duration)
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(duration);
+        isInvincible = false;
     }
 
     private IEnumerator FlashRed()
