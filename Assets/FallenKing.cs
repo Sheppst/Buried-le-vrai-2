@@ -37,6 +37,9 @@ public class Boss : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float checkRadius;
 
+    [Header("Movement Boundaries")]
+    public Collider2D movementBounds; // Zone de mouvement définie par un Collider2D
+
     private Animator animator;
     public bool isAuraActive = false;
     public bool hasAuraBeenUsed = false; // Nouvelle variable pour vérifier si l'aura a été utilisée
@@ -52,6 +55,10 @@ public class Boss : MonoBehaviour
     private bool isTouchingWall;
     private Vector2 moveDirection = Vector2.left;
 
+    public bool isAtLimit; // Variable pour vérifier si le boss touche la limite
+
+    public bool IsAtLimit => isAtLimit; // Propriété publique pour accéder à isAtLimit
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -65,6 +72,7 @@ public class Boss : MonoBehaviour
         if (player == null) Debug.LogError("player n'est pas assigné !");
         if (groundCheck == null) Debug.LogError("groundCheck n'est pas assigné !");
         if (wallCheck == null) Debug.LogError("wallCheck n'est pas assigné !");
+        if (movementBounds == null) Debug.LogError("movementBounds n'est pas assigné !");
     }
 
     private void Update()
@@ -76,9 +84,50 @@ public class Boss : MonoBehaviour
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
         isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, checkRadius, groundLayer);
 
-        if (isTouchingWall) Flip();
+        if (isTouchingWall)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+        else
+        {
+            if (!isAtLimit)
+            {
+                rb.velocity = new Vector2(moveDirection.x * walkSpeed, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+                animator.SetTrigger("Smash"); // Déclencher l'animation du smash
+            }
+        }
 
-        rb.velocity = moveDirection * walkSpeed;
+        // Vérifie et contraint la position du boss dans les limites définies
+        ConstrainPositionWithinBounds();
+    }
+
+    private void ConstrainPositionWithinBounds()
+    {
+        if (movementBounds != null)
+        {
+            Vector3 bossPosition = transform.position;
+            Vector3 minBounds = movementBounds.bounds.min;
+            Vector3 maxBounds = movementBounds.bounds.max;
+
+            bool wasAtLimit = isAtLimit;
+
+            isAtLimit = bossPosition.x <= minBounds.x || bossPosition.x >= maxBounds.x;
+
+            if (!wasAtLimit && isAtLimit)
+            {
+                // Le boss vient d'atteindre la limite, arrêter l'animation de marche
+                animator.SetBool("isWalking", false);
+            }
+
+            bossPosition.x = Mathf.Clamp(bossPosition.x, minBounds.x, maxBounds.x);
+            bossPosition.y = Mathf.Clamp(bossPosition.y, minBounds.y, maxBounds.y);
+
+            transform.position = bossPosition;
+        }
     }
 
     public void StartAttaquePattes()
@@ -195,6 +244,12 @@ public class Boss : MonoBehaviour
 
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(wallCheck.position, checkRadius);
+
+            if (movementBounds != null)
+            {
+                Gizmos.color = Color.white;
+                Gizmos.DrawWireCube(movementBounds.bounds.center, movementBounds.bounds.size);
+            }
         }
     }
 
