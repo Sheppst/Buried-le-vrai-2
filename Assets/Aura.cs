@@ -26,14 +26,16 @@ public class AuraBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Si la santé du boss est en dessous du seuil et que l'aura n'a pas encore été utilisée
-        if (boss.currentHealth <= boss.healthThreshold && !boss.hasAuraBeenUsed)
-        {
-            boss.hasAuraBeenUsed = true;
-            animator.SetTrigger("Aura");
-        }
+       
+        
+            animator.SetTrigger("AttaquePattes");
+
+        
+          
+        
 
             
-            animator.SetTrigger("AttaquePattes");       
+                  
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

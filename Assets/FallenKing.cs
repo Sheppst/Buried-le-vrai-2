@@ -40,8 +40,9 @@ public class Boss : MonoBehaviour
     private Animator animator;
     public bool isAuraActive = false;
     public bool hasAuraBeenUsed = false; // Nouvelle variable pour vérifier si l'aura a été utilisée
-    public GameObject currentAuraInstance; // Référence à l'instance actuelle de l'aura
+    private bool isInvincible = false; // Variable pour vérifier si le boss est invincible
     private Coroutine patteCoroutine; // Référence à la coroutine d'attaque pattes
+    private Coroutine regenCoroutine; // Référence à la coroutine de régénération de l'aura
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
@@ -143,11 +144,23 @@ public class Boss : MonoBehaviour
 
     private void TakeDamage(float damageAmount)
     {
+        if (isInvincible)
+            return;
+
         currentHealth -= damageAmount;
         if (currentHealth <= 0)
         {
             // Add logic for when the boss dies, if necessary
         }
+
+        if (currentHealth <= maxHealth * 0.5f && !hasAuraBeenUsed)
+        {
+            isAuraActive = true;
+            hasAuraBeenUsed = true;
+            animator.SetTrigger("Aura"); // Active le trigger "Aura"
+            StartCoroutine(RegenerateHealth());
+        }
+
         StartCoroutine(FlashRed());
     }
 
@@ -183,5 +196,21 @@ public class Boss : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(wallCheck.position, checkRadius);
         }
+    }
+
+    private IEnumerator RegenerateHealth()
+    {
+        isInvincible = true; // Le boss devient invincible
+        float timer = 0f;
+
+        while (timer < auraDuration)
+        {
+            currentHealth = Mathf.Min(currentHealth + auraRegenRate * Time.deltaTime, maxHealth);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        isInvincible = false; // Le boss redevient vulnérable
+        isAuraActive = false; // Désactivation de l'aura
     }
 }

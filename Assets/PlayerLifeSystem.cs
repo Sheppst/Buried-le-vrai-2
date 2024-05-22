@@ -156,8 +156,13 @@ public class PlayerLifeSystem : MonoBehaviour
     {
         while (true)
         {
-            TakeDamage(10f);
-            yield return new WaitForSeconds(1f);
+            lifePool -= 3f;
+            if (lifePool <= 0f)
+            {
+                SceneManager.LoadScene(0);
+                yield break;
+            }
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
