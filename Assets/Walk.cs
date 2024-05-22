@@ -28,13 +28,18 @@ public class WalkBehaviour : StateMachineBehaviour
         {
             Vector3 direction = (player.position - animator.transform.position).normalized;
             direction.y = 0; // Assurer que le mouvement reste horizontal
-            animator.transform.position += direction * moveSpeed * Time.deltaTime;
+
+            // Vérifie si le boss est à la limite de sa zone de mouvement
+            if (!boss.isAtLimit)
+            {
+                animator.transform.position += direction * moveSpeed * Time.deltaTime;
+            }
 
             walkTimer += Time.deltaTime;
-            if (walkTimer >= walkDuration)
+            if (walkTimer >= walkDuration || boss.isAtLimit)
             {
-                // Commence à vérifier la portée de smash vers la fin de l'animation
-                if (stateInfo.normalizedTime >= 0.98f && !checkSmashRange)
+                // Commence à vérifier la portée de smash vers la fin de l'animation ou si le boss atteint la limite
+                if ((stateInfo.normalizedTime >= 0.98f && !checkSmashRange) || boss.isAtLimit)
                 {
                     checkSmashRange = true;
                     float distanceToPlayer = Vector3.Distance(animator.transform.position, player.position);
