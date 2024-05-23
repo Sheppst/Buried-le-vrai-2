@@ -11,13 +11,16 @@ public class Phase01 : MonoBehaviour
     [SerializeField] private LayerMask layer;
     [SerializeField] private GameObject Ray;
     [SerializeField] private GameObject Block;
-    [SerializeField] private float ChargeStrength;
+    [SerializeField] private float ChargeStrength = 1 ;
+    [SerializeField] private float ChargeSpeed;
+    [SerializeField] private Animator BossAnim;
     private GameObject Bl;
     private Vector3 Newpos;
     private Vector2 Vec2Pos;
     private Rigidbody2D rigid;
     private float Life;
     private float speed = 5f;
+    private float initialSpeed;
     private bool Flip;
     private Transform Player;
     private PolygonCollider2D colid;
@@ -27,6 +30,7 @@ public class Phase01 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        initialSpeed = speed;
         Vec2Pos = transform.position;
         Bl = null;
         Life = transform.parent.gameObject.GetComponent<AllMovement>().Life;
@@ -80,7 +84,7 @@ public class Phase01 : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.Inactive) //Etat de reset du boss 
         {
-
+            speed = initialSpeed;
             if (transform.position.x > Player.position.x) // Si le joueur se trouve à gauche ...
             {
                 Current = Left; // ... L'objectif de déplacement devient la gauche
@@ -118,6 +122,8 @@ public class Phase01 : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.Bited) // Quand le boss cherche à mordre le joueur // Priorite 2
         {
+            BossAnim.SetBool("Walk", true);
+            BossAnim.SetBool("Charge", false);
             if (Ray.activeSelf == false) // Si l'objet de détection n'est pas actif...
             {
                 if (Bl != null) // Vide Bl
@@ -134,6 +140,9 @@ public class Phase01 : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.Charge) // Quand le boss cherche à chager le joueur 
         {
+            speed = initialSpeed * ChargeSpeed;
+            BossAnim.SetBool("Charge", true);
+            BossAnim.SetBool("Walk", false);
             Vector3 cur = new Vector3(Current.position.x, transform.position.y, transform.position.z); // prend uniquement la position de l'objectif en X 
             Vector2 target = (cur - transform.position).normalized; // Calcule un vecteur de direction entre la position du boss et de l'objectif en restant sur l'axe X
             rigid.velocity = target * speed; // Lance le vecteur à une certaine vitesse sur la vélocité
@@ -196,10 +205,12 @@ public class Phase01 : MonoBehaviour
             {
                 GameObject.Find("Player").GetComponent<PlayerMovement>().ChargeByBoss();
                 //collision.gameObject.GetComponent<Rigidbody2D>().AddForce(CollidKnock * ChargeStrength);
+                BossAnim.SetBool("Charge", false);
             }
             if (collision != null ) // /... Le boss rencontre n'importe quel obstacle, alors ...
             {
                 rigid.velocity = Vector2.zero; // ... Le boss arrête de bouger
+                BossAnim.SetBool("Charge", false);
                 Prog.MoveNext(Command.CutPhase); // ... Effectue une transition d'état de Charge -> Inactive
             }
         }

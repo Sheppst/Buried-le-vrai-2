@@ -913,6 +913,8 @@ MonoBehaviour:
     m_Bits: 8
   Ray: {fileID: 5254165969175606140}
   Block: {fileID: 3394808368603911026, guid: 26786dafd378a5845844e2e74f51d827, type: 3}
+  ChargeStrength: 0
+  BossAnim: {fileID: 8543092868321333532}
   Current: {fileID: 0}
 --- !u!95 &8543092868321333532
 Animator:
@@ -956,6 +958,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   Bite: {fileID: 2290248253225801421}
+  BossAnimator: {fileID: 8543092868321333532}
   Detect: 0
 --- !u!4 &6804013228377345120 stripped
 Transform:
