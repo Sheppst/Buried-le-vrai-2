@@ -36,9 +36,9 @@ public class DetectBite : MonoBehaviour
         RaycastHit2D AttackRange = Physics2D.Raycast(transform.position, transform.right, 1.05f, layer); // Crée un raycast allant d'un point A à un point B sur 2 pixels dans layer déclarer
         if (AttackRange.collider != null && !Desactivate) // Si le raycast détecte qlq chose
         {
-            Bite.SetActive(true); // Active l'objet de morsure 
             BossAnimator.SetBool("Walk", false);
-            BossAnimator.SetTrigger("Bite");
+            
+            Bite.SetActive(true); // Active l'objet de morsure 
             Debug.DrawLine(transform.position, AttackRange.point, Color.yellow); //Dessine un trait jaune en fonction du point A et du point de collision
             Detect = true;
         }

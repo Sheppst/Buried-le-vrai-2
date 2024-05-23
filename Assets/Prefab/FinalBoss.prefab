@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4763565504241847279}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0050891433, y: 0, z: -0, w: 0.9999871}
-  m_LocalPosition: {x: -16.79, y: 0, z: -0.77067465}
+  m_LocalPosition: {x: -22.23, y: 0, z: -0.77067465}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -136,7 +136,7 @@ Transform:
   m_GameObject: {fileID: 8865011901355654262}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0050891433, y: 0, z: -0, w: 0.9999871}
-  m_LocalPosition: {x: 14.14, y: 0, z: -0.77067465}
+  m_LocalPosition: {x: 20.66, y: 0, z: -0.77067465}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -670,7 +670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 751029765103673301, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
       propertyPath: m_Radius
-      value: 0.27
+      value: 0.25883552
       objectReference: {fileID: 0}
     - target: {fileID: 751029765103673301, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
       propertyPath: m_Enabled
@@ -678,11 +678,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 751029765103673301, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
       propertyPath: m_Offset.x
-      value: -0.08103387
+      value: -0.08103386
       objectReference: {fileID: 0}
     - target: {fileID: 751029765103673301, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
       propertyPath: m_Offset.y
-      value: -0.0136363115
+      value: -0.024800807
       objectReference: {fileID: 0}
     - target: {fileID: 1653442927081087136, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
       propertyPath: m_Icon
@@ -698,7 +698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4304939488054531926, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.944
+      value: -0.973
       objectReference: {fileID: 0}
     - target: {fileID: 4742326890925065489, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
       propertyPath: m_Icon
@@ -708,6 +708,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Morsure
       objectReference: {fileID: 0}
+    - target: {fileID: 5714651491313447827, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
+      propertyPath: BossAnimator
+      value: 
+      objectReference: {fileID: 8543092868321333532}
     - target: {fileID: 5796891877986340590, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6666666
