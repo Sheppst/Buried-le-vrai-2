@@ -4,7 +4,7 @@ public class AuraBehaviour : StateMachineBehaviour
 {
     private Boss boss;
     private GameObject auraInstance;
-   
+    private bool auraTriggered = false;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -15,7 +15,7 @@ public class AuraBehaviour : StateMachineBehaviour
         {
             auraInstance = Instantiate(boss.auraPrefab, boss.auraSpawnPoint.position, boss.auraSpawnPoint.rotation);
             boss.isAuraActive = true;
-            
+            auraTriggered = false;
         }
         else
         {
@@ -26,16 +26,15 @@ public class AuraBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Si la santé du boss est en dessous du seuil et que l'aura n'a pas encore été utilisée
-       
-        
-            animator.SetTrigger("AttaquePattes");
+        if (boss.currentHealth <= boss.healthThreshold && !boss.hasAuraBeenUsed)
+        {
+            boss.hasAuraBeenUsed = true;
+            animator.SetTrigger("Aura");
+        }
 
-        
-          
-        
-
-            
-                  
+    
+            auraTriggered = true;
+            animator.SetTrigger("AttaquePattes");       
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

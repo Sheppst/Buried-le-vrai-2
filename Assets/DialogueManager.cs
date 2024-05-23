@@ -14,8 +14,12 @@ public class DialogueManager : MonoBehaviour
     private int index;
     private string[] lines;
     private PlayerInteract playerInteract;
+    private CharacterController2D playerController; // Référence au script CharacterController2D
     private bool isDialogueActive = false; // Track whether a dialogue is active
-    private Boss boss;
+    private Boss boss; // Référence au script du boss
+    private Gun gun; // Référence au script Gun
+
+    public bool IsDialogueActive => isDialogueActive; // Propriété publique pour vérifier si un dialogue est actif
 
     void Start()
     {
@@ -29,11 +33,25 @@ public class DialogueManager : MonoBehaviour
             Debug.LogError("PlayerInteract script not found in the scene.");
         }
 
+        // Find the CharacterController2D script in the scene
+        playerController = FindObjectOfType<CharacterController2D>();
+        if (playerController == null)
+        {
+            Debug.LogError("CharacterController2D script not found in the scene.");
+        }
+
         // Find the Boss script in the scene
         boss = FindObjectOfType<Boss>();
         if (boss == null)
         {
             Debug.LogError("Boss script not found in the scene.");
+        }
+
+        // Find the Gun script in the scene
+        gun = FindObjectOfType<Gun>();
+        if (gun == null)
+        {
+            Debug.LogError("Gun script not found in the scene.");
         }
     }
 
@@ -48,6 +66,12 @@ public class DialogueManager : MonoBehaviour
             playerInteract.SetInteractionMessageActive(false); // Disable interaction message
         }
 
+        if (playerController != null)
+        {
+            
+            playerController.SetCanMove(false); // Désactiver le mouvement du joueur
+        }
+
         dialogueUI.SetActive(true);
         nameText.text = npc.npcName;
         sentences.Clear();
@@ -58,6 +82,11 @@ public class DialogueManager : MonoBehaviour
         foreach (string sentence in lines)
         {
             sentences.Enqueue(sentence);
+        }
+
+        if (gun != null)
+        {
+            gun.SetCanShoot(false); // Désactiver le tir
         }
 
         DisplayNextSentence();
@@ -126,6 +155,16 @@ public class DialogueManager : MonoBehaviour
             playerInteract.SetInteractionMessageActive(true); // Re-enable interaction message
         }
 
+        if (playerController != null)
+        {
+            playerController.SetCanMove(true); // Réactiver le mouvement du joueur
+        }
+
+        if (gun != null)
+        {
+            Invoke(nameof(EnableShooting), 0.2f); // Ajout d'un délai de 0.2 seconde avant de réactiver le tir
+        }
+
         // Notifier le boss que le dialogue est terminé
         if (boss != null)
         {
@@ -133,5 +172,10 @@ public class DialogueManager : MonoBehaviour
         }
 
         Debug.Log("Dialogue ended.");
+    }
+
+    void EnableShooting()
+    {
+        gun.SetCanShoot(true);
     }
 }

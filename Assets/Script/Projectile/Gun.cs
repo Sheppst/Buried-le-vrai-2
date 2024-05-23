@@ -14,6 +14,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private float fireRate = 0.5f; // Délai entre chaque tir en secondes
     private float nextFireTime = 0f; // Temps avant le prochain tir
 
+    private bool canShoot = true; // Booléen pour contrôler si le joueur peut tirer
+
     void Awake()
     {
         mana = GetComponent<Mana>();
@@ -21,6 +23,9 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
+        if (!canShoot)
+            return;
+
         Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
@@ -33,6 +38,11 @@ public class Gun : MonoBehaviour
                 nextFireTime = Time.time + fireRate; // Met à jour le temps avant le prochain tir
             }
         }
+    }
+
+    public void SetCanShoot(bool value)
+    {
+        canShoot = value;
     }
 
     void Shoot(Vector3 target)

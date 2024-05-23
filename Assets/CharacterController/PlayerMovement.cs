@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (!canControl) return; // Prevent player control during respawn delay
+        if (!controller.canMove) return; // Prevent animations if canMove is false
 
         if (!controller.isKnockedBack && animationsEnabled)
         {
@@ -78,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (canControl) // Prevent player movement during respawn delay
+        if (canControl && controller.canMove) // Prevent player movement during respawn delay and if canMove is false
         {
             controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash, dashPower);
         }

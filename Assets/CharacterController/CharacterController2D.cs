@@ -25,13 +25,14 @@ public class CharacterController2D : MonoBehaviour
     private bool m_OneDash;
     private Vector3 velocity = Vector3.zero;
 
-    public bool canMove = true; // Drapeau pour contrôler le mouvement
+    public bool canMove = true; // Drapeau pour contrôler le mouvement, initialisé à true
     public bool isKnockedBack = false; // Drapeau pour indiquer si le joueur est en knockback
 
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         mana = GetComponent<Mana>();
+        canMove = true; // Assurez-vous que canMove est initialisé à true
     }
 
     private void FixedUpdate()
@@ -57,6 +58,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(float move, bool crouch, bool jump, bool dash, float dashPower)
     {
+        if (!canMove) return; // Empêcher le mouvement si canMove est false
         if (isKnockedBack) return; // Si le joueur est en knockback, désactiver le mouvement et les sauts
 
         if (!crouch)
@@ -146,5 +148,17 @@ public class CharacterController2D : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         m_JumpAnim = true;
+    }
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+        if (!canMove)
+        {
+            // Désactiver les animations si le mouvement est désactivé
+            m_PlayerAnimJump.SetFloat("IsRunning", 0f);
+            m_PlayerAnimJump.SetBool("IsJumping", false);
+            m_Rigidbody2D.velocity = Vector2.zero; // Réinitialiser la vélocité
+        }
     }
 }
