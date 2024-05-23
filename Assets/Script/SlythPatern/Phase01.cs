@@ -183,7 +183,7 @@ public class Phase01 : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Damageable") // Prend effet si le boss rentre au collision avec un objet pouvant l'endomager 
+        if (collision.tag == "ProjPlayer") // Prend effet si le boss rentre au collision avec un objet pouvant l'endomager 
         {
             Life -= 5;
             print("touché"); // Pour les tests futures
