@@ -914,6 +914,7 @@ MonoBehaviour:
   Ray: {fileID: 5254165969175606140}
   Block: {fileID: 3394808368603911026, guid: 26786dafd378a5845844e2e74f51d827, type: 3}
   ChargeStrength: 0
+  ChargeSpeed: 3
   BossAnim: {fileID: 8543092868321333532}
   Current: {fileID: 0}
 --- !u!95 &8543092868321333532

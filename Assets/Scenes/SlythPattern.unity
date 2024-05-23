@@ -1000,6 +1000,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.024800807
       objectReference: {fileID: 0}
+    - target: {fileID: 7319155359334969952, guid: 78b516b9699a2664b9bb9d312fdaceca, type: 3}
+      propertyPath: ChargeSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7324698178218771594, guid: 78b516b9699a2664b9bb9d312fdaceca, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.973
