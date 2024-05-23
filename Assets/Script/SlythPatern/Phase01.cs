@@ -185,6 +185,7 @@ public class Phase01 : MonoBehaviour
     {
         if (collision.tag == "Damageable") // Prend effet si le boss rentre au collision avec un objet pouvant l'endomager 
         {
+            Life -= 5;
             print("touché"); // Pour les tests futures
         }
         if (Prog.CurrentState == ProcessState.Charge) // Si durant la phase de Charge ...
