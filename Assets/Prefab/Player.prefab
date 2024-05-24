@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 3596417167674377402}
   - component: {fileID: 5232332425208087738}
   - component: {fileID: 428059649433429962}
+  - component: {fileID: 3494928236718533494}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -227,6 +228,8 @@ MonoBehaviour:
   m_CeilingCheck: {fileID: 5166943126782593475}
   m_CrouchDisableCollider: {fileID: 0}
   m_PlayerAnimJump: {fileID: 3124836745566226866}
+  canMove: 1
+  isKnockedBack: 0
 --- !u!50 &1276637949402637968
 Rigidbody2D:
   serializedVersion: 4
@@ -431,6 +434,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifePool: 100
+  invincibilityDuration: 1
+  blinkTime: 0.2
+  smashHorizontalForce: 10
+  smashVerticalForce: 5
+  smashDuration: 1
+  bossTransform: {fileID: 0}
 --- !u!114 &3596417167674377402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,6 +489,14 @@ MonoBehaviour:
     m_Bits: 256
   interactionMessage: {fileID: 0}
   offset: {x: 90, y: 165, z: 0}
+--- !u!81 &3494928236718533494
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647164039615587927}
+  m_Enabled: 1
 --- !u!1 &693305662815489631
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,8 @@ public class SM_MobTerre : MonoBehaviour
     [SerializeField] float PatrolDistance;
     [SerializeField] private float AscendSpeed;
     //static List<Transform> list;
+    private AudioSource Audio;
+    private AudioClip Clip;
     private float Life = 10;
     private Transform Player;
     private Transform Direction;
@@ -32,6 +34,7 @@ public class SM_MobTerre : MonoBehaviour
         
         //Transform[] add = { Right,Left};
         //list.AddRange(add);
+        Audio = GetComponent<AudioSource>();
         Right.parent = null; 
         Left.parent = null;
         Prog = new Process();
@@ -98,6 +101,7 @@ public class SM_MobTerre : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.Inactive) // S'il reprend sa routine 
         {
+            Audio.Play();
             StopAllCoroutines(); // Précaution pour éviter instabilité
             //Right.position = new Vector3(2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob // Désactiver dans le cadre de la milestone
             //Left.position = new Vector3(-2*PatrolDistance + transform.position.x, transform.position.y, transform.position.z); // Re-initialise les point de patrouille en fonction de la nouvelle position du mob // Désactiver dans le cadre de la milestone
@@ -125,11 +129,14 @@ public class SM_MobTerre : MonoBehaviour
             }
             if (Ray.GetComponent<SM_Detect>().Hit()) // Si le Raycast détecte qlq chose 
             {
+                Audio.Stop();
+                Audio.Play();
                 Prog.MoveNext(Command.Detect); // Va de Moved à DetecSmth
             }
         }
         if (Prog.CurrentState == ProcessState.DetectSmth) // S'il a l'impression d'avoir détecter quelque chose 
         {
+            
             StartCoroutine(Wait()); // Attend confirmation de la détection
             if (!Ray.GetComponent<SM_Detect>().Hit()) //Sinon ...
             {
