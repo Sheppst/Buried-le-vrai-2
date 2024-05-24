@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Boss : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class Boss : MonoBehaviour
     public float healthThreshold = 50f; // Seuil de points de vie pour lancer l'aura
     public float damageAmount = 10f; // Amount of damage taken per hit
     public float redIntensity = 1f; // Intensité du rouge lors du flash
+    public bool isDead = false; // Booléen pour suivre l'état de vie du boss
 
     [Header("Movement Settings")]
     public float walkSpeed = 3f; // Vitesse de déplacement
@@ -39,6 +41,9 @@ public class Boss : MonoBehaviour
 
     [Header("Movement Boundaries")]
     public Collider2D movementBounds; // Zone de mouvement définie par un Collider2D
+
+    [Header("Doors")]
+    public List<DoorBehaviour> doors; // Liste des portes à ouvrir à la mort du boss
 
     private Animator animator;
     public bool isAuraActive = false;
@@ -81,6 +86,8 @@ public class Boss : MonoBehaviour
     private void Update()
     {
         if (player == null) return;
+
+        if (isDead) return; // Ne rien faire si le boss est mort
 
         FlipTowardsPlayer();
 
@@ -194,15 +201,16 @@ public class Boss : MonoBehaviour
         transform.Rotate(0, 180, 0);
     }
 
-    private void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount)
     {
-        if (isInvincible)
+        if (isInvincible || isDead)
             return;
 
         currentHealth -= damageAmount;
         if (currentHealth <= 0)
         {
-            // Add logic for when the boss dies, if necessary
+            Die();
+            return;
         }
 
         if (currentHealth <= maxHealth * 0.5f && !hasAuraBeenUsed)
@@ -215,6 +223,18 @@ public class Boss : MonoBehaviour
 
         StartCoroutine(FlashRed());
         StartCoroutine(TemporaryInvincibility(0.1f)); // Rendre le boss invincible pendant 0.1 seconde
+    }
+
+    private void Die()
+    {
+        isDead = true; // Le boss est maintenant mort
+        animator.SetBool("isDead", true); // Déclencher l'animation de mort
+
+        // Ouvrir les portes assignées
+        foreach (var door in doors)
+        {
+            door.isDoorOpen = true;
+        }
     }
 
     private IEnumerator TemporaryInvincibility(float duration)
@@ -286,3 +306,4 @@ public class Boss : MonoBehaviour
         animator.SetTrigger("EndDialogue");
     }
 }
+
