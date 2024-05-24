@@ -10,9 +10,11 @@ public class ThrowCoolDownBomb_SM : MonoBehaviour
     [SerializeField] private CircleCollider2D collid;
     [SerializeField] private float throwingspeed;
     private GameObject Player;
+    private AudioSource Audio;
     // Start is called before the first frame update
     void Start()
     {
+        Audio = GetComponent<AudioSource>();
         Player = GameObject.Find("Player"); // Cherche l'objet nommé Player dans la scène et l'assigne à mon objet Player 
         Prog = new Process(); // Créer un nouveau process de ma machine d'état
         if (Prog.CurrentState == ProcessState.Inactive) // Etat de base
@@ -50,6 +52,7 @@ public class ThrowCoolDownBomb_SM : MonoBehaviour
     {
         if (collision != null && Prog.CurrentState == ProcessState.Active && collision.gameObject.tag != "ExploFalse")
         {
+            Audio.Play();
             Prog.MoveNext(Command.Pause); 
             rigid.bodyType = RigidbodyType2D.Static;
             collid.isTrigger = true;

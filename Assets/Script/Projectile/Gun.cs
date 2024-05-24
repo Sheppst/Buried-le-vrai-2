@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private float SpeedBullet = 20;
     [SerializeField] private float fireRate = 0.5f; // Délai entre chaque tir en secondes
+    [SerializeField] private AudioSource Audio;
     private float nextFireTime = 0f; // Temps avant le prochain tir
 
     private bool canShoot = true; // Booléen pour contrôler si le joueur peut tirer
@@ -32,6 +33,7 @@ public class Gun : MonoBehaviour
         {
             if (mana.manaPool >= bulletCost)
             {
+                Audio.Play();
                 mana.SpendMana(bulletCost);
                 anim.SetTrigger("IsShootting");
                 Shoot(target);

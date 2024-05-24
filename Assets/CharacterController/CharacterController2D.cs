@@ -14,7 +14,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform m_CeilingCheck;
     [SerializeField] private Collider2D m_CrouchDisableCollider;
     [SerializeField] private Animator m_PlayerAnimJump;
-    [SerializeField] private AudioSource m_PlayerAudioSource;
+    [SerializeField] private AudioSource m_PlayerAudioSourceStep;
+    [SerializeField] private AudioSource m_PlayerAudioSourceDashSaut;
     [SerializeField] private AudioClip[] m_StepClip;
 
     const float k_GroundedRadius = .2f;
@@ -74,6 +75,7 @@ public class CharacterController2D : MonoBehaviour
 
         if (dash && m_OneDash)
         {
+            m_PlayerAudioSourceDashSaut.Play();
             if (dashPower == 0 && transform.localScale.x < 0)
             {
                 dashPower = 3500f * -1;
@@ -159,12 +161,14 @@ public class CharacterController2D : MonoBehaviour
         {
             if (m_Grounded)
             {
+                m_PlayerAudioSourceDashSaut.Play();
                 StartCoroutine(AnimJump());
                 m_Grounded = false;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
             }
             else if (m_DoubleJump && mana.manaPool >= doubleJumpCost)
             {
+                m_PlayerAudioSourceDashSaut.Play();
                 mana.SpendMana(doubleJumpCost);
                 StopAllCoroutines();
                 StartCoroutine(AnimJump());
