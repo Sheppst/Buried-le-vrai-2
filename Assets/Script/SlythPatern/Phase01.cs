@@ -14,6 +14,7 @@ public class Phase01 : MonoBehaviour
     [SerializeField] private float ChargeStrength = 1 ;
     [SerializeField] private float ChargeSpeed;
     [SerializeField] private Animator BossAnim;
+    private AudioSource MainAudio;
     private GameObject Bl;
     private Vector3 Newpos;
     private Vector2 Vec2Pos;
@@ -35,6 +36,7 @@ public class Phase01 : MonoBehaviour
         Bl = null;
         Life = transform.parent.gameObject.GetComponent<AllMovement>().Life;
         colid = GetComponent<PolygonCollider2D>();
+        MainAudio = GetComponentInParent<AudioSource>();
         rigid = GetComponentInParent<Rigidbody2D>();
         Prog = new Process();
         Player = GameObject.Find(NomDuJoueur).GetComponent<Transform>();
@@ -117,6 +119,7 @@ public class Phase01 : MonoBehaviour
             }
             else if (distC/2 < distP) // ...si le joueur est trop loin
             {
+                MainAudio.Play();
                 Prog.MoveNext(Command.CutPhase); // Changement spécial pour rendre dans les temps, ChoisingPhase -> Charge
             }
         }
@@ -140,6 +143,7 @@ public class Phase01 : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.Charge) // Quand le boss cherche à chager le joueur 
         {
+
             speed = initialSpeed * ChargeSpeed;
             BossAnim.SetBool("Charge", true);
             BossAnim.SetBool("Walk", false);
