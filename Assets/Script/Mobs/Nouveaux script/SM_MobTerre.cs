@@ -136,7 +136,6 @@ public class SM_MobTerre : MonoBehaviour
         }
         if (Prog.CurrentState == ProcessState.DetectSmth) // S'il a l'impression d'avoir détecter quelque chose 
         {
-            
             StartCoroutine(Wait()); // Attend confirmation de la détection
             if (!Ray.GetComponent<SM_Detect>().Hit()) //Sinon ...
             {

@@ -14,6 +14,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform m_CeilingCheck;
     [SerializeField] private Collider2D m_CrouchDisableCollider;
     [SerializeField] private Animator m_PlayerAnimJump;
+    [SerializeField] private AudioSource m_PlayerAudioSource;
+    [SerializeField] private AudioClip[] m_StepClip;
 
     const float k_GroundedRadius = .2f;
     private bool m_Grounded;
@@ -23,6 +25,7 @@ public class CharacterController2D : MonoBehaviour
     private bool m_DoubleJump = true;
     private bool m_JumpAnim;
     private bool m_OneDash;
+    private int m_CurrentAudio;
     private Vector3 velocity = Vector3.zero;
 
     public bool canMove = true; // Drapeau pour contrôler le mouvement, initialisé à true
@@ -104,6 +107,21 @@ public class CharacterController2D : MonoBehaviour
 
             if (move > 0)
             {
+                //if (!m_PlayerAudioSource.isPlaying)
+                //{
+                //    if (m_CurrentAudio == 0 || m_PlayerAudioSource.clip == null)
+                //    {
+                //        m_PlayerAudioSource.clip = m_StepClip[1];
+                //        m_CurrentAudio = 1;
+                //        m_PlayerAudioSource.Play();
+                //    }
+                //    else if (m_CurrentAudio == 1)
+                //    {
+                //        m_PlayerAudioSource.clip = m_StepClip[0];
+                //        m_CurrentAudio = 0;
+                //        m_PlayerAudioSource.Play();
+                //    }
+                //}
                 Flip();
                 Vector3 theScale = transform.localScale;
                 theScale.x = Mathf.Abs(theScale.x);
@@ -111,11 +129,30 @@ public class CharacterController2D : MonoBehaviour
             }
             else if (move < 0)
             {
+                //if (!m_PlayerAudioSource.isPlaying)
+                //{
+                //    if (m_CurrentAudio == 1 || m_PlayerAudioSource.clip == null)
+                //    {
+                //        m_PlayerAudioSource.clip = m_StepClip[0];
+                //        m_CurrentAudio = 0;
+                //        m_PlayerAudioSource.Play();
+                //    }
+                //    else if (m_CurrentAudio == 0)
+                //    {
+                //        m_PlayerAudioSource.clip = m_StepClip[1];
+                //        m_CurrentAudio = 1;
+                //        m_PlayerAudioSource.Play();
+                //    }
+                //}
                 Flip();
                 Vector3 theScale = transform.localScale;
                 theScale.x = Mathf.Abs(theScale.x) * -1;
                 transform.localScale = theScale;
             }
+            //else
+            //{
+            //    m_PlayerAudioSource.Stop();
+            //}
         }
 
         if (jump)
