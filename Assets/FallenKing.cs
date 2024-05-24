@@ -89,6 +89,13 @@ public class Boss : MonoBehaviour
 
         if (isDead) return; // Ne rien faire si le boss est mort
 
+        // Vérifier l'état de santé du boss
+        if (currentHealth <= 0)
+        {
+            Die();
+            return;
+        }
+
         FlipTowardsPlayer();
 
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
@@ -207,11 +214,6 @@ public class Boss : MonoBehaviour
             return;
 
         currentHealth -= damageAmount;
-        if (currentHealth <= 0)
-        {
-            Die();
-            return;
-        }
 
         if (currentHealth <= maxHealth * 0.5f && !hasAuraBeenUsed)
         {
@@ -306,4 +308,3 @@ public class Boss : MonoBehaviour
         animator.SetTrigger("EndDialogue");
     }
 }
-

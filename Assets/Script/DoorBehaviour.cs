@@ -4,31 +4,40 @@ using UnityEngine;
 
 public class DoorBehaviour : MonoBehaviour
 {
-   public bool isDoorOpen = false;
+    public bool isDoorOpen = false;
+    public bool openHorizontally = false; // Détermine si la porte s'ouvre horizontalement
+    public bool openVertically = false;   // Détermine si la porte s'ouvre verticalement
     Vector3 doorClosedPos;
     Vector3 doorOpenPos;
     [SerializeField] float doorSpeed;
     [SerializeField] float doorHigh;
-    // Start is called before the first frame update
+    [SerializeField] float doorWidth; // Ajouté pour l'ouverture horizontale
+
     void Awake()
     {
         doorClosedPos = transform.position;
-        doorOpenPos = new Vector3(transform.position.x, transform.position.y + doorHigh, transform.position.z);
-
+        if (openHorizontally)
+        {
+            doorOpenPos = new Vector3(transform.position.x + doorWidth, transform.position.y, transform.position.z);
+        }
+        else if (openVertically)
+        {
+            doorOpenPos = new Vector3(transform.position.x, transform.position.y + doorHigh, transform.position.z);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isDoorOpen)
         {
             OpenDoor();
         }
-        else if (!isDoorOpen)
+        else
         {
             CloseDoor();
         }
     }
+
     void OpenDoor()
     {
         if (transform.position != doorOpenPos)
@@ -36,6 +45,7 @@ public class DoorBehaviour : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, doorOpenPos, doorSpeed * Time.deltaTime);
         }
     }
+
     void CloseDoor()
     {
         if (transform.position != doorClosedPos)
@@ -43,4 +53,15 @@ public class DoorBehaviour : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, doorClosedPos, doorSpeed * Time.deltaTime);
         }
     }
+
+    void OnValidate()
+    {
+        // Assurez-vous que seulement un des deux booléens est activé
+        if (openHorizontally && openVertically)
+        {
+            Debug.LogWarning("La porte ne peut pas s'ouvrir horizontalement et verticalement en même temps. Veuillez choisir une seule direction.");
+            openVertically = false; // Désactiver l'ouverture verticale par défaut si les deux sont activés
+        }
+    }
 }
+

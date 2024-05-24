@@ -17,6 +17,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private AudioSource m_PlayerAudioSourceStep;
     [SerializeField] private AudioSource m_PlayerAudioSourceDashSaut;
     [SerializeField] private AudioClip[] m_StepClip;
+    [SerializeField] private DustEffect dustEffect; // Référence au script de l'effet de poussière
 
     const float k_GroundedRadius = .2f;
     private bool m_Grounded;
@@ -107,68 +108,40 @@ public class CharacterController2D : MonoBehaviour
             Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
             m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
 
-            if (move > 0)
+            if (move > 0 && !m_FacingRight)
             {
-                //if (!m_PlayerAudioSource.isPlaying)
-                //{
-                //    if (m_CurrentAudio == 0 || m_PlayerAudioSource.clip == null)
-                //    {
-                //        m_PlayerAudioSource.clip = m_StepClip[1];
-                //        m_CurrentAudio = 1;
-                //        m_PlayerAudioSource.Play();
-                //    }
-                //    else if (m_CurrentAudio == 1)
-                //    {
-                //        m_PlayerAudioSource.clip = m_StepClip[0];
-                //        m_CurrentAudio = 0;
-                //        m_PlayerAudioSource.Play();
-                //    }
-                //}
                 Flip();
-                Vector3 theScale = transform.localScale;
-                theScale.x = Mathf.Abs(theScale.x);
-                transform.localScale = theScale;
+                dustEffect.CreateDust(); // Créer l'effet de poussière lors du changement de direction
             }
-            else if (move < 0)
+            else if (move < 0 && m_FacingRight)
             {
-                //if (!m_PlayerAudioSource.isPlaying)
-                //{
-                //    if (m_CurrentAudio == 1 || m_PlayerAudioSource.clip == null)
-                //    {
-                //        m_PlayerAudioSource.clip = m_StepClip[0];
-                //        m_CurrentAudio = 0;
-                //        m_PlayerAudioSource.Play();
-                //    }
-                //    else if (m_CurrentAudio == 0)
-                //    {
-                //        m_PlayerAudioSource.clip = m_StepClip[1];
-                //        m_CurrentAudio = 1;
-                //        m_PlayerAudioSource.Play();
-                //    }
-                //}
                 Flip();
-                Vector3 theScale = transform.localScale;
-                theScale.x = Mathf.Abs(theScale.x) * -1;
-                transform.localScale = theScale;
+                dustEffect.CreateDust(); // Créer l'effet de poussière lors du changement de direction
             }
-            //else
-            //{
-            //    m_PlayerAudioSource.Stop();
-            //}
+
+            // Gérer les sons de pas ici
+            // if (move != 0 && m_Grounded)
+            // {
+            //     if (!m_PlayerAudioSourceStep.isPlaying)
+            //     {
+            //         m_PlayerAudioSourceStep.clip = m_StepClip[m_CurrentAudio];
+            //         m_CurrentAudio = (m_CurrentAudio + 1) % m_StepClip.Length;
+            //         m_PlayerAudioSourceStep.Play();
+            //     }
+            // }
         }
 
         if (jump)
         {
             if (m_Grounded)
             {
-                m_PlayerAudioSourceDashSaut.Play();
                 StartCoroutine(AnimJump());
                 m_Grounded = false;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                dustEffect.CreateDust(); // Créer l'effet de poussière lors du saut
             }
             else if (m_DoubleJump && mana.manaPool >= doubleJumpCost)
             {
-                m_PlayerAudioSourceDashSaut.Play();
                 mana.SpendMana(doubleJumpCost);
                 StopAllCoroutines();
                 StartCoroutine(AnimJump());
@@ -176,6 +149,7 @@ public class CharacterController2D : MonoBehaviour
                 m_DoubleJump = false;
                 m_Rigidbody2D.velocity = Vector3.zero;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                dustEffect.CreateDust(); // Créer l'effet de poussière lors du double saut
             }
         }
     }
@@ -183,6 +157,9 @@ public class CharacterController2D : MonoBehaviour
     private void Flip()
     {
         m_FacingRight = !m_FacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 
     private IEnumerator AnimJump()
@@ -201,5 +178,10 @@ public class CharacterController2D : MonoBehaviour
             m_PlayerAnimJump.SetBool("IsJumping", false);
             m_Rigidbody2D.velocity = Vector2.zero; // Réinitialiser la vélocité
         }
+    }
+
+    public bool IsGrounded()
+    {
+        return m_Grounded;
     }
 }
