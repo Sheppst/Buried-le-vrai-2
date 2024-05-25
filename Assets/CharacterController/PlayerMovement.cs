@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int dashCost = 15;
     [SerializeField] private int DoubleJumpCost = 15;
     private bool YesDash = true;
+    public bool UseBomb = false; // Ajout du booléen UseBomb
 
     public float runSpeed = 40f;
     public bool canControl = true; // Variable to manage player control
@@ -67,11 +68,11 @@ public class PlayerMovement : MonoBehaviour
             YesDash = false;
             StartCoroutine(WaitDash());
         }
-        if (Input.GetKeyDown(KeyCode.Q) && TBombs != null)
+        if (Input.GetKeyDown(KeyCode.Q) && TBombs != null && UseBomb)
         {
             Instantiate(TBombs, transform.position, Quaternion.identity);
         }
-        if (Input.GetMouseButtonDown(1) && SBombs != null)
+        if (Input.GetMouseButtonDown(1) && SBombs != null && UseBomb)
         {
             Instantiate(SBombs, transform.position, Quaternion.identity);
         }
