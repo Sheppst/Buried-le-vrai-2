@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -17,9 +16,12 @@ public class Gun : MonoBehaviour
 
     private bool canShoot = true; // Booléen pour contrôler si le joueur peut tirer
 
+    private CharacterController2D characterController;
+
     void Awake()
     {
         mana = GetComponent<Mana>();
+        characterController = GetComponent<CharacterController2D>();
     }
 
     void Update()
@@ -49,16 +51,8 @@ public class Gun : MonoBehaviour
 
     void Shoot(Vector3 target)
     {
-        Vector3 NewSight = transform.localScale;
-        if (transform.position.x - target.x < 0)
-        {
-            NewSight.x = Mathf.Abs(NewSight.x);
-        }
-        else if (transform.position.x - target.x > 0)
-        {
-            NewSight.x = -Mathf.Abs(NewSight.x);
-        }
-        transform.localScale = NewSight;
+        // Tourner temporairement le joueur vers la direction du tir
+        FlipTowards(target);
 
         GameObject projectile = Instantiate(Proj, FirePos.position, Quaternion.identity);
         projectile.transform.localScale = Vector3.one * 0.042198f;
@@ -68,6 +62,26 @@ public class Gun : MonoBehaviour
         projectile.GetComponent<AttackObject>().tag = "ProjPlayer";
         projectile.GetComponent<AttackObject>().TimeBeforeDestroy = 5;
         projectile.GetComponent<AttackObject>().ObjSprite = Balle;
+
+        // Revenir à la direction de course après un court délai
+        StartCoroutine(ResetOrientation());
     }
 
+    void FlipTowards(Vector3 target)
+    {
+        if (target.x > transform.position.x && !characterController.IsFacingRight())
+        {
+            characterController.Move(0, false, false, false, 0); // Forcer le flip
+        }
+        else if (target.x < transform.position.x && characterController.IsFacingRight())
+        {
+            characterController.Move(0, false, false, false, 0); // Forcer le flip
+        }
+    }
+
+    IEnumerator ResetOrientation()
+    {
+        yield return new WaitForSeconds(0.1f); // Attendre un court délai
+        characterController.Move(0, false, false, false, 0); // Remettre dans la direction de course
+    }
 }
