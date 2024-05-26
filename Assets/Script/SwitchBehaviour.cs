@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SwitchBehaviour : MonoBehaviour
 {
-    [SerializeField] DoorBehaviour DoorBehaviour;
-
+    [SerializeField] List<DoorBehaviour> doorBehaviours; // Liste de portes à gérer
     [SerializeField] bool isDoorOpenSwitch;
     [SerializeField] bool isDoorCloseSwitch;
+
+    [SerializeField] float shakeDuration = 0.2f; // Durée du tremblement
+    [SerializeField] float shakeMagnitude = 0.3f; // Intensité du tremblement
+    [SerializeField] float shakeDelay = 0.5f; // Délai avant le tremblement
 
     float switchSizeY;
     float switchspeed = 1f;
@@ -15,14 +18,17 @@ public class SwitchBehaviour : MonoBehaviour
     Vector3 switchUpPos;
     Vector3 switchDownPos;
     bool isPressingSwitch = false;
+    CameraShake cameraShake; // Référence au script CameraShake
+    Transform playerTransform; // Référence à la position du joueur
+
     void Awake()
     {
         switchSizeY = transform.localScale.y / 2;
         switchUpPos = transform.position;
         switchDownPos = new Vector3(transform.position.x, transform.position.y - switchSizeY, transform.position.z);
+        cameraShake = Camera.main.GetComponent<CameraShake>(); // Obtenez la référence au script CameraShake
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isPressingSwitch)
@@ -34,6 +40,7 @@ public class SwitchBehaviour : MonoBehaviour
             MoveSwitchUp();
         }
     }
+
     void MoveSwitchDown()
     {
         if (transform.position != switchDownPos)
@@ -41,6 +48,7 @@ public class SwitchBehaviour : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, switchDownPos, switchspeed * Time.deltaTime);
         }
     }
+
     void MoveSwitchUp()
     {
         if (transform.position != switchUpPos)
@@ -54,28 +62,41 @@ public class SwitchBehaviour : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPressingSwitch = !isPressingSwitch;
+            playerTransform = collision.transform; // Obtenez la position du joueur
 
-            if (isDoorOpenSwitch && !DoorBehaviour.isDoorOpen)
+            foreach (DoorBehaviour doorBehaviour in doorBehaviours)
             {
-                DoorBehaviour.isDoorOpen = !DoorBehaviour.isDoorOpen;
-            }
-            else if (isDoorCloseSwitch && DoorBehaviour.isDoorOpen)
-            {
-                DoorBehaviour.isDoorOpen = !DoorBehaviour.isDoorOpen;
+                if (isDoorOpenSwitch && !doorBehaviour.isDoorOpen)
+                {
+                    doorBehaviour.isDoorOpen = true;
+                    StartCoroutine(TriggerShakeWithDelay()); // Appeler le tremblement de la caméra avec délai
+                }
+                else if (isDoorCloseSwitch && doorBehaviour.isDoorOpen)
+                {
+                    doorBehaviour.isDoorOpen = false;
+                    StartCoroutine(TriggerShakeWithDelay()); // Appeler le tremblement de la caméra avec délai
+                }
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)  
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             StartCoroutine(SwitchUpDelay(switchDelay));
         }
     }
+
     IEnumerator SwitchUpDelay(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         isPressingSwitch = false;
+    }
+
+    IEnumerator TriggerShakeWithDelay()
+    {
+        yield return new WaitForSeconds(shakeDelay); // Attendre avant de déclencher le tremblement
+        StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude, playerTransform.position));
     }
 }

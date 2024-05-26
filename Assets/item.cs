@@ -22,6 +22,18 @@ public class Item : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        {
+            if (itemBoxManager != null)
+            {
+                itemBoxManager.ShowItemBox(itemDescription);
+                HandleItemPickup(); // Appeler la méthode pour gérer la collecte de l'élément
+            }
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -33,7 +45,7 @@ public class Item : MonoBehaviour
             {
                 itemBoxManager.ShowItemBox(itemDescription);
                 autoAggro = false;
-                HandleItemPickup(); // Appeler la nouvelle méthode pour gérer la collecte de l'élément
+                HandleItemPickup(); // Appeler la méthode pour gérer la collecte de l'élément
             }
         }
     }
