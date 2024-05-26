@@ -19,7 +19,7 @@ public class PlayerLifeSystem : MonoBehaviour
     private Coroutine auraDamageCoroutine;
     private bool isInvincible = false;
 
-    [SerializeField] private Transform bossTransform;
+    [SerializeField] private Transform bossTransform;   
     private CharacterController2D controller;
 
     void Start()
@@ -115,6 +115,7 @@ public class PlayerLifeSystem : MonoBehaviour
     private void LoseHealthAndRespawn()
     {
         lifePool -= maxLife * 0.25f;
+
         if (lifePool <= 0f)
         {
             SceneManager.LoadScene(0);
@@ -124,6 +125,7 @@ public class PlayerLifeSystem : MonoBehaviour
             transform.position = lastCheckpointPosition;
             rb2D.velocity = Vector2.zero;
             StartCoroutine(RespawnDelay());
+            
         }
     }
 
