@@ -49,18 +49,16 @@ public class Gun : MonoBehaviour
 
     void Shoot(Vector3 target)
     {
+        Vector3 NewSight = transform.localScale;
         if (transform.position.x - target.x < 0)
         {
-            Vector3 NewSight = transform.localScale;
             NewSight.x = Mathf.Abs(NewSight.x);
-            transform.localScale = NewSight;
         }
         else if (transform.position.x - target.x > 0)
         {
-            Vector3 NewSight = transform.localScale;
-            NewSight.x = Mathf.Abs(NewSight.x) * -1;
-            transform.localScale = NewSight;
+            NewSight.x = -Mathf.Abs(NewSight.x);
         }
+        transform.localScale = NewSight;
 
         GameObject projectile = Instantiate(Proj, FirePos.position, Quaternion.identity);
         projectile.transform.localScale = Vector3.one * 0.042198f;
@@ -71,4 +69,5 @@ public class Gun : MonoBehaviour
         projectile.GetComponent<AttackObject>().TimeBeforeDestroy = 5;
         projectile.GetComponent<AttackObject>().ObjSprite = Balle;
     }
+
 }

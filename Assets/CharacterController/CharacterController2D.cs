@@ -118,17 +118,6 @@ public class CharacterController2D : MonoBehaviour
                 Flip();
                 dustEffect.CreateDust(); // Créer l'effet de poussière lors du changement de direction
             }
-
-            // Gérer les sons de pas ici
-            // if (move != 0 && m_Grounded)
-            // {
-            //     if (!m_PlayerAudioSourceStep.isPlaying)
-            //     {
-            //         m_PlayerAudioSourceStep.clip = m_StepClip[m_CurrentAudio];
-            //         m_CurrentAudio = (m_CurrentAudio + 1) % m_StepClip.Length;
-            //         m_PlayerAudioSourceStep.Play();
-            //     }
-            // }
         }
 
         if (jump)

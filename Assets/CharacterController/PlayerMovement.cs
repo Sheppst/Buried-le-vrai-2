@@ -139,4 +139,10 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         YesDash = true;
     }
+
+    // Méthode pour activer l'utilisation des bombes
+    public void EnableBombUsage()
+    {
+        UseBomb = true;
+    }
 }

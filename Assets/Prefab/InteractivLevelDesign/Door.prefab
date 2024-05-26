@@ -98,5 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoorOpen: 0
+  openHorizontally: 0
+  openVertically: 0
   doorSpeed: 10
   doorHigh: -7
+  doorWidth: 0
