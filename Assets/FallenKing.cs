@@ -306,5 +306,16 @@ public class Boss : MonoBehaviour
     {
         isInvincible = false; // Le boss redevient vulnérable
         animator.SetTrigger("EndDialogue");
+
+        // Désactiver le GameObject "NPCBehaviour"
+        GameObject npcBehaviour = GameObject.Find("NPCBehaviour");
+        if (npcBehaviour != null)
+        {
+            npcBehaviour.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("NPCBehaviour GameObject non trouvé!");
+        }
     }
 }

@@ -12,6 +12,8 @@ public class PlayerLifeSystem : MonoBehaviour
     [SerializeField] private float smashHorizontalForce = 10f; // Force horizontale pour le smash
     [SerializeField] private float smashVerticalForce = 5f; // Force verticale pour le smash
     [SerializeField] private float smashDuration = 1f; // Durée pendant laquelle la force horizontale est appliquée
+    [SerializeField] private float shakeDuration = 0.2f; // Durée du tremblement de la caméra
+    [SerializeField] private float shakeMagnitude = 0.3f; // Intensité du tremblement de la caméra
 
     private Vector3 lastCheckpointPosition;
     private PlayerMovement playerMovement;
@@ -19,8 +21,9 @@ public class PlayerLifeSystem : MonoBehaviour
     private Coroutine auraDamageCoroutine;
     private bool isInvincible = false;
 
-    [SerializeField] private Transform bossTransform;   
+    [SerializeField] private Transform bossTransform;
     private CharacterController2D controller;
+    private CameraShake cameraShake; // Référence au script CameraShake
 
     void Start()
     {
@@ -28,6 +31,7 @@ public class PlayerLifeSystem : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         rb2D = GetComponent<Rigidbody2D>();
         controller = GetComponent<CharacterController2D>();
+        cameraShake = Camera.main.GetComponent<CameraShake>(); // Obtenez la référence au script CameraShake
     }
 
     public void Update()
@@ -125,7 +129,7 @@ public class PlayerLifeSystem : MonoBehaviour
             transform.position = lastCheckpointPosition;
             rb2D.velocity = Vector2.zero;
             StartCoroutine(RespawnDelay());
-            
+
         }
     }
 
@@ -194,6 +198,8 @@ public class PlayerLifeSystem : MonoBehaviour
 
         rb2D.AddForce(new Vector2(direction.x * smashHorizontalForce, smashVerticalForce), ForceMode2D.Impulse);
         playerMovement.SetAnimationsEnabled(false); // Désactiver les animations
+
+        StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude, transform.position)); // Appeler le tremblement de la caméra
 
         while (elapsedTime < smashDuration)
         {
