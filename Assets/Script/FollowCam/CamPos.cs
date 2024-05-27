@@ -36,7 +36,7 @@ public class CamPos : MonoBehaviour
                 transform.position += Vector3.right * Time.deltaTime * CamSpeed;
             }
         }
-        else if (Input.GetKey(KeyCode.Q))
+        else if (Input.GetKey(KeyCode.A))
         {
             Target = transform.parent.position + Vector3.left * EcartementCam;
             if (transform.position.x > Target.x)
