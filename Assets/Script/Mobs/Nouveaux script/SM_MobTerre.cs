@@ -279,6 +279,10 @@ public class SM_MobTerre : MonoBehaviour
                 }
             }
         }
+        if (collision.tag == "ExploStatTrue" || collision.tag == "ExploThrTrue")
+        {
+            Life -= 8f;
+        }
         if (collision.gameObject.tag == "StopDownUp") // Si le monstre descend un bloc l'arrête
         {
             for (int i = 0; i < transform.childCount; i++) // Sur le monstre il y a des enfants qui se détache de temps à autre donc l'enfant que je recherche n'est pas statique
