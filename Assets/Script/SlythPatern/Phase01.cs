@@ -207,7 +207,7 @@ public class Phase01 : MonoBehaviour
             Vector2 CollidKnock = (YProp - Vec2Pos).normalized;
             if (collision.tag == "Player")
             {
-                GameObject.Find("Player").GetComponent<PlayerMovement>().ChargeByBoss();
+                GameObject.Find("Player").GetComponent<PlayerLifeSystem>().ChargeByBoss();
                 //collision.gameObject.GetComponent<Rigidbody2D>().AddForce(CollidKnock * ChargeStrength);
                 BossAnim.SetBool("Charge", false);
             }

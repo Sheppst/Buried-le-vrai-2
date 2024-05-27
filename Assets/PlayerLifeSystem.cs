@@ -14,6 +14,11 @@ public class PlayerLifeSystem : MonoBehaviour
     [SerializeField] private float smashDuration = 1f; // Durée pendant laquelle la force horizontale est appliquée
     [SerializeField] private float shakeDuration = 0.2f; // Durée du tremblement de la caméra
     [SerializeField] private float shakeMagnitude = 0.3f; // Intensité du tremblement de la caméra
+    [SerializeField] private float PropulseX;
+    [SerializeField] private float PropulseY;
+    [SerializeField] private float ChargePower;
+
+    [SerializeField] private GameObject Boss;
 
     private Vector3 lastCheckpointPosition;
     private PlayerMovement playerMovement;
@@ -222,5 +227,41 @@ public class PlayerLifeSystem : MonoBehaviour
         {
             return Vector2.left; // Boss est à droite du joueur, donc propulser vers la gauche
         }
+    }
+
+    public void BiteByBoss()
+    {
+        print("Mordu");
+        if (Boss.GetComponent<Phase01>().transform.localScale.x < 0)
+        {
+            rb2D.velocity = Vector3.zero;
+            Vector2 Repouss = new Vector2(PropulseX * -1, PropulseY);
+            rb2D.AddForce(Repouss);
+        }
+        else if (Boss.GetComponent<Phase01>().transform.localScale.x > 0)
+        {
+            rb2D.velocity = Vector3.zero;
+            Vector2 Repouss = new Vector2(PropulseX, PropulseY);
+            rb2D.AddForce(Repouss);
+        }
+        lifePool -= 20;
+    }
+
+    public void ChargeByBoss()
+    {
+        print("Chargé");
+        if (Boss.GetComponent<Phase01>().transform.localScale.x < 0)
+        {
+            rb2D.velocity = Vector3.zero;
+            Vector2 Repouss = new Vector2(PropulseX * -1 * ChargePower, PropulseY * ChargePower);
+            rb2D.AddForce(Repouss);
+        }
+        else if (Boss.GetComponent<Phase01>().transform.localScale.x > 0)
+        {
+            rb2D.velocity = Vector3.zero;
+            Vector2 Repouss = new Vector2(PropulseX * ChargePower, PropulseY * ChargePower);
+            rb2D.AddForce(Repouss);
+        }
+        lifePool -= 15;
     }
 }
