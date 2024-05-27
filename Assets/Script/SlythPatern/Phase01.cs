@@ -11,6 +11,7 @@ public class Phase01 : MonoBehaviour
     [SerializeField] private LayerMask layer;
     [SerializeField] private GameObject Ray;
     [SerializeField] private GameObject Block;
+    [SerializeField] private GameObject Wall;
     [SerializeField] private float ChargeStrength = 1 ;
     [SerializeField] private float ChargeSpeed;
     [SerializeField] private Animator BossAnim;

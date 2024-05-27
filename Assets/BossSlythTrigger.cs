@@ -25,7 +25,7 @@ public class BossSlythTrigger : MonoBehaviour
         if (collision.tag == "Player")
         {
             Boss.SetActive(true);
-            this.enabled = false;
+            Destroy(this);
         }
     }
 }
