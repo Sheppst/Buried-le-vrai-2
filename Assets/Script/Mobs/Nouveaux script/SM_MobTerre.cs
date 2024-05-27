@@ -256,7 +256,8 @@ public class SM_MobTerre : MonoBehaviour
     {
         if (collision.gameObject.tag == "ProjPlayer")
         {
-            Life -= 2;
+            Life -= 3.4f;
+
         }
         if (collision.gameObject.tag == "ForbDown") // Si le monstre rentre en contact avec un tile de collision l'interdisant de s'aventurer plus loin
         {
@@ -319,4 +320,5 @@ public class SM_MobTerre : MonoBehaviour
             transform.position += Vector3.up * AscendSpeed * Time.deltaTime;
         }
     }
+  
 }
