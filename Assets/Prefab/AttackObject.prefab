@@ -123,6 +123,7 @@ MonoBehaviour:
   Thrower: Player
   rigid: {fileID: -1985221666432320849}
   spriteRenderer: {fileID: 5422038598971291015}
+  Onde: {fileID: 1210559598, guid: 331f6371864c84640a02a3f9220f6f6f, type: 3}
   TimeBeforeDestroy: 5
   Target: {x: -24.076118, y: 1.657917, z: -10}
   Speed: 60

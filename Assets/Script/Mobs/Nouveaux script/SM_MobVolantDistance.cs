@@ -9,6 +9,7 @@ public class SM_MobVolantDistance : MonoBehaviour
     [SerializeField] private Transform Left;
     [SerializeField] private Transform Right;
     [SerializeField] private Rigidbody2D rigid;
+    [SerializeField] private Sprite AttackobjectSprite;
     private Transform Current;
     [SerializeField] private LayerMask WhoHaveToBeAggro;
     [SerializeField] private GameObject AttackObject;
@@ -115,6 +116,7 @@ public class SM_MobVolantDistance : MonoBehaviour
                 AttObj.GetComponent<AttackObject>().TimeBeforeDestroy = 15;
                 AttObj.GetComponent<AttackObject>().tag = tag; 
                 AttObj.GetComponent<AttackObject>().Speed = speedProj;
+                //AttObj.GetComponent<AttackObject>().ObjSprite = AttackobjectSprite;
                 AttObj.GetComponent<AttackObject>().Thrower = gameObject.tag; // Donne le tag du lanceur,
                                                                               // pour éviter que le projectile disparaisse aussi vite qu'il apparaît
                 

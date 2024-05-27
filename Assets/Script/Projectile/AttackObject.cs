@@ -8,7 +8,8 @@ public class AttackObject : MonoBehaviour
     [HideInInspector]public string Thrower;
     [SerializeField] private Rigidbody2D rigid;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    
+    [SerializeField] private Sprite Onde;
+
     public float TimeBeforeDestroy;
     public Vector3 Target;
     public float Speed = 1;
@@ -23,6 +24,11 @@ public class AttackObject : MonoBehaviour
         //dist /= 10;
         //print(dist);
         //Speed -= dist;
+        if (ObjSprite ==  Onde)
+        {
+            transform.localScale = Vector3.one * 3;
+            transform.eulerAngles = Vector3.forward;
+        }
         print(target.magnitude);
         rigid.velocity = new Vector2(target.x,target.y).normalized * Speed; // Applique cette direction à un certaine vitesse sur la vélocité objet
         TurnOnTarget(); // Dirge le sens de pointage de l'objet en direction voulu
