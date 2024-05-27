@@ -101,6 +101,10 @@ public class PlayerLifeSystem : MonoBehaviour
         {
             TakeDamage(30f);
         }
+        else if (collision.tag == "Mob")
+        {
+            TakeDamage(5f);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

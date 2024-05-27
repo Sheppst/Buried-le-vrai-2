@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SM_Phase01;
+using UnityEngine.SceneManagement;
 
 public class Phase01 : MonoBehaviour
 {
@@ -86,7 +87,7 @@ public class Phase01 : MonoBehaviour
         {
             StopAllCoroutines();
             transform.parent.gameObject.SetActive(false);
-            GameObject.Find("WallBoss").SetActive(true);
+            SceneManager.LoadScene(0);
         }
         if (Prog.CurrentState == ProcessState.Inactive) //Etat de reset du boss 
         {
