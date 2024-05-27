@@ -15,7 +15,7 @@ public class CircleDetect : MonoBehaviour
         if (collision != null) //Si oui...
         {
             //Bited.enabled = true; // ... Active le collider d'attaque (Equivalent de la morsure
-            GameObject.Find("Player").GetComponent<PlayerMovement>().BiteByBoss();GameObject.Find("DetectRay").GetComponent<DetectBite>().Desactivation();
+            GameObject.Find("Player").GetComponent<PlayerLifeSystem>().BiteByBoss();GameObject.Find("DetectRay").GetComponent<DetectBite>().Desactivation();
         }
         gameObject.SetActive(false); // Désactive l'objet
          // à remplacer par une fonction // PROBLEME : désactive et réactive trop rapidement à cause de ça donc non XD

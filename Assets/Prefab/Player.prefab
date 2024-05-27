@@ -578,6 +578,12 @@ MonoBehaviour:
   smashHorizontalForce: 15
   smashVerticalForce: 13.5
   smashDuration: 0.75
+  shakeDuration: 0.2
+  shakeMagnitude: 0.3
+  PropulseX: 500
+  PropulseY: 250
+  ChargePower: 3
+  Boss: {fileID: 7616939296107790200, guid: 1fb1c5d0d31b5b9408d50c9442f92e7a, type: 3}
   bossTransform: {fileID: 0}
 --- !u!114 &3596417167674377402
 MonoBehaviour:
