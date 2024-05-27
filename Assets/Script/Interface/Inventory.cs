@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
 public class Inventory : MonoBehaviour
 {
     [Header("Mana")]
@@ -14,7 +13,6 @@ public class Inventory : MonoBehaviour
     private Mana mana;
     [SerializeField] private TextMeshProUGUI manaTextMeshPro;
 
-
     [Header("Life")]
     private int lifePotAmount;
     [HideInInspector] public int maxLifePot = 5;
@@ -22,8 +20,6 @@ public class Inventory : MonoBehaviour
     private bool addLifePot;
     private PlayerLifeSystem playerLifeSystem;
     [SerializeField] private TextMeshProUGUI lifeTextMeshPro;
-    
-
 
     void Start()
     {
@@ -32,9 +28,8 @@ public class Inventory : MonoBehaviour
         playerLifeSystem = player.GetComponent<PlayerLifeSystem>();
         manaPotAmount = 1;
         lifePotAmount = 1;
+    }
 
-
-    }	
     void Update()
     {
         //Input
@@ -64,7 +59,7 @@ public class Inventory : MonoBehaviour
             DrinkLifePotion();
         }
         //Text
-        lifeTextMeshPro.text =  lifePotAmount.ToString();
+        lifeTextMeshPro.text = lifePotAmount.ToString();
         manaTextMeshPro.text = manaPotAmount.ToString();
 
         //AddPotion
@@ -77,46 +72,45 @@ public class Inventory : MonoBehaviour
         {
             AddLifePotion();
         }
-       
     }
-    
+
     public void AddManaPotion()
     {
-        if ( manaPotAmount < 5)
+        if (manaPotAmount < maxManaPot)
         {
-            manaPotAmount = manaPotAmount + 1;
+            manaPotAmount++;
             addManaPot = false;
         }
-        else if (manaPotAmount == 5)
+        else if (manaPotAmount == maxManaPot)
         {
             addManaPot = false;
         }
-        
     }
+
     public void AddLifePotion()
     {
-        if (lifePotAmount < 5)
+        if (lifePotAmount < maxLifePot)
         {
-            lifePotAmount = lifePotAmount + 1;
+            lifePotAmount++;
             addLifePot = false;
         }
-        else if (lifePotAmount == 5)
+        else if (lifePotAmount == maxLifePot)
         {
             addLifePot = false;
         }
-
     }
 
     void DrinkManaPotion()
-    {        
+    {
         mana.manaPool = 100;
-         manaPotAmount = manaPotAmount - 1;
-          drinkMana = false;     
+        manaPotAmount--;
+        drinkMana = false;
     }
+
     void DrinkLifePotion()
     {
         playerLifeSystem.lifePool = 100;
-        lifePotAmount = lifePotAmount - 1;
+        lifePotAmount--;
         drinkLife = false;
     }
 }

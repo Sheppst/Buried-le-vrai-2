@@ -60,7 +60,7 @@ public class Gun : MonoBehaviour
         projectile.GetComponent<AttackObject>().Speed = SpeedBullet;
         projectile.GetComponent<AttackObject>().Thrower = tag;
         projectile.GetComponent<AttackObject>().tag = "ProjPlayer";
-        projectile.GetComponent<AttackObject>().TimeBeforeDestroy = 5;
+        projectile.GetComponent<AttackObject>().TimeBeforeDestroy = 15;
         projectile.GetComponent<AttackObject>().ObjSprite = Balle;
 
         // Revenir à la direction de course après un court délai

@@ -55,7 +55,7 @@ public class DestructibleWall : MonoBehaviour
     {
         if (isPlayerNearby && playerMovement != null && !showMessage)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 if (playerMovement.UseBomb)
                 {
@@ -126,7 +126,7 @@ public class DestructibleWall : MonoBehaviour
 
     void NavigateOptions()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             selectedOption = 1 - selectedOption; // Toggle between 0 and 1
             UpdateOptionColors();

@@ -14,40 +14,37 @@ public class DialogueManager : MonoBehaviour
     private int index;
     private string[] lines;
     private PlayerInteract playerInteract;
-    private CharacterController2D playerController; // Référence au script CharacterController2D
-    private bool isDialogueActive = false; // Track whether a dialogue is active
-    private Boss boss; // Référence au script du boss
-    private Gun gun; // Référence au script Gun
+    private CharacterController2D playerController;
+    private bool isDialogueActive = false;
+    private bool isBossDialogue = false; // Ajoutez cette ligne
+    private Boss boss;
+    private Gun gun;
 
-    public bool IsDialogueActive => isDialogueActive; // Propriété publique pour vérifier si un dialogue est actif
+    public bool IsDialogueActive => isDialogueActive;
 
     void Start()
     {
         sentences = new Queue<string>();
-        dialogueUI.SetActive(false); // Ensure the dialogue UI is initially inactive
+        dialogueUI.SetActive(false);
 
-        // Find the PlayerInteract script in the scene
         playerInteract = FindObjectOfType<PlayerInteract>();
         if (playerInteract == null)
         {
             Debug.LogError("PlayerInteract script not found in the scene.");
         }
 
-        // Find the CharacterController2D script in the scene
         playerController = FindObjectOfType<CharacterController2D>();
         if (playerController == null)
         {
             Debug.LogError("CharacterController2D script not found in the scene.");
         }
 
-        // Find the Boss script in the scene
         boss = FindObjectOfType<Boss>();
         if (boss == null)
         {
             Debug.LogError("Boss script not found in the scene.");
         }
 
-        // Find the Gun script in the scene
         gun = FindObjectOfType<Gun>();
         if (gun == null)
         {
@@ -55,28 +52,28 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(NPC npc)
+    public void StartDialogue(NPC npc) // Modifiez cette ligne
     {
-        if (isDialogueActive) return; // Prevent starting a new dialogue if one is active
+        if (isDialogueActive) return;
 
         isDialogueActive = true;
+        isBossDialogue = npc.isBoss; // Ajoutez cette ligne
 
         if (playerInteract != null)
         {
-            playerInteract.SetInteractionMessageActive(false); // Disable interaction message
+            playerInteract.SetInteractionMessageActive(false);
         }
 
         if (playerController != null)
         {
-            
-            playerController.SetCanMove(false); // Désactiver le mouvement du joueur
+            playerController.SetCanMove(false);
         }
 
         dialogueUI.SetActive(true);
         nameText.text = npc.npcName;
         sentences.Clear();
 
-        lines = npc.dialogues[0].sentences; // Assuming one dialogue for simplicity
+        lines = npc.dialogues[0].sentences;
         index = 0;
 
         foreach (string sentence in lines)
@@ -86,7 +83,7 @@ public class DialogueManager : MonoBehaviour
 
         if (gun != null)
         {
-            gun.SetCanShoot(false); // Désactiver le tir
+            gun.SetCanShoot(false);
         }
 
         DisplayNextSentence();
@@ -148,25 +145,24 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         dialogueUI.SetActive(false);
-        isDialogueActive = false; // Reset dialogue active state
+        isDialogueActive = false;
 
         if (playerInteract != null)
         {
-            playerInteract.SetInteractionMessageActive(true); // Re-enable interaction message
+            playerInteract.SetInteractionMessageActive(true);
         }
 
         if (playerController != null)
         {
-            playerController.SetCanMove(true); // Réactiver le mouvement du joueur
+            playerController.SetCanMove(true);
         }
 
         if (gun != null)
         {
-            Invoke(nameof(EnableShooting), 0.2f); // Ajout d'un délai de 0.2 seconde avant de réactiver le tir
+            Invoke(nameof(EnableShooting), 0.2f);
         }
 
-        // Notifier le boss que le dialogue est terminé
-        if (boss != null)
+        if (isBossDialogue && boss != null) // Modifiez cette ligne
         {
             boss.GoToIdleState();
         }

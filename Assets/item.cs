@@ -7,15 +7,19 @@ public class Item : MonoBehaviour
     public string itemDescription;
     public bool autoAggro = false;
     public bool isBomb = false; // Ajouter ce drapeau pour différencier les éléments de la bombe
+    public bool isLifePotion = false; // Ajouter ce drapeau pour différencier les potions de vie
+    public bool isManaPotion = false; // Ajouter ce drapeau pour différencier les potions de mana
 
     private bool isPlayerNearby = false;
     private ItemBoxManager itemBoxManager;
     private PlayerMovement playerMovement; // Référence à PlayerMovement
+    private Inventory playerInventory; // Référence à l'inventaire du joueur
 
     void Start()
     {
         itemBoxManager = FindObjectOfType<ItemBoxManager>();
         playerMovement = FindObjectOfType<PlayerMovement>(); // Trouver PlayerMovement
+        playerInventory = FindObjectOfType<Inventory>(); // Trouver l'inventaire du joueur
         if (itemBoxManager == null)
         {
             Debug.LogError("Script ItemBoxManager non trouvé dans la scène.");
@@ -69,6 +73,14 @@ public class Item : MonoBehaviour
         if (isBomb && playerMovement != null)
         {
             playerMovement.EnableBombUsage(); // Activer l'utilisation de la bombe
+        }
+        if (isLifePotion && playerInventory != null)
+        {
+            playerInventory.AddLifePotion(); // Ajouter une potion de vie
+        }
+        if (isManaPotion && playerInventory != null)
+        {
+            playerInventory.AddManaPotion(); // Ajouter une potion de mana
         }
         Destroy(gameObject); // Détruire l'élément après ramassage
     }

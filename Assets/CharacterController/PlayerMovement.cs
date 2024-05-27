@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator WaitDash()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2.5f);
         YesDash = true;
     }
 

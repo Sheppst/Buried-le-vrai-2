@@ -7,7 +7,7 @@ public class NPC : MonoBehaviour
     public string npcName;
     public Dialogue[] dialogues;
     public bool autoAggro = false; // Nouveau booléen pour activer/désactiver l'aggro automatique
-
+    public bool isBoss;
     private bool isPlayerNearby = false;
     private DialogueManager dialogueManager; // Référence au DialogueManager
 
