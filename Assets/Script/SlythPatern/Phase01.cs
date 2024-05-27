@@ -211,7 +211,7 @@ public class Phase01 : MonoBehaviour
                 //collision.gameObject.GetComponent<Rigidbody2D>().AddForce(CollidKnock * ChargeStrength);
                 BossAnim.SetBool("Charge", false);
             }
-            if (collision != null ) // /... Le boss rencontre n'importe quel obstacle, alors ...
+            if (collision != null && collision.gameObject.tag != "ProjPlayer" ) // /... Le boss rencontre n'importe quel obstacle, alors ...
             {
                 rigid.velocity = Vector2.zero; // ... Le boss arrête de bouger
                 BossAnim.SetBool("Charge", false);
