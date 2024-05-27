@@ -15,7 +15,7 @@ public class SM_MobVolantDistance : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float speedProj;
     [SerializeField] private float AscendSpeed;
-    private float Life = 10;
+    private float Life = 6;
     private float radius = 4.5f;
     private bool CoDec = true;
     private bool Pass = true;
