@@ -30,7 +30,7 @@ public class AttackObject : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != Thrower) 
+        if (collision.gameObject.tag != Thrower || ) 
         {
             Destroy(gameObject);
         }

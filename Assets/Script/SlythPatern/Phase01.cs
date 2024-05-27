@@ -34,7 +34,8 @@ public class Phase01 : MonoBehaviour
         initialSpeed = speed;
         Vec2Pos = transform.position;
         Bl = null;
-        Life = transform.parent.gameObject.GetComponent<AllMovement>().Life;
+        //Life = transform.parent.gameObject.GetComponent<AllMovement>().Life;
+        Life = 100;
         colid = GetComponent<PolygonCollider2D>();
         MainAudio = GetComponentInParent<AudioSource>();
         rigid = GetComponentInParent<Rigidbody2D>();
@@ -65,7 +66,7 @@ public class Phase01 : MonoBehaviour
     void Update()
     {
         Vec2Pos = transform.position;
-        Life = transform.parent.gameObject.GetComponent<AllMovement>().Life;
+        //Life = transform.parent.gameObject.GetComponent<AllMovement>().Life;
         ProcessState CSN = Prog.CurrentState;
         if (CS != CSN)
         {
@@ -83,6 +84,8 @@ public class Phase01 : MonoBehaviour
         if (Prog.CurrentState == ProcessState.Terminated) 
         {
             StopAllCoroutines();
+            transform.parent.gameObject.SetActive(false);
+            GameObject.Find("WallBoss").SetActive(true);
         }
         if (Prog.CurrentState == ProcessState.Inactive) //Etat de reset du boss 
         {
@@ -198,7 +201,7 @@ public class Phase01 : MonoBehaviour
     {
         if (collision.tag == "ProjPlayer") // Prend effet si le boss rentre au collision avec un objet pouvant l'endomager 
         {
-            Life -= 5;
+            Life -= 10;
             print("touché"); // Pour les tests futures
         }
         if (Prog.CurrentState == ProcessState.Charge) // Si durant la phase de Charge ...
