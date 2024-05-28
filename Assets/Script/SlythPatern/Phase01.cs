@@ -37,7 +37,7 @@ public class Phase01 : MonoBehaviour
         Vec2Pos = transform.position;
         Bl = null;
         //Life = transform.parent.gameObject.GetComponent<AllMovement>().Life;
-        Life = 700;
+        Life = 1000;
         colid = GetComponent<PolygonCollider2D>();
         MainAudio = GetComponentInParent<AudioSource>();
         rigid = GetComponentInParent<Rigidbody2D>();
