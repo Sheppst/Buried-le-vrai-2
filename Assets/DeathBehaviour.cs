@@ -1,9 +1,8 @@
 using UnityEngine;
-using UnityEngine.Animations;
 
 public class DeathBehaviour : StateMachineBehaviour
 {
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    // OnStateEnter est appelé lorsque la transition commence et que l'état de la machine à états commence à évaluer cet état
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Boss boss = animator.GetComponent<Boss>();
@@ -14,8 +13,6 @@ public class DeathBehaviour : StateMachineBehaviour
                 door.isDoorOpen = true;
             }
         }
-
-        // Destroy the boss game object
-        GameObject.Destroy(animator.gameObject);
     }
 }
+    
