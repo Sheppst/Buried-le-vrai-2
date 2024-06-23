@@ -33,11 +33,11 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         //Input
-        if (Input.GetKeyDown(KeyCode.E) && manaPotAmount > 0 && mana.manaPool < 100)
+        if (Input.GetKeyDown(KeyCode.F) && manaPotAmount > 0 && mana.manaPool < 100)
         {
             drinkMana = true;
         }
-        if (Input.GetKeyDown(KeyCode.F) && lifePotAmount > 0 && playerLifeSystem.lifePool < 100)
+        if (Input.GetKeyDown(KeyCode.G) && lifePotAmount > 0 && playerLifeSystem.lifePool < 100)
         {
             drinkLife = true;
         }
